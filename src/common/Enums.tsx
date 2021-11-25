@@ -4,6 +4,7 @@ export enum paths {
 
 export enum API {
 	base = 'https://api.themoviedb.org/3/',
-	popularMovies = 'movie/popular',
-	popularTvShows = 'tv/popular',
+	movies = 'movie/',
+	tvShows = 'tv/',
+	popular = 'popular',
 }

@@ -11,14 +11,14 @@ export interface IUseFetch<T> {
 	error: string | undefined;
 }
 
-export interface IPopularMovies {
+export interface IMoviesData {
 	page: number;
-	results: PopularMoviesResult[];
+	results: MovieResult[];
 	total_pages: number;
 	total_results: number;
 }
 
-export interface PopularMoviesResult {
+export interface MovieResult {
 	adult: boolean;
 	backdrop_path: string;
 	genre_ids: number[];
@@ -40,14 +40,14 @@ export enum OriginalLanguage {
 	Pt = 'pt',
 }
 
-export interface IPopularTvShows {
+export interface ITvShowsData {
 	page: number;
-	results: PopularTvShowsResult[];
+	results: TvShowResult[];
 	total_pages: number;
 	total_results: number;
 }
 
-export interface PopularTvShowsResult {
+export interface TvShowResult {
 	backdrop_path: null | string;
 	first_air_date: Date;
 	genre_ids: number[];
