@@ -1,4 +1,4 @@
-export enum paths {
+export enum Paths {
 	home = '/',
 }
 
