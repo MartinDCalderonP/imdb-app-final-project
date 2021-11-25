@@ -74,5 +74,8 @@ export interface ICardProps {
 	type: string;
 }
 
+export interface ICardsContainerProps {
+	loading: boolean;
+	posts: MovieResult[] | TvShowResult[];
 	type: string;
 }
