@@ -70,6 +70,9 @@ export interface IObjects {
 export interface ICardProps {
 	id: number;
 	name: string;
-	thumbnail: string;
+	image: null | string;
+	type: string;
+}
+
 	type: string;
 }

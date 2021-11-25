@@ -16,7 +16,7 @@ export const homeFetchUrl = (
 	return fetchUrls[type];
 };
 
-export const cardNavigationUrl = (id: number, type: string): string => {
+export const cardNavigationUrl = (type: string, id: number): string => {
 	const navigationUrls: IObjects = {
 		movies: `${Paths.movies}/${id}`,
 		tvShows: `${Paths.tvShows}/${id}`,
