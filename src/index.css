@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
-	--backgroundColor: #151515;
+	--backgroundColor: #202020;
 	--hoverBackgroundColor: #212529;
+	--innerBackgroundColor: #181818;
 	--textColor: #ffffff;
-	--detailsColor: darkred;
-	--hoverDetailsColor: #ec1d24;
+	--detailsColor: darkorchid;
+	--hoverDetailsColor: orchid;
 }
 
 * {
