@@ -1,19 +1,15 @@
 import React from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Navigate,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { paths } from './common/Enums';
 import Home from './pages/Home';
 
 export default function App() {
 	return (
-		<Router>
+		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="*" element={<Navigate replace to="/" />} />
+				<Route path={paths.home} element={<Home />} />
+				<Route path="*" element={<Navigate replace to={paths.home} />} />
 			</Routes>
-		</Router>
+		</BrowserRouter>
 	);
 }
