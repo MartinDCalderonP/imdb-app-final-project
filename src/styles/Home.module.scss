@@ -6,4 +6,12 @@
 	align-items: center;
 	justify-content: center;
 	background-color: var(--innerBackgroundColor);
+
+	.sectionTitle {
+		width: 95%;
+		margin: 20px auto 0px;
+		border-bottom: 1px solid var(--detailsColor);
+		align-self: flex-start;
+		background-color: var(--innerBackgroundColor);
+	}
 }
