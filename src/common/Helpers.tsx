@@ -24,3 +24,7 @@ export const cardNavigationUrl = (type: string, id: number): string => {
 
 	return navigationUrls[type];
 };
+
+export const cardImageUrl = (image: string): string => {
+	return `${API.images}${API.imageWidth200}${image}`;
+};
