@@ -6,7 +6,6 @@ import { IMoviesData, ITvShowsData } from '../common/Interfaces';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
-import Divider from '../components/Divider';
 
 export default function Home() {
 	const [currentMoviesPage, setCurrentMoviesPage] = useState(1);
