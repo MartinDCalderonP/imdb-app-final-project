@@ -62,3 +62,14 @@ export interface TvShowResult {
 	vote_average: number;
 	vote_count: number;
 }
+
+export interface IObjects {
+	[key: string]: string;
+}
+
+export interface ICardProps {
+	id: number;
+	name: string;
+	thumbnail: string;
+	type: string;
+}

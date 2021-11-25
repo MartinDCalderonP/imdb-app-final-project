@@ -1,4 +1,5 @@
-import { API } from '../common/Enums';
+import { Paths, API } from '../common/Enums';
+import { IObjects } from './Interfaces';
 
 export const homeFetchUrl = (
 	currentPage: number,
@@ -14,4 +15,12 @@ export const homeFetchUrl = (
 
 	return fetchUrls[type];
 };
+
+export const cardNavigationUrl = (id: number, type: string): string => {
+	const navigationUrls: IObjects = {
+		movies: `${Paths.movies}/${id}`,
+		tvShows: `${Paths.tvShows}/${id}`,
+	};
+
+	return navigationUrls[type];
 };
