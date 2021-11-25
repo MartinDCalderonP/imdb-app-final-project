@@ -7,7 +7,11 @@ export const homeFetchUrl = (
 ): string => {
 	const paginationParams = `?page=${currentPage}`;
 
-	return type === 'movies'
-		? `${API.base}${API.movies}${filter}${paginationParams}`
-		: `${API.base}${API.tvShows}${filter}${paginationParams}`;
+	const fetchUrls: IObjects = {
+		movies: `${API.base}${API.movies}${filter}${paginationParams}`,
+		tvShows: `${API.base}${API.tvShows}${filter}${paginationParams}`,
+	};
+
+	return fetchUrls[type];
+};
 };
