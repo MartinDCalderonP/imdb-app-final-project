@@ -6,8 +6,8 @@ export enum Paths {
 
 export enum API {
 	base = 'https://api.themoviedb.org/3/',
-	movies = 'movie/',
-	tvShows = 'tv/',
+	movies = 'movie/popular',
+	tvShows = 'tv/popular',
 	images = 'https://image.tmdb.org/t/p/',
 	imageWidth200 = 'w200',
 }
