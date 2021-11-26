@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/CardsContainer.module.scss';
+import { cardsContainerNames } from '../common/Helpers';
 import { ICardsContainerProps } from '../common/Interfaces';
 import { PossiblePost } from '../common/Types';
 import Spinner from './Spinner';
@@ -10,16 +11,6 @@ export default function CardsContainer({
 	posts,
 	type,
 }: ICardsContainerProps) {
-	const cardName = (post: PossiblePost) => {
-		if ('title' in post) {
-			return post.title;
-		} else if ('name' in post) {
-			return post.name;
-		} else {
-			return 'Unknown Name or Title';
-		}
-	};
-
 	return (
 		<div className={styles.cardsContainer}>
 			{loading && <Spinner />}
@@ -31,7 +22,7 @@ export default function CardsContainer({
 						key={`${type}${post.id}`}
 						type={type}
 						id={post.id}
-						name={cardName(post)}
+						name={cardsContainerNames(post)}
 						image={post.poster_path}
 					/>
 				))}

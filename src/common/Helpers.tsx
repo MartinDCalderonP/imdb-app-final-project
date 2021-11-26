@@ -1,5 +1,6 @@
-import { Paths, API } from '../common/Enums';
+import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
+import { PossiblePost } from './Types';
 
 export const sectionFetchUrl = (
 	currentPage: number,
@@ -14,6 +15,14 @@ export const sectionFetchUrl = (
 	};
 
 	return fetchUrls[type];
+};
+
+export const cardsContainerNames = (post: PossiblePost): string => {
+	return 'title' in post
+		? post.title
+		: 'name' in post
+		? post.name
+		: 'Unknown Name or Title';
 };
 
 export const cardNavigationUrl = (type: string, id: number): string => {
