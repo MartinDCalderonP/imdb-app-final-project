@@ -1,12 +1,12 @@
 .spinnerContainer {
 	display: flex;
 	justify-content: center;
-	background-color: var(--innerBackgroundColor);
+	background-color: transparent;
 
 	.spinner {
 		margin: 50px 0;
 		width: 100px;
 		height: 100px;
-		background-color: var(--innerBackgroundColor);
+		background-color: transparent;
 	}
 }
