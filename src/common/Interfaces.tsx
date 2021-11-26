@@ -83,3 +83,8 @@ export interface ICardsContainerProps {
 export interface ISectionProps {
 	type: string;
 }
+
+export interface IFiltersProps {
+	current: string;
+	setCurrent: (current: string) => void;
+}

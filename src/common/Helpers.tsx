@@ -2,6 +2,11 @@ import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
 import { PossiblePost } from './Types';
 
+export const capitalizeWord = (word: string) => {
+	if (!word) return word;
+	return word[0].toUpperCase() + word.substr(1).toLowerCase();
+};
+
 export const sectionFetchUrl = (
 	currentPage: number,
 	filter: string,

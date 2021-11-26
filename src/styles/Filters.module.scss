@@ -1,0 +1,27 @@
+.container {
+	width: 95%;
+	margin-top: 20px;
+	background-color: var(--innerBackgroundColor);
+	display: flex;
+
+	.filterIcon {
+		margin: 0 10px;
+	}
+
+	.filtersList {
+		background-color: transparent;
+		list-style: none;
+		margin-left: 10px;
+		display: flex;
+	}
+
+	.filter {
+		background-color: transparent;
+		margin: 0 10px;
+		cursor: pointer;
+	}
+
+	.activeFilter {
+		color: var(--detailsColor);
+	}
+}

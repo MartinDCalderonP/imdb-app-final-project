@@ -4,16 +4,19 @@ import useFetch from '../hooks/useFetch';
 import { sectionFetchUrl } from '../common/Helpers';
 import { ISectionProps } from '../common/Interfaces';
 import { PossibleData } from '../common/Types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
+import Filters from './Filters';
 
 export default function Section({ type }: ISectionProps) {
-	const [currentPage, setCurrentPage] = useState(1);
-	const [filter, setFilter] = useState('popular');
-	const fetchUrl = sectionFetchUrl(currentPage, filter, type);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [currentFilter, setCurrentFilter] = useState<string>('popular');
+	const fetchUrl = sectionFetchUrl(currentPage, currentFilter, type);
 	const { data, loading, error } = useFetch<PossibleData>(fetchUrl);
+
+	const handleFilterChange = (filter: string) => {
+		setCurrentFilter(filter);
+	};
 
 	return (
 		<>
@@ -22,8 +25,10 @@ export default function Section({ type }: ISectionProps) {
 			{!loading && data && (
 				<>
 					<h1 className={styles.sectionTitle}>
-						{filter.toUpperCase()} TV SHOWS
+						{currentFilter.toUpperCase()} TV SHOWS
 					</h1>
+
+					<Filters current={currentFilter} setCurrent={handleFilterChange} />
 
 					<CardsContainer
 						loading={loading}
