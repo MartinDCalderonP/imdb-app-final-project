@@ -1,7 +1,7 @@
 import { Paths, API } from '../common/Enums';
 import { IObjects } from './Interfaces';
 
-export const homeFetchUrl = (
+export const sectionFetchUrl = (
 	currentPage: number,
 	filter: string,
 	type: string

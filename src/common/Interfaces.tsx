@@ -79,3 +79,7 @@ export interface ICardsContainerProps {
 	posts: MovieResult[] | TvShowResult[];
 	type: string;
 }
+
+export interface ISectionProps {
+	type: string;
+}
