@@ -32,7 +32,7 @@ export default function YearsInputs({
 
 	return (
 		<>
-			<div className={styles.inputsContainer}>
+			<form className={styles.inputsContainer}>
 				<label className={styles.inputsLabels}>
 					From
 					<input
@@ -60,7 +60,7 @@ export default function YearsInputs({
 				<button className={styles.yearsButton} onClick={handleSubmitYearRange}>
 					Filter by Year Range
 				</button>
-			</div>
+			</form>
 		</>
 	);
 }
