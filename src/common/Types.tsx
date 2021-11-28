@@ -5,6 +5,6 @@ import {
 	TvShowResult,
 } from './Interfaces';
 
-export type PossibleData = IMoviesData | ITvShowsData;
+export type PossibleSectionData = IMoviesData | ITvShowsData;
 
-export type PossiblePost = MovieResult | TvShowResult;
+export type PossibleSectionPost = MovieResult | TvShowResult;
