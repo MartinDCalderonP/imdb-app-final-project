@@ -54,7 +54,6 @@ export default function Filters({
 								onClick={() =>
 									handleFilterButtonClick(certification.certification)
 								}
-								disabled={current === certification}
 							>
 								{certification.certification}
 							</button>
@@ -66,9 +65,8 @@ export default function Filters({
 					firstGenres.map((genre: any) => (
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
-								className={filterStyle(genre.name)}
-								onClick={() => handleFilterButtonClick(genre.name)}
-								disabled={current === genre}
+								className={filterStyle(genre.id)}
+								onClick={() => handleFilterButtonClick(genre.id)}
 							>
 								{genre.name}
 							</button>
@@ -81,9 +79,8 @@ export default function Filters({
 					{lastGenres.map((genre: any) => (
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
-								className={filterStyle(genre.name)}
-								onClick={() => handleFilterButtonClick(genre.name)}
-								disabled={current === genre}
+								className={filterStyle(genre.id)}
+								onClick={() => handleFilterButtonClick(genre.id)}
 							>
 								{genre.name}
 							</button>

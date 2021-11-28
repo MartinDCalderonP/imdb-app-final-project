@@ -7,15 +7,46 @@ export const capitalizeWord = (word: string) => {
 	return word[0].toUpperCase() + word.substr(1).toLowerCase();
 };
 
-export const sectionFetchUrl = (currentPage: number, type: string): string => {
-	const paginationParams = `?page=${currentPage}`;
+export const sectionFetchUrl = (
+	currentPage: number,
+	currentFilter: string,
+	filterCategory: string,
+	type: string
+): string => {
+	const paginationParams = `page=${currentPage}`;
 
-	const fetchUrls: IObjects = {
-		movies: `${API.base}${API.popularMovies}${paginationParams}`,
-		tvShows: `${API.base}${API.popularTvShows}${paginationParams}`,
+	const years = filterCategory === 'year' && currentFilter.split('-');
+	const moviesYearParams =
+		years && years.length === 2
+			? `${API.moviesMinYear}${years[0]}${API.moviesMaxYear}${years[1]}`
+			: '';
+
+	const tvShowsYearParams =
+		years && years.length === 2
+			? `${API.tvShowsMinYear}${years[0]}${API.tvShowsMaxYear}${years[1]}`
+			: '';
+
+	const moviesFetchUrls: IObjects = {
+		default: `${API.base}${API.popularMovies}?${paginationParams}`,
+		certification: `${API.base}${API.moviesDiscover}?${API.byCertification}${currentFilter}&${paginationParams}`,
+		genre: `${API.base}${API.moviesDiscover}?${API.byGenre}${currentFilter}&${paginationParams}`,
+		year: `${API.base}${API.moviesDiscover}?${moviesYearParams}&${paginationParams}`,
 	};
 
-	return fetchUrls[type];
+	const tvShowsFetchUrls: IObjects = {
+		default: `${API.base}${API.popularTvShows}?${paginationParams}`,
+		certification: `${API.base}${API.tvShowsDiscover}?${API.byCertification}${currentFilter}&${paginationParams}`,
+		genre: `${API.base}${API.tvShowsDiscover}?${API.byGenre}${currentFilter}&${paginationParams}`,
+		year: `${API.base}${API.tvShowsDiscover}?${tvShowsYearParams}&${paginationParams}`,
+	};
+
+	return type === 'movies'
+		? filterCategory
+			? moviesFetchUrls[filterCategory]
+			: moviesFetchUrls.default
+		: filterCategory
+		? tvShowsFetchUrls[filterCategory]
+		: tvShowsFetchUrls.default;
 };
 
 export const cardsContainerNames = (post: PossibleSectionPost): string => {

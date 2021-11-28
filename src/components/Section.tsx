@@ -12,7 +12,12 @@ export default function Section({ type }: ISectionProps) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [currentFilter, setCurrentFilter] = useState<string>('');
 	const [filterCategory, setFilterCategory] = useState<string>('');
-	const fetchUrl = sectionFetchUrl(currentPage, type);
+	const fetchUrl = sectionFetchUrl(
+		currentPage,
+		currentFilter,
+		filterCategory,
+		type
+	);
 	const { data, loading, error } = useFetch<PossibleSectionData>(fetchUrl);
 
 	const sectionTitle = type === 'movies' ? 'MOVIES' : 'TV SHOWS';
