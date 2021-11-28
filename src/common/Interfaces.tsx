@@ -87,6 +87,7 @@ export interface ISectionProps {
 export interface IFiltersContainerProps {
 	current: string;
 	setCurrent: (current: string) => void;
+	setFilterCategory: (current: string) => void;
 	type: string;
 }
 
@@ -94,10 +95,12 @@ export interface IFiltersProps {
 	current: string;
 	setCurrent: (current: string) => void;
 	category: string;
+	setFilterCategory: (current: string) => void;
 	type: string;
 }
 
 export interface IYearsInputsProps {
 	current: string;
 	setCurrent: (current: string) => void;
+	setFilterCategory: (current: string) => void;
 }

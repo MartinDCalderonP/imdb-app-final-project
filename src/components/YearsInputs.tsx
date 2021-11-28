@@ -6,6 +6,7 @@ import { validateYearFormat } from '../common/Helpers';
 export default function YearsInputs({
 	current,
 	setCurrent,
+	setFilterCategory,
 }: IYearsInputsProps) {
 	const [minYear, setMinYear] = useState('');
 	const [maxYear, setMaxYear] = useState('');
@@ -27,6 +28,7 @@ export default function YearsInputs({
 
 		if (validateYearFormat(minYear) && validateYearFormat(maxYear)) {
 			setCurrent(minYear + '-' + maxYear);
+			setFilterCategory('year');
 		}
 	};
 

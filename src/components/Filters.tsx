@@ -9,6 +9,7 @@ export default function Filters({
 	current,
 	setCurrent,
 	category,
+	setFilterCategory,
 	type,
 }: IFiltersProps) {
 	const fetchUrl = filtersFetchUrl(category, type);
@@ -31,6 +32,11 @@ export default function Filters({
 
 	const lastGenres = category === 'genre' && data?.genres?.slice(10);
 
+	const handleFilterButtonClick = (filter: string) => {
+		setCurrent(filter);
+		setFilterCategory(category);
+	};
+
 	return (
 		<>
 			<ul className={styles.filtersList}>
@@ -45,7 +51,9 @@ export default function Filters({
 						>
 							<button
 								className={filterStyle(certification.certification)}
-								onClick={() => setCurrent(certification.certification)}
+								onClick={() =>
+									handleFilterButtonClick(certification.certification)
+								}
 								disabled={current === certification}
 							>
 								{certification.certification}
@@ -59,7 +67,7 @@ export default function Filters({
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
 								className={filterStyle(genre.name)}
-								onClick={() => setCurrent(genre.name)}
+								onClick={() => handleFilterButtonClick(genre.name)}
 								disabled={current === genre}
 							>
 								{genre.name}
@@ -74,7 +82,7 @@ export default function Filters({
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
 								className={filterStyle(genre.name)}
-								onClick={() => setCurrent(genre.name)}
+								onClick={() => handleFilterButtonClick(genre.name)}
 								disabled={current === genre}
 							>
 								{genre.name}

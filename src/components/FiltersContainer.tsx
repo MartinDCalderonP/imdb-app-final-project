@@ -12,6 +12,7 @@ const categories = ['certification', 'genre', 'year'];
 export default function FiltersContainer({
 	current,
 	setCurrent,
+	setFilterCategory,
 	type,
 }: IFiltersContainerProps) {
 	const [showFilters, setShowFilters] = useState(false);
@@ -45,12 +46,17 @@ export default function FiltersContainer({
 											current={current}
 											setCurrent={setCurrent}
 											category={category}
+											setFilterCategory={setFilterCategory}
 											type={type}
 										/>
 									)}
 
 									{category === 'year' && (
-										<YearsInputs current={current} setCurrent={setCurrent} />
+										<YearsInputs
+											current={current}
+											setCurrent={setCurrent}
+											setFilterCategory={setFilterCategory}
+										/>
 									)}
 								</div>
 							</li>

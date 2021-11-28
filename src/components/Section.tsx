@@ -11,6 +11,7 @@ import FiltersContainer from './FiltersContainer';
 export default function Section({ type }: ISectionProps) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [currentFilter, setCurrentFilter] = useState<string>('');
+	const [filterCategory, setFilterCategory] = useState<string>('');
 	const fetchUrl = sectionFetchUrl(currentPage, type);
 	const { data, loading, error } = useFetch<PossibleSectionData>(fetchUrl);
 
@@ -31,6 +32,7 @@ export default function Section({ type }: ISectionProps) {
 					<FiltersContainer
 						current={currentFilter}
 						setCurrent={handleFilterChange}
+						setFilterCategory={setFilterCategory}
 						type={type}
 					/>
 
