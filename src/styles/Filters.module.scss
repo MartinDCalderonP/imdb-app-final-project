@@ -1,27 +1,24 @@
-.container {
-	width: 95%;
-	margin-top: 20px;
-	background-color: var(--innerBackgroundColor);
-	display: flex;
+.filtersList {
+	background-color: transparent;
+	list-style: none;
+	width: fit-content;
+	margin: 0 10px;
 
-	.filterIcon {
-		margin: 0 10px;
-	}
-
-	.filtersList {
+	.filtersListItem {
 		background-color: transparent;
-		list-style: none;
-		margin-left: 10px;
-		display: flex;
-	}
+		width: max-content;
 
-	.filter {
-		background-color: transparent;
-		margin: 0 10px;
-		cursor: pointer;
-	}
+		.filterButton {
+			background-color: transparent;
+			border: none;
+			padding: 7.5px 0;
+			cursor: pointer;
+			font-size: 0.9rem;
+			color: var(--secondaryTextColor);
 
-	.activeFilter {
-		color: var(--detailsColor);
+			&.activeFilter {
+				color: var(--detailsColor);
+			}
+		}
 	}
 }

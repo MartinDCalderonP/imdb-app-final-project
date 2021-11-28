@@ -1,32 +1,88 @@
 import React from 'react';
 import styles from '../styles/Filters.module.scss';
-import { capitalizeWord } from '../common/Helpers';
+import { filtersFetchUrl } from '../common/Helpers';
 import { IFiltersProps } from '../common/Interfaces';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
+import useFetch from '../hooks/useFetch';
+import Spinner from './Spinner';
 
-const filters = ['popular', 'certification', 'genre', 'year'];
+export default function Filters({
+	current,
+	setCurrent,
+	category,
+	type,
+}: IFiltersProps) {
+	const fetchUrl = filtersFetchUrl(category, type);
+	const { data, loading, error } = useFetch<any>(fetchUrl);
 
-export default function Filters({ current, setCurrent }: IFiltersProps) {
 	const filterStyle = (filter: string): string => {
-		return `${styles.filter} ${current === filter ? styles.activeFilter : ''}`;
+		return (
+			styles.filterButton +
+			(current === filter ? ` ${styles.activeFilter}` : '')
+		);
 	};
 
+	const sortedCertifications =
+		category === 'certification' &&
+		data?.certifications?.US?.sort((a: any, b: any) => {
+			return a.order - b.order;
+		});
+
+	const firstGenres = category === 'genre' && data?.genres?.slice(0, 10);
+
+	const lastGenres = category === 'genre' && data?.genres?.slice(10);
+
 	return (
-		<div className={styles.container}>
-			<FontAwesomeIcon className={styles.filterIcon} icon={faSlidersH} />
-			Filters:
+		<>
 			<ul className={styles.filtersList}>
-				{filters.map((filter, index) => (
-					<li
-						key={`filter${index}`}
-						className={filterStyle(filter)}
-						onClick={() => setCurrent(filter)}
-					>
-						{capitalizeWord(filter)}
-					</li>
-				))}
+				{loading && <Spinner />}
+
+				{!loading &&
+					category === 'certification' &&
+					sortedCertifications.map((certification: any) => (
+						<li
+							key={`certification${certification.order}`}
+							className={styles.filtersListItem}
+						>
+							<button
+								className={filterStyle(certification.certification)}
+								onClick={() => setCurrent(certification.certification)}
+								disabled={current === certification}
+							>
+								{certification.certification}
+							</button>
+						</li>
+					))}
+
+				{!loading &&
+					category === 'genre' &&
+					firstGenres.map((genre: any) => (
+						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
+							<button
+								className={filterStyle(genre.name)}
+								onClick={() => setCurrent(genre.name)}
+								disabled={current === genre}
+							>
+								{genre.name}
+							</button>
+						</li>
+					))}
 			</ul>
-		</div>
+
+			{!loading && category === 'genre' && (
+				<ul className={styles.filtersList}>
+					{lastGenres.map((genre: any) => (
+						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
+							<button
+								className={filterStyle(genre.name)}
+								onClick={() => setCurrent(genre.name)}
+								disabled={current === genre}
+							>
+								{genre.name}
+							</button>
+						</li>
+					))}
+				</ul>
+			)}
+		</>
 	);
 }
