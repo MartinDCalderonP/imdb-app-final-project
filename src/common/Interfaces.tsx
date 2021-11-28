@@ -96,3 +96,8 @@ export interface IFiltersProps {
 	category: string;
 	type: string;
 }
+
+export interface IYearsInputsProps {
+	current: string;
+	setCurrent: (current: string) => void;
+}

@@ -5,6 +5,7 @@ import { IFiltersContainerProps } from '../common/Interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import Filters from './Filters';
+import YearsInputs from './YearsInputs';
 
 const categories = ['certification', 'genre', 'year'];
 
@@ -39,12 +40,18 @@ export default function FiltersContainer({
 								</p>
 
 								<div className={styles.listsContainer}>
-									<Filters
-										current={current}
-										setCurrent={setCurrent}
-										category={category}
-										type={type}
-									/>
+									{category !== 'year' && (
+										<Filters
+											current={current}
+											setCurrent={setCurrent}
+											category={category}
+											type={type}
+										/>
+									)}
+
+									{category === 'year' && (
+										<YearsInputs current={current} setCurrent={setCurrent} />
+									)}
 								</div>
 							</li>
 						))}
