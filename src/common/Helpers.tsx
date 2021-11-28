@@ -54,3 +54,8 @@ export const filtersFetchUrl = (category: string, type: string): string => {
 		? moviesFiltersFetchUrls[category]
 		: tvShowsFiltersFetchUrls[category];
 };
+
+export const validateYearFormat = (date: string) => {
+	const regex = /^\d{4}\-\d{2}\-\d{2}$/;
+	return date.match(regex) ? true : false;
+};
