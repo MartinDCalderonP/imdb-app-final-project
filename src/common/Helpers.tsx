@@ -56,6 +56,6 @@ export const filtersFetchUrl = (category: string, type: string): string => {
 };
 
 export const validateYearFormat = (date: string) => {
-	const regex = /^\d{4}\-\d{2}\-\d{2}$/;
+	const regex = /^\d{4}$/;
 	return date.match(regex) ? true : false;
 };

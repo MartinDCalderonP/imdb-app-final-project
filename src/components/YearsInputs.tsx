@@ -38,7 +38,7 @@ export default function YearsInputs({
 					<input
 						className={styles.input}
 						name="min"
-						maxLength={10}
+						maxLength={4}
 						value={minYear}
 						onChange={handleMinYearChange}
 					/>
@@ -49,15 +49,13 @@ export default function YearsInputs({
 					<input
 						className={styles.input}
 						name="max"
-						maxLength={10}
+						maxLength={4}
 						value={maxYear}
 						onChange={handleMaxYearChange}
 					/>
 				</label>
 
-				<i className={styles.formatText}>
-					Format: YYYY-MM-DD, YYYY-MM, or YYYY
-				</i>
+				<i className={styles.formatText}>Format: YYYY</i>
 
 				<button className={styles.yearsButton} onClick={handleSubmitYearRange}>
 					Filter by Year Range
