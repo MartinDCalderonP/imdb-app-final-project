@@ -84,7 +84,15 @@ export interface ISectionProps {
 	type: string;
 }
 
+export interface IFiltersContainerProps {
+	current: string;
+	setCurrent: (current: string) => void;
+	type: string;
+}
+
 export interface IFiltersProps {
 	current: string;
 	setCurrent: (current: string) => void;
+	category: string;
+	type: string;
 }
