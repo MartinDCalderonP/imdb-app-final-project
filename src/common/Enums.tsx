@@ -6,6 +6,7 @@ export enum Paths {
 
 export enum API {
 	base = 'https://api.themoviedb.org/3/',
+	requestToken = 'authentication/token/new',
 	popularMovies = 'movie/popular',
 	popularTvShows = 'tv/popular',
 	moviesCertifications = 'certification/movie/list',
