@@ -7,8 +7,6 @@ import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import Filters from './Filters';
 import YearsInputs from './YearsInputs';
 
-const categories = ['certification', 'genre', 'year'];
-
 export default function FiltersContainer({
 	current,
 	setCurrent,
@@ -16,6 +14,9 @@ export default function FiltersContainer({
 	type,
 }: IFiltersContainerProps) {
 	const [showFilters, setShowFilters] = useState(false);
+
+	const categories =
+		type === 'movies' ? ['certification', 'genre', 'year'] : ['genre', 'year'];
 
 	const filterButtonStyle =
 		styles.filtersButton + (showFilters ? ` ${styles.activeButton}` : '');
