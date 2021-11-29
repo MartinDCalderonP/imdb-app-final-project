@@ -1,10 +1,25 @@
-export enum paths {
+export enum Paths {
 	home = '/',
+	movies = '/movies',
+	tvShows = '/tv-shows',
 }
 
 export enum API {
 	base = 'https://api.themoviedb.org/3/',
-	movies = 'movie/',
-	tvShows = 'tv/',
-	popular = 'popular',
+	popularMovies = 'movie/popular',
+	popularTvShows = 'tv/popular',
+	moviesCertifications = 'certification/movie/list',
+	tvShowsCertifications = 'certification/tv/list',
+	moviesGenres = 'genre/movie/list',
+	tvShowsGenres = 'genre/tv/list',
+	moviesDiscover = 'discover/movie',
+	tvShowsDiscover = 'discover/tv',
+	byCertification = '&sort_by=popularity.desc&certification_country=US&certification=',
+	byGenre = '&sort_by=popularity.desc&with_genres=',
+	moviesMinYear = '&sort_by=popularity.desc&primary_release_date.gte=',
+	moviesMaxYear = '&primary_release_date.lte=',
+	tvShowsMinYear = '&sort_by=popularity.desc&first_air_date.gte=',
+	tvShowsMaxYear = '&first_air_date.lte=',
+	images = 'https://image.tmdb.org/t/p/',
+	imageWidth200 = 'w200',
 }

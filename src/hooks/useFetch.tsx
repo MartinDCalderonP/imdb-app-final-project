@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { IUseFetch } from '../common/Interfaces';
-import { isCorrectData } from '../common/TypeGuards';
 import { API_KEY } from '../Keys';
 
 export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
@@ -21,7 +20,7 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 				fetch(url, { signal })
 					.then((res) => res.json())
 					.then((result) => {
-						if (isCorrectData(result)) {
+						if (result) {
 							setData(result);
 							setLoading(false);
 						}
