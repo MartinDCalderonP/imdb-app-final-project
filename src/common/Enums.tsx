@@ -1,11 +1,16 @@
 export enum Paths {
-	home = '/',
+	home = '/*',
 	movies = '/movies',
 	tvShows = '/tv-shows',
 }
 
 export enum API {
 	base = 'https://api.themoviedb.org/3/',
+	requestToken = 'authentication/token/new',
+	authenticate = `https://www.themoviedb.org/authenticate/`,
+	redirect = '?redirect_to=http://localhost:3000/approved',
+	authenticateWithToken = 'authentication/session/new',
+	deleteSession = 'authentication/session',
 	popularMovies = 'movie/popular',
 	popularTvShows = 'tv/popular',
 	moviesCertifications = 'certification/movie/list',

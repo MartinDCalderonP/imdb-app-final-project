@@ -28,6 +28,7 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 					.catch((err) => {
 						if (err.name === 'AbortError') return;
 						setError(`${err}. Try again later.`);
+						setLoading(false);
 					});
 			}
 		};
