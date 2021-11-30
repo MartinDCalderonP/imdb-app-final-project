@@ -11,6 +11,7 @@ import {
 	faSignOutAlt,
 	faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import SearchInput from './SearchInput';
 
 export default function Navbar() {
 	const location = useLocation();
@@ -45,6 +46,8 @@ export default function Navbar() {
 				<FontAwesomeIcon className={styles.anchorIcon} icon={faHome} />
 				Home
 			</NavLink>
+
+			<SearchInput />
 
 			{!sessionId && requestToken && (
 				<a href={`${API.authenticate}${requestToken}${API.redirect}`}>
