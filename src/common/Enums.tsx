@@ -30,6 +30,7 @@ export enum API {
 	images = 'https://image.tmdb.org/t/p/',
 	imageWidth200 = 'w200',
 	imageWidth300 = 'w300',
-	imageWidth500 = 'w500',
+	imageOriginal = 'original',
+	imagesInEnglish = '/images?&include_image_language=en,null',
 	search = 'search/multi',
 }
