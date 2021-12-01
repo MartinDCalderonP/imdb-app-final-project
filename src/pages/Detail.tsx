@@ -6,7 +6,7 @@ import { IDetailProps } from '../common/Interfaces';
 import { detailFetchUrl, detailImageUrl } from '../common/Helpers';
 import { PossibleDetailPost } from '../common/Types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import RatingStars from '../components/RatingStars';
