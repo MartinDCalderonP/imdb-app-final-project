@@ -41,11 +41,7 @@ export default function Section({ type }: ISectionProps) {
 						type={type}
 					/>
 
-					<CardsContainer
-						loading={loading}
-						posts={data?.results}
-						type="movies"
-					/>
+					<CardsContainer loading={loading} posts={data?.results} type={type} />
 				</>
 			)}
 		</>
