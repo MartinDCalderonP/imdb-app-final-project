@@ -6,7 +6,6 @@
 	padding-bottom: 20px;
 
 	.filtersButton {
-		background-color: transparent;
 		font-size: 1rem;
 		font-weight: bold;
 		color: var(--secondaryTextColor);
@@ -46,30 +45,25 @@
 
 	.categoriesContainer {
 		padding-top: 20px;
-		background-color: transparent;
 		transition: all 0.3s linear;
 
 		.categories {
-			background-color: transparent;
 			list-style: none;
 			margin: 0 10px;
 			display: flex;
 			justify-content: flex-start;
 
 			.category {
-				background-color: transparent;
 				width: 30%;
 				margin: 0 10px;
 
 				.categoryName {
-					background-color: transparent;
 					border-bottom: 1px solid var(--detailsColor);
 					padding-bottom: 10px;
 				}
 
 				.listsContainer {
 					display: flex;
-					background-color: transparent;
 				}
 			}
 		}
