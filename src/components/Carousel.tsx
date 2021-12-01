@@ -68,7 +68,7 @@ export default function Carousel({ id, type }: ICarouselProps) {
 		<>
 			{loading && <Spinner />}
 
-			{!loading && backdrops && (
+			{!loading && backdrops && backdrops.length > 0 && (
 				<div className={styles.carousel}>
 					<Chevron
 						className={styles.previous}
