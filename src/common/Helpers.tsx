@@ -72,9 +72,10 @@ export const cardNavigationUrl = (type: string, id: number): string => {
 	const navigationUrls: IObjects = {
 		movies: `${Paths.movies}/${id}`,
 		tvShows: `${Paths.tvShows}/${id}`,
+		person: `${Paths.person}/${id}`,
 	};
 
-	return navigationUrls[type];
+	return type ? navigationUrls[type] : navigationUrls.person;
 };
 
 export const cardImageUrl = (image: string): string => {

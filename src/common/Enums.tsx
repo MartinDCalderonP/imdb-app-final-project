@@ -2,6 +2,7 @@ export enum Paths {
 	home = '/*',
 	movies = '/movies',
 	tvShows = '/tv-shows',
+	person = '/person',
 	search = '/search=',
 	page = '/page=',
 }
