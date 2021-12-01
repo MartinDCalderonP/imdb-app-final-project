@@ -11,7 +11,8 @@ export const sectionFetchUrl = (
 	currentPage: number,
 	currentFilter: string,
 	filterCategory: string,
-	type: string
+	type: string,
+	id?: string
 ): string => {
 	const paginationParams = `page=${currentPage}`;
 
@@ -31,6 +32,7 @@ export const sectionFetchUrl = (
 		certification: `${API.base}${API.discover}${API.movies}?${API.byCertification}${currentFilter}&${paginationParams}`,
 		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
+		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
@@ -38,15 +40,40 @@ export const sectionFetchUrl = (
 		certification: `${API.base}${API.discover}${API.tvShows}?${API.byCertification}${currentFilter}&${paginationParams}`,
 		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
+		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
 	};
 
 	return type === 'movies'
 		? filterCategory
 			? moviesFetchUrls[filterCategory]
+			: id
+			? moviesFetchUrls.similar
 			: moviesFetchUrls.default
 		: filterCategory
 		? tvShowsFetchUrls[filterCategory]
+		: id
+		? tvShowsFetchUrls.similar
 		: tvShowsFetchUrls.default;
+};
+
+export const sectionTitle = (type: string, id?: string): string => {
+	const moviesTitles: IObjects = {
+		default: 'Popular Movies',
+		similar: 'Similar Movies',
+	};
+
+	const tvShowsTitles: IObjects = {
+		default: 'Popular TV Shows',
+		similar: 'Similar TV Shows',
+	};
+
+	return type === 'movies'
+		? id
+			? moviesTitles.similar
+			: moviesTitles.default
+		: id
+		? tvShowsTitles.similar
+		: tvShowsTitles.default;
 };
 
 export const cardsContainerNames = (post: PossibleSectionPost): string => {

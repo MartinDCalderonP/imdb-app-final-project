@@ -82,6 +82,7 @@ export interface ICardsContainerProps {
 
 export interface ISectionProps {
 	type: string;
+	id?: string | undefined;
 }
 
 export interface IFiltersContainerProps {

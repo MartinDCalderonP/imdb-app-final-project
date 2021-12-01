@@ -11,6 +11,7 @@ import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import RatingStars from '../components/RatingStars';
 import Carousel from '../components/Carousel';
+import Section from '../components/Section';
 
 export default function Detail({ type }: IDetailProps) {
 	const { id } = useParams();
@@ -74,6 +75,8 @@ export default function Detail({ type }: IDetailProps) {
 						</div>
 
 						<Carousel id={id} type={type} />
+
+						<Section id={id} type={type} />
 					</>
 				)}
 			</div>
