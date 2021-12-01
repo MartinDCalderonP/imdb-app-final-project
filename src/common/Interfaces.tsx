@@ -143,3 +143,7 @@ export enum MediaType {
 	Person = 'person',
 	Tv = 'tv',
 }
+
+export interface IDetailProps {
+	type: string;
+}
