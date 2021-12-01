@@ -1,0 +1,19 @@
+.rating {
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+	padding: 10px;
+	font-size: 2rem;
+
+	* {
+		background-color: transparent;
+	}
+
+	.stars {
+		path {
+			fill: #ffc107;
+		}
+	}
+}
