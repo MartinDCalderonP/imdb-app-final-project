@@ -4,8 +4,12 @@ import {
 	MovieResult,
 	TvShowResult,
 	SearchResult,
+	IDetailMovie,
+	IDetailTvShow,
 } from './Interfaces';
 
 export type PossibleSectionData = IMoviesData | ITvShowsData;
 
-export type PossiblePost = MovieResult | TvShowResult | SearchResult;
+export type PossibleSectionPost = MovieResult | TvShowResult | SearchResult;
+
+export type PossibleDetailPost = IDetailMovie | IDetailTvShow;
