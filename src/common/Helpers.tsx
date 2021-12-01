@@ -27,17 +27,17 @@ export const sectionFetchUrl = (
 			: '';
 
 	const moviesFetchUrls: IObjects = {
-		default: `${API.base}${API.popularMovies}?${paginationParams}`,
-		certification: `${API.base}${API.moviesDiscover}?${API.byCertification}${currentFilter}&${paginationParams}`,
-		genre: `${API.base}${API.moviesDiscover}?${API.byGenre}${currentFilter}&${paginationParams}`,
-		year: `${API.base}${API.moviesDiscover}?${moviesYearParams}&${paginationParams}`,
+		default: `${API.base}${API.movies}${API.popular}?${paginationParams}`,
+		certification: `${API.base}${API.discover}${API.movies}?${API.byCertification}${currentFilter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${currentFilter}&${paginationParams}`,
+		year: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
-		default: `${API.base}${API.popularTvShows}?${paginationParams}`,
-		certification: `${API.base}${API.tvShowsDiscover}?${API.byCertification}${currentFilter}&${paginationParams}`,
-		genre: `${API.base}${API.tvShowsDiscover}?${API.byGenre}${currentFilter}&${paginationParams}`,
-		year: `${API.base}${API.tvShowsDiscover}?${tvShowsYearParams}&${paginationParams}`,
+		default: `${API.base}${API.tvShows}${API.popular}?${paginationParams}`,
+		certification: `${API.base}${API.discover}${API.tvShows}?${API.byCertification}${currentFilter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${currentFilter}&${paginationParams}`,
+		year: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 	};
 
 	return type === 'movies'
@@ -84,13 +84,13 @@ export const cardImageUrl = (image: string): string => {
 
 export const filtersFetchUrl = (category: string, type: string): string => {
 	const moviesFiltersFetchUrls: IObjects = {
-		certification: `${API.base}${API.moviesCertifications}?`,
-		genre: `${API.base}${API.moviesGenres}?`,
+		certification: `${API.base}${API.certification}${API.movies}${API.list}?`,
+		genre: `${API.base}${API.genre}${API.movies}${API.list}?`,
 	};
 
 	const tvShowsFiltersFetchUrls: IObjects = {
-		certification: `${API.base}${API.tvShowsCertifications}?`,
-		genre: `${API.base}${API.tvShowsGenres}?`,
+		certification: `${API.base}${API.certification}${API.tvShows}${API.list}?`,
+		genre: `${API.base}${API.genre}${API.tvShows}${API.list}?`,
 	};
 
 	return type === 'movies'
