@@ -315,3 +315,33 @@ export interface Backdrop {
 	vote_count: number;
 	width: number;
 }
+
+export interface IReviewsProps {
+	id: string | undefined;
+	type: string;
+}
+
+export interface IReviewsData {
+	id: number;
+	page: number;
+	results: ReviewsResult[];
+	total_pages: number;
+	total_results: number;
+}
+
+export interface ReviewsResult {
+	author: string;
+	author_details: AuthorDetails;
+	content: string;
+	created_at: Date;
+	id: string;
+	updated_at: Date;
+	url: string;
+}
+
+export interface AuthorDetails {
+	name: string;
+	username: string;
+	avatar_path: null | string;
+	rating: number | null;
+}

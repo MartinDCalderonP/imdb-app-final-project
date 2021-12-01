@@ -34,4 +34,5 @@ export enum API {
 	imagesInEnglish = '/images?&include_image_language=en,null',
 	search = 'search/multi',
 	similar = '/similar',
+	reviews = '/reviews',
 }

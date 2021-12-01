@@ -12,6 +12,7 @@ import Spinner from '../components/Spinner';
 import RatingStars from '../components/RatingStars';
 import Carousel from '../components/Carousel';
 import Section from '../components/Section';
+import Reviews from '../components/Reviews';
 
 export default function Detail({ type }: IDetailProps) {
 	const { id } = useParams();
@@ -77,6 +78,8 @@ export default function Detail({ type }: IDetailProps) {
 						<Carousel id={id} type={type} />
 
 						<Section id={id} type={type} />
+
+						<Reviews id={id} type={type} />
 					</>
 				)}
 			</div>
