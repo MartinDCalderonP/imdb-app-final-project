@@ -76,7 +76,7 @@ export interface ICardProps {
 
 export interface ICardsContainerProps {
 	loading: boolean;
-	posts: MovieResult[] | TvShowResult[];
+	posts: MovieResult[] | TvShowResult[] | SearchResult[];
 	type: string;
 }
 
@@ -103,4 +103,43 @@ export interface IYearsInputsProps {
 	current: string;
 	setCurrent: (current: string) => void;
 	setFilterCategory: (current: string) => void;
+}
+
+export interface ISearchResults {
+	page: number;
+	results: SearchResult[];
+	total_pages: number;
+	total_results: number;
+}
+
+export interface SearchResult {
+	adult?: boolean;
+	backdrop_path?: null | string;
+	genre_ids?: number[];
+	id: number;
+	media_type: MediaType;
+	original_language?: OriginalLanguage;
+	original_title?: string;
+	overview?: string;
+	popularity?: number;
+	poster_path?: string;
+	release_date?: Date;
+	title: string;
+	video?: boolean;
+	vote_average?: number;
+	vote_count?: number;
+	first_air_date?: Date;
+	name: string;
+	origin_country?: string[];
+	original_name?: string;
+	gender?: number;
+	known_for?: SearchResult[];
+	known_for_department?: string;
+	profile_path?: string;
+}
+
+export enum MediaType {
+	Movie = 'movie',
+	Person = 'person',
+	Tv = 'tv',
 }

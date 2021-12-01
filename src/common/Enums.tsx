@@ -2,6 +2,8 @@ export enum Paths {
 	home = '/*',
 	movies = '/movies',
 	tvShows = '/tv-shows',
+	search = '/search=',
+	page = '/page=',
 }
 
 export enum API {
@@ -27,4 +29,5 @@ export enum API {
 	tvShowsMaxYear = '&first_air_date.lte=',
 	images = 'https://image.tmdb.org/t/p/',
 	imageWidth200 = 'w200',
+	search = 'search/multi',
 }

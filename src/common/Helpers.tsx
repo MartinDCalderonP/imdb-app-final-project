@@ -1,6 +1,6 @@
 import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
-import { PossibleSectionPost } from './Types';
+import { PossiblePost } from './Types';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -49,7 +49,7 @@ export const sectionFetchUrl = (
 		: tvShowsFetchUrls.default;
 };
 
-export const cardsContainerNames = (post: PossibleSectionPost): string => {
+export const cardsContainerNames = (post: PossiblePost): string => {
 	return 'title' in post
 		? post.title
 		: 'name' in post
@@ -57,6 +57,17 @@ export const cardsContainerNames = (post: PossibleSectionPost): string => {
 		: 'Unknown Name or Title';
 };
 
+export const cardsContainerImages = (post: PossiblePost): string => {
+	if ('poster_path' in post && post.poster_path) {
+		return post.poster_path;
+	}
+
+	if ('profile_path' in post && post.profile_path) {
+		return post.profile_path;
+	}
+
+	return '';
+};
 export const cardNavigationUrl = (type: string, id: number): string => {
 	const navigationUrls: IObjects = {
 		movies: `${Paths.movies}/${id}`,
@@ -89,4 +100,19 @@ export const filtersFetchUrl = (category: string, type: string): string => {
 export const validateYearFormat = (date: string) => {
 	const regex = /^\d{4}$/;
 	return date.match(regex) ? true : false;
+};
+
+export const searchNavigationUrl = (query: string): string => {
+	const queryToPath = query.replaceAll(' ', '+');
+
+	return `${Paths.search}${queryToPath}${Paths.page}1`;
+};
+
+export const searchFetchUrl = (
+	query: string | undefined,
+	currentPage: number
+): string => {
+	return query
+		? `${API.base}${API.search}?&query=${query}&page=${currentPage}`
+		: '';
 };

@@ -1,0 +1,18 @@
+.search {
+	background-color: var(--innerBackgroundColor);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	.resultsTitle {
+		margin-top: 20px;
+		background-color: var(--innerBackgroundColor);
+	}
+
+	.noResultsTitle {
+		margin: 20px 0;
+		background-color: var(--innerBackgroundColor);
+	}
+}

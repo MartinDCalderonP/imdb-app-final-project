@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../styles/CardsContainer.module.scss';
-import { cardsContainerNames } from '../common/Helpers';
+import { cardsContainerNames, cardsContainerImages } from '../common/Helpers';
 import { ICardsContainerProps } from '../common/Interfaces';
-import { PossibleSectionPost } from '../common/Types';
+import { PossiblePost } from '../common/Types';
 import Spinner from './Spinner';
 import Card from './Card';
 
@@ -17,13 +17,13 @@ export default function CardsContainer({
 
 			{!loading &&
 				posts?.length > 0 &&
-				posts?.map((post: PossibleSectionPost) => (
+				posts?.map((post: PossiblePost) => (
 					<Card
 						key={`${type}${post.id}`}
 						type={type}
 						id={post.id}
 						name={cardsContainerNames(post)}
-						image={post.poster_path}
+						image={cardsContainerImages(post)}
 					/>
 				))}
 		</div>
