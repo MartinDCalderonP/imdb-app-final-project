@@ -39,12 +39,6 @@ export default function Detail({ type }: IDetailProps) {
 								<div className={styles.image}>
 									<img src={currentImage} alt={currentTitle} />
 								</div>
-
-								{data?.overview && (
-									<div className={styles.overview}>
-										<p>{data.overview}</p>
-									</div>
-								)}
 							</div>
 
 							<div className={styles.dividerColumn} />
@@ -53,6 +47,12 @@ export default function Detail({ type }: IDetailProps) {
 								<RatingStars rating={data?.vote_average} />
 
 								<div className={styles.dividerRow} />
+
+								{data?.overview && (
+									<div className={styles.overview}>
+										<p>{data.overview}</p>
+									</div>
+								)}
 
 								<div className={styles.information}>
 									<h3>Information</h3>
