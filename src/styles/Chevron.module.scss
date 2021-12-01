@@ -1,0 +1,55 @@
+.top,
+.right,
+.down,
+.left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	position: absolute;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: all 0.3s ease;
+	user-select: none;
+	box-sizing: border-box;
+
+	&:hover {
+		background-color: black;
+	}
+}
+
+.top,
+.down {
+	width: 60px;
+	left: 50%;
+	margin-left: -30px;
+}
+
+.left,
+.right {
+	height: 60px;
+	top: 50%;
+	margin-top: -30px;
+}
+
+.top {
+	top: 0;
+	border-radius: 0 0 3px 3px;
+}
+
+.right {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.down {
+	bottom: 0;
+	border-radius: 3px 3px 0 0;
+}
+
+.left {
+	left: 0;
+	border-radius: 0 3px 3px 0;
+}
