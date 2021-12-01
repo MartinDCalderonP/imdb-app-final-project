@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react';
 import { IUseFetch } from '../common/Interfaces';
 import { API_KEY } from '../Keys';
 
-export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
+export default function useFetch<T>(
+	fetchUrl: string,
+	type?: string
+): IUseFetch<T> {
 	const [data, setData] = useState<T>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string>();
 
-	const url = fetchUrl && `${fetchUrl}&api_key=${API_KEY}&language=en-US`;
+	const language = type !== 'images' ? '&language=en-US' : '';
+
+	const url = fetchUrl && `${fetchUrl}&api_key=${API_KEY}${language}`;
 
 	useEffect(() => {
 		const abortController = new AbortController();
