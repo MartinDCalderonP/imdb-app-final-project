@@ -29,5 +29,7 @@ export enum API {
 	tvShowsMaxYear = '&first_air_date.lte=',
 	images = 'https://image.tmdb.org/t/p/',
 	imageWidth200 = 'w200',
+	imageWidth300 = 'w300',
+	imageWidth500 = 'w500',
 	search = 'search/multi',
 }
