@@ -57,6 +57,17 @@ export const cardsContainerNames = (post: PossiblePost): string => {
 		: 'Unknown Name or Title';
 };
 
+export const cardsContainerImages = (post: PossiblePost): string => {
+	if ('poster_path' in post && post.poster_path) {
+		return post.poster_path;
+	}
+
+	if ('profile_path' in post && post.profile_path) {
+		return post.profile_path;
+	}
+
+	return '';
+};
 export const cardNavigationUrl = (type: string, id: number): string => {
 	const navigationUrls: IObjects = {
 		movies: `${Paths.movies}/${id}`,

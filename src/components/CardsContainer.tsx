@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/CardsContainer.module.scss';
-import { cardsContainerNames } from '../common/Helpers';
+import { cardsContainerNames, cardsContainerImages } from '../common/Helpers';
 import { ICardsContainerProps } from '../common/Interfaces';
 import { PossiblePost } from '../common/Types';
 import Spinner from './Spinner';
@@ -23,7 +23,7 @@ export default function CardsContainer({
 						type={type}
 						id={post.id}
 						name={cardsContainerNames(post)}
-						image={post.poster_path}
+						image={cardsContainerImages(post)}
 					/>
 				))}
 		</div>
