@@ -1,6 +1,6 @@
 import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
-import { PossiblePost } from './Types';
+import { PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -49,7 +49,7 @@ export const sectionFetchUrl = (
 		: tvShowsFetchUrls.default;
 };
 
-export const cardsContainerNames = (post: PossiblePost): string => {
+export const cardsContainerNames = (post: PossibleSectionPost): string => {
 	return 'title' in post
 		? post.title
 		: 'name' in post
@@ -57,7 +57,7 @@ export const cardsContainerNames = (post: PossiblePost): string => {
 		: 'Unknown Name or Title';
 };
 
-export const cardsContainerImages = (post: PossiblePost): string => {
+export const cardsContainerImages = (post: PossibleSectionPost): string => {
 	if ('poster_path' in post && post.poster_path) {
 		return post.poster_path;
 	}
@@ -80,6 +80,14 @@ export const cardNavigationUrl = (type: string, id: number): string => {
 
 export const cardImageUrl = (image: string): string => {
 	return `${API.images}${API.imageWidth200}${image}`;
+};
+
+export const detailImageUrl = (image: string | undefined): string => {
+	return `${API.images}${API.imageWidth300}${image}`;
+};
+
+export const carouselImageUrl = (image: string | undefined): string => {
+	return `${API.images}${API.imageOriginal}${image}`;
 };
 
 export const filtersFetchUrl = (category: string, type: string): string => {
@@ -125,4 +133,16 @@ export const detailFetchUrl = (id: string, type: string): string => {
 	};
 
 	return detailFetchUrls[type];
+};
+
+export const carouselFetchUrl = (
+	id: string | undefined,
+	type: string
+): string => {
+	const carouselFetchUrls: IObjects = {
+		movies: `${API.base}${API.movies}${id}${API.imagesInEnglish}`,
+		tvShows: `${API.base}${API.tvShows}${id}${API.imagesInEnglish}`,
+	};
+
+	return carouselFetchUrls[type];
 };
