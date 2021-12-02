@@ -23,6 +23,7 @@
 	}
 
 	.yearsButton {
+		background-color: var(--backgroundColor);
 		width: 75%;
 		margin-top: 7.5px;
 		border: 1px solid var(--detailsColor);
@@ -31,5 +32,11 @@
 		cursor: pointer;
 		align-self: center;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s linear;
+
+		&:hover {
+			box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+			border-color: var(--hoverDetailsColor);
+		}
 	}
 }
