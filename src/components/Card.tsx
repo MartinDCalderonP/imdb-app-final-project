@@ -14,6 +14,8 @@ export default function Card({
 	seasonNumber,
 	episodesCount,
 }: ICardProps) {
+	seasonNumber = seasonNumber || 0;
+
 	const location = useLocation();
 
 	const navigationUrl = cardNavigationUrl(
