@@ -10,6 +10,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import RatingStars from '../components/RatingStars';
+import Seasons from '../components/Seasons';
 import Carousel from '../components/Carousel';
 import Credits from '../components/Credits';
 import Section from '../components/Section';
@@ -26,6 +27,8 @@ export default function Detail({ type }: IDetailProps) {
 			: data?.original_name;
 
 	const currentImage = detailImageUrl(data?.poster_path);
+
+	const currentSeasons = data && 'seasons' in data ? data?.seasons : undefined;
 
 	return (
 		<Layout>
@@ -75,6 +78,8 @@ export default function Detail({ type }: IDetailProps) {
 								</div>
 							</div>
 						</div>
+
+						{type === 'tvShows' && <Seasons posts={currentSeasons} />}
 
 						<Carousel id={id} type={type} />
 

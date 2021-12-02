@@ -225,3 +225,7 @@ export const creditsFetchUrl = (
 export const creditImageUrl = (image: string): string => {
 	return `${API.images}${API.imageWidth200}${image}`;
 };
+
+export const seasonImageUrl = (image: string): string => {
+	return `${API.images}${API.imageWidth200}${image}`;
+};

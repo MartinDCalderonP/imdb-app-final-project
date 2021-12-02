@@ -387,3 +387,7 @@ export enum Department {
 	VisualEffects = 'Visual Effects',
 	Writing = 'Writing',
 }
+
+export interface ISeasonsProps {
+	posts: Season[] | undefined;
+}
