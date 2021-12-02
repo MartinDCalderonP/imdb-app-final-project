@@ -118,7 +118,7 @@ export const cardNavigationUrl = (
 		movies: `${Paths.movies}/${id}`,
 		tvShows: `${Paths.tvShows}/${id}`,
 		person: `${Paths.person}/${id}`,
-		seasons: `${currentPath}${Paths.season}${seasonNumber}/${id}`,
+		seasons: `${currentPath}${Paths.season}/${seasonNumber}`,
 	};
 
 	return type ? navigationUrls[type] : navigationUrls.person;
