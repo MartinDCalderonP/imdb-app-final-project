@@ -3,7 +3,7 @@ import styles from '../styles/Card.module.scss';
 import { Link } from 'react-router-dom';
 import { cardImageUrl, cardNavigationUrl } from '../common/Helpers';
 import { ICardProps } from '../common/Interfaces';
-import defaultCardImage from '../images/defaultCardImage.png';
+import imageNotFound from '../images/imageNotFound.png';
 
 export default function Card({ type, id, name, image }: ICardProps) {
 	const cardStyle = `${styles.card} ${styles.appearCard}`;
@@ -14,7 +14,7 @@ export default function Card({ type, id, name, image }: ICardProps) {
 		!image ? styles.defaultImage : ''
 	}`;
 
-	const cardImage = image ? cardImageUrl(image) : defaultCardImage;
+	const cardImage = image ? cardImageUrl(image) : imageNotFound;
 
 	return (
 		<div className={cardStyle}>
