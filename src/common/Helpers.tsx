@@ -197,7 +197,7 @@ export const detailFetchUrl = (
 		tvShows: `${API.base}${API.tvShows}${id}?`,
 	};
 
-	return detailFetchUrls[type];
+	return type === 'seasons' ? detailFetchUrls.tvShows : detailFetchUrls[type];
 };
 
 export const carouselFetchUrl = (
@@ -274,4 +274,8 @@ export const seasonNavigationUrl = (
 	id: number
 ): string => {
 	return `${currentPath}/season${seasonNumber}/${id}`;
+};
+
+export const episodesFetchUrl = (id: number, season: number): string => {
+	return `${API.base}${API.tvShows}${id}${API.season}/${season}?`;
 };

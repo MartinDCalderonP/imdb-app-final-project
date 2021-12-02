@@ -390,6 +390,60 @@ export enum Department {
 	Writing = 'Writing',
 }
 
-export interface ISeasonsProps {
-	posts: Season[] | undefined;
+export interface ISeasonDetail {
+	_id: string;
+	air_date: Date;
+	episodes: Episode[];
+	name: string;
+	overview: string;
+	id: number;
+	poster_path: string;
+	season_number: number;
+}
+
+export interface Episode {
+	air_date: Date;
+	episode_number: number;
+	crew: Crew[];
+	guest_stars: Crew[];
+	id: number;
+	name: string;
+	overview: string;
+	production_code: string;
+	season_number: number;
+	still_path: null;
+	vote_average: number;
+	vote_count: number;
+}
+
+export interface Crew {
+	department?: Department;
+	job?: Job;
+	credit_id: string;
+	adult: boolean;
+	gender: number;
+	id: number;
+	known_for_department: Department;
+	name: string;
+	original_name: string;
+	popularity: number;
+	profile_path: null | string;
+	character?: string;
+	order?: number;
+}
+
+export enum Job {
+	Director = 'Director',
+	Writer = 'Writer',
+}
+
+export interface ISeasonsListProps {
+	id: number;
+	title: string;
+	seasons: Season[];
+}
+
+export interface IEpisodesProps {
+	id: number;
+	season: number;
 }

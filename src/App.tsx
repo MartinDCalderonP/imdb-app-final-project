@@ -28,6 +28,11 @@ export default function App() {
 					element={<Detail type="tvShows" />}
 				/>
 
+				<Route
+					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
+					element={<Detail type="seasons" />}
+				/>
+
 				<Route path="*" element={<Navigate replace to={Paths.home} />} />
 			</Routes>
 		</BrowserRouter>

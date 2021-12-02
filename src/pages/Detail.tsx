@@ -15,6 +15,7 @@ import Carousel from '../components/Carousel';
 import Credits from '../components/Credits';
 import Section from '../components/Section';
 import Reviews from '../components/Reviews';
+import SeasonsList from '../components/SeasonsList';
 
 export default function Detail({ type }: IDetailProps) {
 	const { id } = useParams();
@@ -35,75 +36,87 @@ export default function Detail({ type }: IDetailProps) {
 
 	return (
 		<Layout>
-			<div className={styles.detail}>
-				{loading && <Spinner />}
+			{type !== 'seasons' && (
+				<div className={styles.detail}>
+					{loading && <Spinner />}
 
-				{!loading && data && (
-					<>
-						<h1 className={styles.title}>{currentTitle}</h1>
-						<div className={styles.row}>
-							<div className={styles.leftColumn}>
-								<div className={styles.image}>
-									<img src={currentImage} alt={currentTitle} />
-								</div>
-							</div>
-
-							<div className={styles.dividerColumn} />
-
-							<div className={styles.rightColumn}>
-								<RatingStars rating={data?.vote_average} />
-
-								<div className={styles.dividerRow} />
-
-								{data?.overview && (
-									<div className={styles.description}>
-										<p>{data.overview}</p>
+					{!loading && data && (
+						<>
+							<h1 className={styles.title}>{currentTitle}</h1>
+							<div className={styles.row}>
+								<div className={styles.leftColumn}>
+									<div className={styles.image}>
+										<img src={currentImage} alt={currentTitle} />
 									</div>
-								)}
+								</div>
 
-								<div className={styles.information}>
-									<h3>Information</h3>
+								<div className={styles.dividerColumn} />
 
-									<p>
-										<b>Name: </b>
-										{currentTitle}
-									</p>
+								<div className={styles.rightColumn}>
+									<RatingStars rating={data?.vote_average} />
 
-									<p>
-										<b>Genres: </b>
-										{data?.genres?.map((genre) => genre.name).join(', ')}
-									</p>
+									<div className={styles.dividerRow} />
 
-									<a className={styles.website} href={data?.homepage}>
-										Official website
-										<FontAwesomeIcon icon={faExternalLinkAlt} />
-									</a>
+									{data?.overview && (
+										<div className={styles.description}>
+											<p>{data.overview}</p>
+										</div>
+									)}
+
+									<div className={styles.information}>
+										<h3>Information</h3>
+
+										<p>
+											<b>Name: </b>
+											{currentTitle}
+										</p>
+
+										<p>
+											<b>Genres: </b>
+											{data?.genres?.map((genre) => genre.name).join(', ')}
+										</p>
+
+										<a className={styles.website} href={data?.homepage}>
+											Official website
+											<FontAwesomeIcon icon={faExternalLinkAlt} />
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						{type === 'tvShows' && seasons && (
-							<>
-								<h1 className={styles.seasonsTitle}>Seasons</h1>
+							{type === 'tvShows' && seasons && (
+								<>
+									<h1 className={styles.seasonsTitle}>Seasons</h1>
 
-								<CardsContainer
-									loading={loading}
-									posts={seasons}
-									type="seasons"
-								/>
-							</>
-						)}
+									<CardsContainer
+										loading={loading}
+										posts={seasons}
+										type="seasons"
+									/>
+								</>
+							)}
 
-						<Carousel id={id} type={type} />
+							<Carousel id={id} type={type} />
 
-						<Credits id={id} type={type} />
+							<Credits id={id} type={type} />
 
-						<Section id={id} type={type} />
+							<Section id={id} type={type} />
 
-						<Reviews id={id} type={type} />
-					</>
-				)}
-			</div>
+							<Reviews id={id} type={type} />
+						</>
+					)}
+				</div>
+			)}
+
+			{type === 'seasons' && (
+				<div className={styles.detail}>
+					{loading && <Spinner />}
+
+					{!loading && data && currentTitle && seasons && (
+						<SeasonsList id={data.id} title={currentTitle} seasons={seasons} />
+					)}
+				</div>
+			)}
 		</Layout>
 	);
 }

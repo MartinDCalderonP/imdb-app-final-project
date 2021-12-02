@@ -38,4 +38,5 @@ export enum API {
 	similar = '/similar',
 	reviews = '/reviews',
 	credits = '/credits',
+	season = '/season',
 }
