@@ -1,5 +1,6 @@
 export enum Paths {
-	home = '/*',
+	home = '/',
+	approved = '/approved',
 	movies = '/movies',
 	tvShows = '/tv-shows',
 	person = '/person',

@@ -11,6 +11,8 @@ export default function App() {
 			<Routes>
 				<Route path={Paths.home} element={<Home />} />
 
+				<Route path={Paths.approved} element={<Home />} />
+
 				<Route
 					path={`${Paths.search}:query${Paths.page}:page`}
 					element={<Search />}
