@@ -50,7 +50,7 @@ export default function Detail({ type }: IDetailProps) {
 								<div className={styles.dividerRow} />
 
 								{data?.overview && (
-									<div className={styles.overview}>
+									<div className={styles.description}>
 										<p>{data.overview}</p>
 									</div>
 								)}
