@@ -35,4 +35,5 @@ export enum API {
 	search = 'search/multi',
 	similar = '/similar',
 	reviews = '/reviews',
+	credits = '/credits',
 }

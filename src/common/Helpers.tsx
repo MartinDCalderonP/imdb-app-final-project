@@ -1,5 +1,5 @@
 import { Paths, API } from './Enums';
-import { IObjects } from './Interfaces';
+import { Cast, IObjects } from './Interfaces';
 import { PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
@@ -208,4 +208,20 @@ export const formatDate = (date: Date) => {
 		: differences['days'] < 32
 		? `${differences['days']} days ago`
 		: `${differences['months']} months ago`;
+};
+
+export const creditsFetchUrl = (
+	id: string | undefined,
+	type: string
+): string => {
+	const creditsFetchUrls: IObjects = {
+		movies: `${API.base}${API.movies}${id}${API.credits}?`,
+		tvShows: `${API.base}${API.tvShows}${id}${API.credits}?`,
+	};
+
+	return creditsFetchUrls[type];
+};
+
+export const creditImageUrl = (image: string): string => {
+	return `${API.images}${API.imageWidth200}${image}`;
 };

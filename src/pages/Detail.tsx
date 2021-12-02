@@ -11,6 +11,7 @@ import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import RatingStars from '../components/RatingStars';
 import Carousel from '../components/Carousel';
+import Credits from '../components/Credits';
 import Section from '../components/Section';
 import Reviews from '../components/Reviews';
 
@@ -76,6 +77,8 @@ export default function Detail({ type }: IDetailProps) {
 						</div>
 
 						<Carousel id={id} type={type} />
+
+						<Credits id={id} type={type} />
 
 						<Section id={id} type={type} />
 
