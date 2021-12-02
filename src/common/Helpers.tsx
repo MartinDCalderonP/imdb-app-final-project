@@ -95,11 +95,30 @@ export const cardsContainerImages = (post: PossibleSectionPost): string => {
 
 	return '';
 };
-export const cardNavigationUrl = (type: string, id: number): string => {
+
+export const seasonNumber = (post: PossibleSectionPost) => {
+	if ('season_number' in post && post.season_number) {
+		return post.season_number;
+	}
+};
+
+export const episodesCount = (post: PossibleSectionPost) => {
+	if ('episode_count' in post && post.episode_count) {
+		return post.episode_count;
+	}
+};
+
+export const cardNavigationUrl = (
+	type: string,
+	id: number,
+	currentPath?: string,
+	seasonNumber?: number
+): string => {
 	const navigationUrls: IObjects = {
 		movies: `${Paths.movies}/${id}`,
 		tvShows: `${Paths.tvShows}/${id}`,
 		person: `${Paths.person}/${id}`,
+		seasons: `${currentPath}${Paths.season}${seasonNumber}/${id}`,
 	};
 
 	return type ? navigationUrls[type] : navigationUrls.person;
@@ -228,4 +247,12 @@ export const creditImageUrl = (image: string): string => {
 
 export const seasonImageUrl = (image: string): string => {
 	return `${API.images}${API.imageWidth200}${image}`;
+};
+
+export const seasonNavigationUrl = (
+	currentPath: string,
+	seasonNumber: number,
+	id: number
+): string => {
+	return `${currentPath}/season${seasonNumber}/${id}`;
 };

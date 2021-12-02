@@ -72,11 +72,13 @@ export interface ICardProps {
 	name: string;
 	image: null | string;
 	type: string;
+	seasonNumber?: number;
+	episodesCount?: number;
 }
 
 export interface ICardsContainerProps {
 	loading: boolean;
-	posts: MovieResult[] | TvShowResult[] | SearchResult[];
+	posts: MovieResult[] | TvShowResult[] | SearchResult[] | Season[];
 	type: string;
 }
 

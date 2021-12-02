@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from '../styles/CardsContainer.module.scss';
-import { cardsContainerNames, cardsContainerImages } from '../common/Helpers';
-import { ICardsContainerProps } from '../common/Interfaces';
+import {
+	cardsContainerNames,
+	cardsContainerImages,
+	episodesCount,
+	seasonNumber,
+} from '../common/Helpers';
+import { ICardsContainerProps, Season } from '../common/Interfaces';
 import { PossibleSectionPost } from '../common/Types';
 import Spinner from './Spinner';
 import Card from './Card';
@@ -24,6 +29,8 @@ export default function CardsContainer({
 						id={post.id}
 						name={cardsContainerNames(post)}
 						image={cardsContainerImages(post)}
+						seasonNumber={seasonNumber(post)}
+						episodesCount={episodesCount(post)}
 					/>
 				))}
 		</div>
