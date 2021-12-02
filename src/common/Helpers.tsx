@@ -188,7 +188,10 @@ export const searchFetchUrl = (
 		: '';
 };
 
-export const detailFetchUrl = (id: string, type: string): string => {
+export const detailFetchUrl = (
+	id: string | undefined,
+	type: string
+): string => {
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,
 		tvShows: `${API.base}${API.tvShows}${id}?`,

@@ -18,7 +18,7 @@ import Reviews from '../components/Reviews';
 
 export default function Detail({ type }: IDetailProps) {
 	const { id } = useParams();
-	const fetchUrl = detailFetchUrl(id!, type);
+	const fetchUrl = detailFetchUrl(id, type);
 	const { data, loading, error } = useFetch<PossibleDetailPost>(fetchUrl);
 
 	const currentTitle =
