@@ -43,16 +43,18 @@ export default function Card({
 
 	return (
 		<div className={cardStyle}>
-			<Link className={cardLinkStyle} to={navigationUrl}>
-				<div className={cardImageStyle}>
-					<img src={cardImage} alt={name} />
-				</div>
+			{type.length > 0 && (
+				<Link className={cardLinkStyle} to={navigationUrl}>
+					<div className={cardImageStyle}>
+						<img src={cardImage} alt={name} />
+					</div>
 
-				<div className={cardInformationStlye}>
-					<p>{name}</p>
-					{type === 'seasons' && <p>Episodes: {episodesCount}</p>}
-				</div>
-			</Link>
+					<div className={cardInformationStlye}>
+						<p>{name}</p>
+						{type === 'seasons' && <p>Episodes: {episodesCount}</p>}
+					</div>
+				</Link>
+			)}
 		</div>
 	);
 }

@@ -108,6 +108,22 @@ export const episodesCount = (post: PossibleSectionPost) => {
 	}
 };
 
+export const currentType = (post: PossibleSectionPost, type: string) => {
+	if (type !== 'search') {
+		return type;
+	}
+
+	if ('media_type' in post && post.media_type === 'tv') {
+		return 'tvShows';
+	}
+
+	if ('media_type' in post && post.media_type) {
+		return 'movies';
+	}
+
+	return '';
+};
+
 export const cardNavigationUrl = (
 	type: string,
 	id: number,

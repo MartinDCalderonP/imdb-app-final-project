@@ -32,7 +32,7 @@ export default function Search() {
 						<CardsContainer
 							loading={loading}
 							posts={data?.results}
-							type="movies"
+							type="search"
 						/>
 					</>
 				)}
