@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/SeasonsList.module.scss';
 import { ISeasonsListProps } from '../common/Interfaces';
-import { cardImageUrl } from '../common/Helpers';
+import { cardImageUrl, seasonsListTitleUrl } from '../common/Helpers';
 import Episodes from './Episodes';
 
 export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
@@ -13,9 +13,13 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 		setSelectedSeason(seasonNumber);
 	};
 
+	const titleUrl = seasonsListTitleUrl(id);
+
 	return (
 		<>
-			<h1 className={styles.title}>{title}</h1>
+			<a href={titleUrl} className={styles.title}>
+				<h1>{title}</h1>
+			</a>
 
 			<div className={styles.row}>
 				<div className={styles.list}>
