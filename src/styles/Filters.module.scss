@@ -1,15 +1,13 @@
 .filtersList {
-	background-color: transparent;
 	list-style: none;
 	width: fit-content;
 	margin: 0 10px;
 
 	.filtersListItem {
-		background-color: transparent;
 		width: max-content;
 
 		.filterButton {
-			background-color: transparent;
+			background-color: var(--innerBackgroundColor);
 			border: none;
 			padding: 7.5px 0;
 			cursor: pointer;

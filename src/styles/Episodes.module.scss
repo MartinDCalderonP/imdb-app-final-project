@@ -1,0 +1,62 @@
+.episodes {
+	background-color: rgba(0, 0, 0, 0.3);
+	flex: 0.75;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.title {
+		margin-top: 20px;
+	}
+
+	.list {
+		margin-top: 20px;
+		flex: 0.75;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.listItem {
+			margin: 10px 0;
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+
+			.image {
+				display: flex;
+				justify-content: center;
+				width: 300px;
+
+				img {
+					width: 300px;
+					height: 100%;
+					max-height: 300px;
+					object-fit: cover;
+				}
+			}
+
+			.information {
+				width: 100%;
+				margin-left: 10px;
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+
+				.episodeTitle {
+					display: flex;
+					justify-content: space-between;
+				}
+
+				.starIcon {
+					path {
+						fill: #ffc107;
+					}
+				}
+
+				h3 {
+					margin: 10px 0;
+				}
+			}
+		}
+	}
+}

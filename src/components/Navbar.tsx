@@ -49,7 +49,7 @@ export default function Navbar() {
 
 			<SearchInput />
 
-			{!sessionId && requestToken && (
+			{!sessionId && (
 				<a href={`${API.authenticate}${requestToken}${API.redirect}`}>
 					Sign In
 					<FontAwesomeIcon className={styles.anchorIcon} icon={faSignInAlt} />

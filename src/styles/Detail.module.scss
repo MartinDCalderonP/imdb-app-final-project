@@ -1,0 +1,102 @@
+.detail {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px auto;
+	background-color: var(--innerBackgroundColor);
+
+	.title {
+		margin: 0 20px;
+		padding-top: 20px;
+		text-align: center;
+	}
+
+	.row {
+		background-color: var(--innerBackgroundColor);
+		display: flex;
+		width: 80vw;
+		margin: 20px 0;
+
+		@media (max-width: 999px) {
+			flex-direction: column;
+		}
+	}
+
+	.leftColumn {
+		background-color: rgba(0, 0, 0, 0.3);
+		flex: 0.35;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.image {
+			padding: 20px 0;
+
+			> img {
+				width: 100%;
+				height: 100%;
+				max-width: 300px;
+				object-fit: cover;
+			}
+		}
+	}
+
+	.dividerColumn {
+		width: 20px;
+	}
+
+	.rightColumn {
+		background-color: rgba(0, 0, 0, 0.3);
+		flex: 0.65;
+
+		.dividerRow {
+			background-color: var(--innerBackgroundColor);
+			height: 20px;
+		}
+
+		.description {
+			position: relative;
+			padding: 15px;
+			background-color: rgba(156, 12, 12, 0.3);
+
+			p {
+				font-size: 1rem;
+				text-align: justify;
+			}
+		}
+
+		.information {
+			padding: 20px;
+			font-size: 0.9rem;
+
+			> h3 {
+				margin-bottom: 20px;
+			}
+
+			> p {
+				margin: 5px 0;
+				color: #a8a8a8;
+			}
+
+			.website {
+				display: block;
+				margin-top: 20px;
+				padding: 4px 8px;
+				text-decoration: none;
+				background-color: rgba(0, 0, 139, 0.3);
+
+				> svg {
+					margin-left: 5px;
+				}
+			}
+		}
+	}
+
+	.seasonsTitle {
+		width: 95%;
+		margin: 20px auto 0;
+		border-bottom: 1px solid var(--detailsColor);
+		background-color: var(--innerBackgroundColor);
+	}
+}
