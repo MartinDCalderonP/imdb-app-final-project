@@ -3,7 +3,7 @@ import styles from '../styles/Detail.module.scss';
 import { useParams } from 'react-router';
 import useFetch from '../hooks/useFetch';
 import { IDetailProps } from '../common/Interfaces';
-import { detailFetchUrl, detailImageUrl } from '../common/Helpers';
+import { detailFetchUrl, imageW300Url } from '../common/Helpers';
 import { PossibleDetailPost } from '../common/Types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +27,7 @@ export default function Detail({ type }: IDetailProps) {
 			? data?.original_title
 			: data?.original_name;
 
-	const currentImage = detailImageUrl(data?.poster_path);
+	const currentImage = imageW300Url(data?.poster_path);
 
 	const seasons =
 		data && 'seasons' in data

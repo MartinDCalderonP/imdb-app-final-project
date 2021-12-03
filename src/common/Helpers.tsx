@@ -140,15 +140,15 @@ export const cardNavigationUrl = (
 	return type ? navigationUrls[type] : navigationUrls.person;
 };
 
-export const cardImageUrl = (image: string): string => {
+export const imageW200Url = (image: string): string => {
 	return `${API.images}${API.imageWidth200}${image}`;
 };
 
-export const detailImageUrl = (image: string | undefined): string => {
+export const imageW300Url = (image: string | undefined): string => {
 	return `${API.images}${API.imageWidth300}${image}`;
 };
 
-export const carouselImageUrl = (image: string | undefined): string => {
+export const imageOriginalUrl = (image: string | undefined): string => {
 	return `${API.images}${API.imageOriginal}${image}`;
 };
 

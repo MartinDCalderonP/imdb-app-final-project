@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import styles from '../styles/Carousel.module.scss';
 import _ from 'lodash';
 import useFetch from '../hooks/useFetch';
-import { carouselFetchUrl, carouselImageUrl } from '../common/Helpers';
+import { carouselFetchUrl, imageOriginalUrl } from '../common/Helpers';
 import { ICarouselProps, IDetailImages } from '../common/Interfaces';
 import Spinner from './Spinner';
 import Chevron from './Chevron';
@@ -78,7 +78,7 @@ export default function Carousel({ id, type }: ICarouselProps) {
 
 					<div className={`${styles.carouselItem} ${styles.fade}`}>
 						<img
-							src={carouselImageUrl(backdrops[currentSlide]?.file_path)}
+							src={imageOriginalUrl(backdrops[currentSlide]?.file_path)}
 							alt={backdrops[currentSlide]?.file_path}
 						/>
 					</div>

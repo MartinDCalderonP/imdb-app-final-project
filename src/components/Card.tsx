@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/Card.module.scss';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { cardImageUrl, cardNavigationUrl } from '../common/Helpers';
+import { imageW200Url, cardNavigationUrl } from '../common/Helpers';
 import { ICardProps } from '../common/Interfaces';
 import imageNotFound from '../images/imageNotFound.png';
 
@@ -37,7 +37,7 @@ export default function Card({
 		!image ? styles.defaultImage : ''
 	} ${type === 'seasons' ? styles.horizontal : ''}`;
 
-	const cardImage = image ? cardImageUrl(image) : imageNotFound;
+	const cardImage = image ? imageW200Url(image) : imageNotFound;
 
 	const cardInformationStlye = `${styles.information} ${
 		type === 'seasons' ? styles.horizontal : ''

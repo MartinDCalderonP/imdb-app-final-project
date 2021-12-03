@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/SeasonsList.module.scss';
 import { ISeasonsListProps } from '../common/Interfaces';
-import { cardImageUrl, seasonsListTitleUrl } from '../common/Helpers';
+import { imageW200Url, seasonsListTitleUrl } from '../common/Helpers';
 import Episodes from './Episodes';
 
 export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
@@ -31,7 +31,7 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 						>
 							<div className={styles.image}>
 								<img
-									src={cardImageUrl(season.poster_path)}
+									src={imageW200Url(season.poster_path)}
 									alt={`Season ${season.season_number}`}
 								/>
 							</div>
