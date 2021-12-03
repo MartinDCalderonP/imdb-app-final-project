@@ -43,7 +43,7 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 
 				<div className={styles.divider} />
 
-				{/* <Episodes id={id} season={selectedSeason} /> */}
+				<Episodes id={id} />
 			</div>
 		</>
 	);

@@ -411,7 +411,7 @@ export interface Episode {
 	overview: string;
 	production_code: string;
 	season_number: number;
-	still_path: null;
+	still_path: string;
 	vote_average: number;
 	vote_count: number;
 }
@@ -433,7 +433,15 @@ export interface Crew {
 }
 
 export enum Job {
+	AssistantDirector = 'Assistant Director',
 	Director = 'Director',
+	DirectorOfPhotography = 'Director of Photography',
+	Editor = 'Editor',
+	Story = 'Story',
+	Storyboard = 'Storyboard',
+	StuntCoordinator = 'Stunt Coordinator',
+	Teleplay = 'Teleplay',
+	VisualEffectsSupervisor = 'Visual Effects Supervisor',
 	Writer = 'Writer',
 }
 
@@ -445,5 +453,4 @@ export interface ISeasonsListProps {
 
 export interface IEpisodesProps {
 	id: number;
-	season: number;
 }

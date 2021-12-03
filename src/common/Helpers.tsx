@@ -264,22 +264,20 @@ export const creditImageUrl = (image: string): string => {
 	return `${API.images}${API.imageWidth200}${image}`;
 };
 
-export const seasonImageUrl = (image: string): string => {
-	return `${API.images}${API.imageWidth200}${image}`;
-};
-
-export const seasonNavigationUrl = (
-	currentPath: string,
-	seasonNumber: number,
-	id: number
+export const episodesFetchUrl = (
+	id: number,
+	season: string | undefined
 ): string => {
-	return `${currentPath}/season${seasonNumber}/${id}`;
-};
-
-export const episodesFetchUrl = (id: number, season: number): string => {
 	return `${API.base}${API.tvShows}${id}${API.season}/${season}?`;
 };
 
 export const seasonsListTitleUrl = (id: number): string => {
 	return `${Paths.tvShows}/${id}`;
+};
+
+export const seasonsNavigationUrl = (
+	id: number,
+	seasonNumber: number
+): string => {
+	return `${Paths.tvShows}/${id}${Paths.season}/${seasonNumber}`;
 };
