@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import styles from '../styles/SeasonsList.module.scss';
+import { Link } from 'react-router-dom';
 import { ISeasonsListProps } from '../common/Interfaces';
-import { imageW200Url, seasonsListTitleUrl } from '../common/Helpers';
+import {
+	imageW200Url,
+	seasonsListTitleUrl,
+	seasonsNavigationUrl,
+} from '../common/Helpers';
 import Episodes from './Episodes';
 
 export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
-	const [selectedSeason, setSelectedSeason] = useState(
-		seasons[0].season_number
-	);
-
-	const handleSeasonsClick = (seasonNumber: number) => {
-		setSelectedSeason(seasonNumber);
-	};
-
 	const titleUrl = seasonsListTitleUrl(id);
 
 	return (
@@ -24,10 +21,10 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 			<div className={styles.row}>
 				<div className={styles.list}>
 					{seasons.map((season) => (
-						<div
+						<Link
 							key={`season${season.season_number}`}
 							className={styles.listItem}
-							onClick={() => handleSeasonsClick(season.season_number)}
+							to={seasonsNavigationUrl(id, season.season_number)}
 						>
 							<div className={styles.image}>
 								<img
@@ -40,13 +37,13 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 								<p>{season.name}</p>
 								<p>Episodes: {season.episode_count}</p>
 							</div>
-						</div>
+						</Link>
 					))}
 				</div>
 
 				<div className={styles.divider} />
 
-				<Episodes id={id} season={selectedSeason} />
+				{/* <Episodes id={id} season={selectedSeason} /> */}
 			</div>
 		</>
 	);
