@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Reviews.module.scss';
 import useFetch from '../hooks/useFetch';
-import { formatDate, reviewsFetchUrl } from '../common/Helpers';
+import { timeAgo, reviewsFetchUrl } from '../common/Helpers';
 import {
 	IReviewsData,
 	IReviewsProps,
@@ -31,7 +31,7 @@ export default function Reviews({ id, type }: IReviewsProps) {
 							<div key={`review${review.id}`}>
 								<p>
 									{review.author}
-									<span>{formatDate(review.created_at)}</span>
+									<span>{timeAgo(review.created_at)}</span>
 								</p>
 								<p>{review.content}</p>
 							</div>

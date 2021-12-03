@@ -233,7 +233,7 @@ export const reviewsFetchUrl = (
 	return reviewsFetchUrls[type];
 };
 
-export const formatDate = (date: Date) => {
+export const timeAgo = (date: Date) => {
 	date = new Date(date);
 	const nowDate = Date.now();
 	const timeDifference = Math.abs(nowDate - date.getTime());
