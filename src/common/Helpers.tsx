@@ -117,8 +117,12 @@ export const currentType = (post: PossibleSectionPost, type: string) => {
 		return 'tvShows';
 	}
 
-	if ('media_type' in post && post.media_type) {
+	if ('media_type' in post && post.media_type === 'movie') {
 		return 'movies';
+	}
+
+	if ('media_type' in post && post.media_type === 'person') {
+		return 'person';
 	}
 
 	return '';
