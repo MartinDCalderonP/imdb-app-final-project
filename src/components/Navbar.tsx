@@ -3,15 +3,10 @@ import styles from '../styles/Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import useAuth from '../hooks/useAuth';
-import { API } from '../common/Enums';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faHome,
-	faSignInAlt,
-	faSignOutAlt,
-	faUserCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import SearchInput from './SearchInput';
+import SignButtons from './SignButtons';
 
 export default function Navbar() {
 	const location = useLocation();
@@ -20,7 +15,7 @@ export default function Navbar() {
 
 	const [authType, setAuthType] = useState('requestToken');
 	const [fetchParam, setFetchParam] = useState<string>();
-	const { requestToken, sessionId, sessionDeleted, loading, error } = useAuth(
+	const { requestToken, sessionId, sessionDeleted, error } = useAuth(
 		authType,
 		fetchParam
 	);
@@ -49,19 +44,11 @@ export default function Navbar() {
 
 			<SearchInput />
 
-			{!sessionId && (
-				<a href={`${API.authenticate}${requestToken}${API.redirect}`}>
-					Sign In
-					<FontAwesomeIcon className={styles.anchorIcon} icon={faSignInAlt} />
-				</a>
-			)}
-
-			{sessionId && (
-				<button className={styles.signOut} onClick={handleSignOut}>
-					Sign Out
-					<FontAwesomeIcon className={styles.anchorIcon} icon={faSignOutAlt} />
-				</button>
-			)}
+			<SignButtons
+				requestToken={requestToken}
+				sessionId={sessionId}
+				handleSignOut={handleSignOut}
+			/>
 		</nav>
 	);
 }

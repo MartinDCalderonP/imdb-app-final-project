@@ -488,3 +488,9 @@ export interface IExternalLinkProps {
 export interface ICreditsItemProps {
 	cast: Cast;
 }
+
+export interface ISignButtonsProps {
+	requestToken: string | undefined;
+	sessionId: string | undefined;
+	handleSignOut: () => void;
+}

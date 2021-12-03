@@ -7,6 +7,14 @@ export const capitalizeWord = (word: string) => {
 	return word[0].toUpperCase() + word.substr(1).toLowerCase();
 };
 
+export const createSignInUrl = (requestToken: string | undefined): string => {
+	return `${API.authenticate}${requestToken}${API.redirect}`;
+};
+
+export const profileFetchUrl = (sessionId: string | undefined): string => {
+	return `${API.base}${API.account}?session_id=${sessionId}`;
+};
+
 export const sectionFetchUrl = (
 	currentPage: number,
 	currentFilter: string,
