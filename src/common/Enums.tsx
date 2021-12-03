@@ -18,6 +18,7 @@ export enum API {
 	deleteSession = 'authentication/session',
 	movies = 'movie/',
 	tvShows = 'tv/',
+	person = 'person/',
 	popular = 'popular',
 	certification = 'certification/',
 	genre = 'genre/',
@@ -39,5 +40,4 @@ export enum API {
 	reviews = '/reviews',
 	credits = '/credits',
 	season = '/season',
-	person = '/person',
 }

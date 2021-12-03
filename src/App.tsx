@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Paths } from './common/Enums';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
-import Person from './pages/Person';
 import Search from './pages/Search';
 
 export default function App() {
@@ -30,11 +29,14 @@ export default function App() {
 				/>
 
 				<Route
+					path={`${Paths.person}/:id`}
+					element={<Detail type="person" />}
+				/>
+
+				<Route
 					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
 					element={<Detail type="seasons" />}
 				/>
-
-				<Route path={`${Paths.person}/:id`} element={<Person />} />
 
 				<Route path="*" element={<Navigate replace to={Paths.home} />} />
 			</Routes>
