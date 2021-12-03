@@ -1,0 +1,11 @@
+.externalLink {
+    display: block;
+    margin-top: 20px;
+    padding: 4px 8px;
+    text-decoration: none;
+    background-color: rgba(0, 0, 139, 0.3);
+
+    > svg {
+        margin-left: 5px;
+    }
+}

@@ -10,6 +10,7 @@ import Carousel from '../components/Carousel';
 import Credits from '../components/Credits';
 import Section from '../components/Section';
 import Reviews from '../components/Reviews';
+import ExternalLink from './ExternalLink';
 
 export default function Media({ id, type, data }: IMediaProps) {
 	const title = currentTitle(data);
@@ -58,12 +59,7 @@ export default function Media({ id, type, data }: IMediaProps) {
 							{data?.genres?.map((genre) => genre.name).join(', ')}
 						</p>
 
-						{data?.homepage && (
-							<a className={styles.website} href={data?.homepage}>
-								Official website
-								<FontAwesomeIcon icon={faExternalLinkAlt} />
-							</a>
-						)}
+						{data?.homepage && <ExternalLink url={data?.homepage} />}
 					</div>
 				</div>
 			</div>
