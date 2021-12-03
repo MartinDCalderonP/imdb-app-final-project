@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from '../styles/SignButtons.module.scss';
+import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { profileFetchUrl, createSignInUrl } from '../common/Helpers';
-import { ISignButtonsProps } from '../common/Interfaces';
+import { IProfileData, ISignButtonsProps } from '../common/Interfaces';
+import { Paths } from '../common/Enums';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faSignInAlt,
@@ -19,7 +21,7 @@ export default function SignButtons({
 
 	const fetchUrl = profileFetchUrl(sessionId);
 
-	const profile = sessionId && useFetch(fetchUrl);
+	const { data, loading, error } = useFetch<IProfileData>(fetchUrl);
 
 	return (
 		<>
@@ -30,11 +32,24 @@ export default function SignButtons({
 				</a>
 			)}
 
-			{sessionId && (
-				<button className={styles.signOut} onClick={handleSignOut}>
-					Sign Out
-					<FontAwesomeIcon className={styles.anchorIcon} icon={faSignOutAlt} />
-				</button>
+			{sessionId && !loading && data && (
+				<>
+					<Link to={Paths.profile}>
+						{data?.username}
+
+						<FontAwesomeIcon
+							className={styles.anchorIcon}
+							icon={faUserCircle}
+						/>
+					</Link>
+
+					<button className={styles.signOut} onClick={handleSignOut}>
+						<FontAwesomeIcon
+							className={styles.anchorIcon}
+							icon={faSignOutAlt}
+						/>
+					</button>
+				</>
 			)}
 		</>
 	);

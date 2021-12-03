@@ -7,6 +7,7 @@ export enum Paths {
 	search = '/search=',
 	page = '/page=',
 	season = '/season',
+	profile = '/profile',
 }
 
 export enum API {

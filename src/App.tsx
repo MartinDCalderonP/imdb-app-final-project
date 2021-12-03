@@ -4,6 +4,7 @@ import { Paths } from './common/Enums';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import Profile from './pages/Profile';
 
 export default function App() {
 	return (
@@ -37,6 +38,8 @@ export default function App() {
 					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
 					element={<Detail type="seasons" />}
 				/>
+
+				<Route path={Paths.profile} element={<Profile />} />
 
 				<Route path="*" element={<Navigate replace to={Paths.home} />} />
 			</Routes>
