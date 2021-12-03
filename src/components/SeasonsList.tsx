@@ -3,14 +3,18 @@ import styles from '../styles/SeasonsList.module.scss';
 import { Link } from 'react-router-dom';
 import { ISeasonsListProps } from '../common/Interfaces';
 import {
+	currentSeasons,
+	currentTitle,
 	imageW200Url,
 	seasonsListTitleUrl,
 	seasonsNavigationUrl,
 } from '../common/Helpers';
 import Episodes from './Episodes';
 
-export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
+export default function SeasonsList({ id, data }: ISeasonsListProps) {
+	const title = currentTitle(data);
 	const titleUrl = seasonsListTitleUrl(id);
+	const seasons = currentSeasons(data);
 
 	return (
 		<>
@@ -20,7 +24,7 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 
 			<div className={styles.row}>
 				<div className={styles.list}>
-					{seasons.map((season) => (
+					{seasons?.map((season) => (
 						<Link
 							key={`season${season.season_number}`}
 							className={styles.listItem}

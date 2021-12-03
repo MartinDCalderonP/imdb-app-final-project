@@ -1,6 +1,6 @@
 import { Paths, API } from './Enums';
 import { Cast, IObjects } from './Interfaces';
-import { PossibleSectionPost } from './Types';
+import { PossibleDetailPost, PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -117,8 +117,12 @@ export const currentType = (post: PossibleSectionPost, type: string) => {
 		return 'tvShows';
 	}
 
-	if ('media_type' in post && post.media_type) {
+	if ('media_type' in post && post.media_type === 'movie') {
 		return 'movies';
+	}
+
+	if ('media_type' in post && post.media_type === 'person') {
+		return 'person';
 	}
 
 	return '';
@@ -195,9 +199,11 @@ export const detailFetchUrl = (
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,
 		tvShows: `${API.base}${API.tvShows}${id}?`,
+		seasons: `${API.base}${API.tvShows}${id}?`,
+		person: `${API.base}${API.person}${id}?`,
 	};
 
-	return type === 'seasons' ? detailFetchUrls.tvShows : detailFetchUrls[type];
+	return detailFetchUrls[type];
 };
 
 export const carouselFetchUrl = (
@@ -227,7 +233,7 @@ export const reviewsFetchUrl = (
 	return reviewsFetchUrls[type];
 };
 
-export const formatDate = (date: Date) => {
+export const timeAgo = (date: Date) => {
 	date = new Date(date);
 	const nowDate = Date.now();
 	const timeDifference = Math.abs(nowDate - date.getTime());
@@ -280,4 +286,59 @@ export const seasonsNavigationUrl = (
 	seasonNumber: number
 ): string => {
 	return `${Paths.tvShows}/${id}${Paths.season}/${seasonNumber}`;
+};
+
+export const currentTitle = (data: PossibleDetailPost): string => {
+	return 'original_title' in data
+		? data?.original_title
+		: data && 'original_name' in data
+		? data?.original_name
+		: data?.name;
+};
+
+export const currentSeasons = (data: PossibleDetailPost) => {
+	return 'seasons' in data
+		? data?.seasons?.filter((season) => season.episode_count > 0)
+		: undefined;
+};
+
+export const mmddyyyDate = (date: Date): string => {
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
+
+	const dateToString = date.toString();
+	const splittedDate = dateToString.split('-');
+	const day = splittedDate[2];
+	const month = months[+splittedDate[1] - 1];
+	const year = splittedDate[0];
+
+	return `${month} ${day}, ${year}`;
+};
+
+export const formatGender = (gender: number): string => {
+	if (gender === 1) {
+		return 'Female';
+	}
+
+	if (gender === 2) {
+		return 'Male';
+	}
+
+	if (gender === 3) {
+		return 'Transgender';
+	}
+
+	return 'Other';
 };

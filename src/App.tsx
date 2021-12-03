@@ -29,6 +29,11 @@ export default function App() {
 				/>
 
 				<Route
+					path={`${Paths.person}/:id`}
+					element={<Detail type="person" />}
+				/>
+
+				<Route
 					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
 					element={<Detail type="seasons" />}
 				/>

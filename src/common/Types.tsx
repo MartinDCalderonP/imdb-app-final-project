@@ -6,6 +6,7 @@ import {
 	SearchResult,
 	IDetailMovie,
 	IDetailTvShow,
+	IDetailPerson,
 	Season,
 } from './Interfaces';
 
@@ -17,4 +18,4 @@ export type PossibleSectionPost =
 	| SearchResult
 	| Season;
 
-export type PossibleDetailPost = IDetailMovie | IDetailTvShow;
+export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;

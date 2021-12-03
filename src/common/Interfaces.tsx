@@ -447,10 +447,40 @@ export enum Job {
 
 export interface ISeasonsListProps {
 	id: number;
-	title: string;
-	seasons: Season[];
+	data: IDetailTvShow;
 }
 
 export interface IEpisodesProps {
 	id: number;
+}
+
+export interface IDetailPerson {
+	adult: boolean;
+	also_known_as: string[];
+	biography: string;
+	birthday: Date;
+	deathday: null;
+	gender: number;
+	homepage: string;
+	id: number;
+	imdb_id: string;
+	known_for_department: string;
+	name: string;
+	place_of_birth: string;
+	popularity: number;
+	profile_path: string;
+}
+
+export interface IMediaProps {
+	id: string | undefined;
+	type: string;
+	data: IDetailMovie | IDetailTvShow;
+}
+
+export interface IPersonProps {
+	data: IDetailPerson;
+}
+
+export interface IExternalLinkProps {
+	url: string;
 }

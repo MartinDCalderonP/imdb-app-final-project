@@ -5,16 +5,10 @@ import useFetch from '../hooks/useFetch';
 import { IDetailProps } from '../common/Interfaces';
 import { detailFetchUrl, imageW300Url } from '../common/Helpers';
 import { PossibleDetailPost } from '../common/Types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
-import RatingStars from '../components/RatingStars';
-import CardsContainer from '../components/CardsContainer';
-import Carousel from '../components/Carousel';
-import Credits from '../components/Credits';
-import Section from '../components/Section';
-import Reviews from '../components/Reviews';
+import Media from '../components/Media';
+import Person from '../components/Person';
 import SeasonsList from '../components/SeasonsList';
 
 export default function Detail({ type }: IDetailProps) {
@@ -22,101 +16,32 @@ export default function Detail({ type }: IDetailProps) {
 	const fetchUrl = detailFetchUrl(id, type);
 	const { data, loading, error } = useFetch<PossibleDetailPost>(fetchUrl);
 
-	const currentTitle =
-		data && 'original_title' in data
-			? data?.original_title
-			: data?.original_name;
+	const isMovieOrTvShowData = data && 'backdrop_path' in data && data;
 
-	const currentImage = imageW300Url(data?.poster_path);
+	const isTVShowData = data && 'first_air_date' in data && data;
 
-	const seasons =
-		data && 'seasons' in data
-			? data?.seasons?.filter((season) => season.episode_count > 0)
-			: undefined;
+	const isPerson = data && 'biography' in data && data;
 
 	return (
 		<Layout>
-			{type !== 'seasons' && (
-				<div className={styles.detail}>
-					{loading && <Spinner />}
+			<div className={styles.detail}>
+				{loading && <Spinner />}
 
-					{!loading && data && (
-						<>
-							<h1 className={styles.title}>{currentTitle}</h1>
-							<div className={styles.row}>
-								<div className={styles.leftColumn}>
-									<div className={styles.image}>
-										<img src={currentImage} alt={currentTitle} />
-									</div>
-								</div>
-
-								<div className={styles.dividerColumn} />
-
-								<div className={styles.rightColumn}>
-									<RatingStars rating={data?.vote_average} />
-
-									<div className={styles.dividerRow} />
-
-									{data?.overview && (
-										<div className={styles.description}>
-											<p>{data.overview}</p>
-										</div>
-									)}
-
-									<div className={styles.information}>
-										<h3>Information</h3>
-
-										<p>
-											<b>Name: </b>
-											{currentTitle}
-										</p>
-
-										<p>
-											<b>Genres: </b>
-											{data?.genres?.map((genre) => genre.name).join(', ')}
-										</p>
-
-										<a className={styles.website} href={data?.homepage}>
-											Official website
-											<FontAwesomeIcon icon={faExternalLinkAlt} />
-										</a>
-									</div>
-								</div>
-							</div>
-
-							{type === 'tvShows' && seasons && (
-								<>
-									<h1 className={styles.seasonsTitle}>Seasons</h1>
-
-									<CardsContainer
-										loading={loading}
-										posts={seasons}
-										type="seasons"
-									/>
-								</>
+				{!loading && data && (
+					<>
+						{(type === 'movies' || type === 'tvShows') &&
+							isMovieOrTvShowData && (
+								<Media id={id} type={type} data={isMovieOrTvShowData} />
 							)}
 
-							<Carousel id={id} type={type} />
+						{type === 'person' && isPerson && <Person data={data} />}
 
-							<Credits id={id} type={type} />
-
-							<Section id={id} type={type} />
-
-							<Reviews id={id} type={type} />
-						</>
-					)}
-				</div>
-			)}
-
-			{type === 'seasons' && (
-				<div className={styles.detail}>
-					{loading && <Spinner />}
-
-					{!loading && data && currentTitle && seasons && (
-						<SeasonsList id={data.id} title={currentTitle} seasons={seasons} />
-					)}
-				</div>
-			)}
+						{type === 'seasons' && isTVShowData && (
+							<SeasonsList id={data.id} data={isTVShowData} />
+						)}
+					</>
+				)}
+			</div>
 		</Layout>
 	);
 }
