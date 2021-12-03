@@ -22,8 +22,6 @@ export default function Detail({ type }: IDetailProps) {
 
 	const isPerson = data && 'biography' in data && data;
 
-	console.log(data);
-
 	return (
 		<Layout>
 			<div className={styles.detail}>
