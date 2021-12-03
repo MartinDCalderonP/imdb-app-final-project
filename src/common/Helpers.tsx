@@ -301,3 +301,28 @@ export const currentSeasons = (data: PossibleDetailPost) => {
 		? data?.seasons?.filter((season) => season.episode_count > 0)
 		: undefined;
 };
+
+export const changeDateFormat = (date: Date): string => {
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
+
+	const dateToString = date.toString();
+	const splittedDate = dateToString.split('-');
+	const day = splittedDate[2];
+	const month = months[+splittedDate[1] - 1];
+	const year = splittedDate[0];
+
+	return `${month} ${day}, ${year}`;
+};
