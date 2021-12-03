@@ -342,3 +342,7 @@ export const formatGender = (gender: number): string => {
 
 	return 'Other';
 };
+
+export const creditsItemNavigationUrl = (id: number): string => {
+	return `${Paths.person}/${id}`;
+};

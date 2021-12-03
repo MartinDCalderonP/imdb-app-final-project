@@ -484,3 +484,7 @@ export interface IPersonProps {
 export interface IExternalLinkProps {
 	url: string;
 }
+
+export interface ICreditsItemProps {
+	cast: Cast;
+}
