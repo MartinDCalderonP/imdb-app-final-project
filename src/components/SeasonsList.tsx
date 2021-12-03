@@ -38,7 +38,7 @@ export default function SeasonsList({ id, title, seasons }: ISeasonsListProps) {
 
 							<div className={styles.information}>
 								<p>{season.name}</p>
-								<p>Episodes {season.episode_count}</p>
+								<p>Episodes: {season.episode_count}</p>
 							</div>
 						</div>
 					))}
