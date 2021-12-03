@@ -53,9 +53,15 @@ export default function Detail({ type }: IDetailProps) {
 								<div className={styles.dividerColumn} />
 
 								<div className={styles.rightColumn}>
-									<RatingStars rating={data?.vote_average} />
+									{data?.vote_average ? (
+										<>
+											<RatingStars rating={data?.vote_average} />
 
-									<div className={styles.dividerRow} />
+											<div className={styles.dividerRow} />
+										</>
+									) : (
+										<></>
+									)}
 
 									{data?.overview && (
 										<div className={styles.description}>
@@ -76,10 +82,12 @@ export default function Detail({ type }: IDetailProps) {
 											{data?.genres?.map((genre) => genre.name).join(', ')}
 										</p>
 
-										<a className={styles.website} href={data?.homepage}>
-											Official website
-											<FontAwesomeIcon icon={faExternalLinkAlt} />
-										</a>
+										{data?.homepage && (
+											<a className={styles.website} href={data?.homepage}>
+												Official website
+												<FontAwesomeIcon icon={faExternalLinkAlt} />
+											</a>
+										)}
 									</div>
 								</div>
 							</div>
