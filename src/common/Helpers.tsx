@@ -285,3 +285,7 @@ export const seasonsNavigationUrl = (
 ): string => {
 	return `${Paths.tvShows}/${id}${Paths.season}/${seasonNumber}`;
 };
+
+export const personFetchUrl = (id: string | undefined): string => {
+	return `${API.base}${API.person}/${id}?`;
+};
