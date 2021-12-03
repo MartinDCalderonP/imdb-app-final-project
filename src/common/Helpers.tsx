@@ -302,7 +302,7 @@ export const currentSeasons = (data: PossibleDetailPost) => {
 		: undefined;
 };
 
-export const changeDateFormat = (date: Date): string => {
+export const mmddyyyDate = (date: Date): string => {
 	const months = [
 		'January',
 		'February',
@@ -325,4 +325,20 @@ export const changeDateFormat = (date: Date): string => {
 	const year = splittedDate[0];
 
 	return `${month} ${day}, ${year}`;
+};
+
+export const formatGender = (gender: number): string => {
+	if (gender === 1) {
+		return 'Female';
+	}
+
+	if (gender === 2) {
+		return 'Male';
+	}
+
+	if (gender === 3) {
+		return 'Transgender';
+	}
+
+	return 'Other';
 };

@@ -480,3 +480,7 @@ export interface IMediaProps {
 export interface IPersonProps {
 	data: IDetailPerson;
 }
+
+export interface IExternalLinkProps {
+	url: string;
+}
