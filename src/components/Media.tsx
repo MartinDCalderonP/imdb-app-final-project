@@ -7,7 +7,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import RatingStars from '../components/RatingStars';
 import CardsContainer from '../components/CardsContainer';
 import Carousel from '../components/Carousel';
-import Credits from '../components/Credits';
+import Credits from './Credits';
 import Section from '../components/Section';
 import Reviews from '../components/Reviews';
 import ExternalLink from './ExternalLink';
