@@ -1,6 +1,6 @@
 import { Paths, API } from './Enums';
 import { Cast, IObjects } from './Interfaces';
-import { PossibleSectionPost } from './Types';
+import { PossibleDetailPost, PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -199,9 +199,11 @@ export const detailFetchUrl = (
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,
 		tvShows: `${API.base}${API.tvShows}${id}?`,
+		seasons: `${API.base}${API.tvShows}${id}?`,
+		person: `${API.base}${API.person}${id}?`,
 	};
 
-	return type === 'seasons' ? detailFetchUrls.tvShows : detailFetchUrls[type];
+	return detailFetchUrls[type];
 };
 
 export const carouselFetchUrl = (
@@ -286,6 +288,16 @@ export const seasonsNavigationUrl = (
 	return `${Paths.tvShows}/${id}${Paths.season}/${seasonNumber}`;
 };
 
-export const personFetchUrl = (id: string | undefined): string => {
-	return `${API.base}${API.person}/${id}?`;
+export const currentTitle = (data: PossibleDetailPost): string => {
+	return 'original_title' in data
+		? data?.original_title
+		: data && 'original_name' in data
+		? data?.original_name
+		: data?.name;
+};
+
+export const currentSeasons = (data: PossibleDetailPost) => {
+	return 'seasons' in data
+		? data?.seasons?.filter((season) => season.episode_count > 0)
+		: undefined;
 };

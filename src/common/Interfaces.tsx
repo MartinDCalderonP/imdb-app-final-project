@@ -447,15 +447,14 @@ export enum Job {
 
 export interface ISeasonsListProps {
 	id: number;
-	title: string;
-	seasons: Season[];
+	data: IDetailTvShow;
 }
 
 export interface IEpisodesProps {
 	id: number;
 }
 
-export interface IPersonDetail {
+export interface IDetailPerson {
 	adult: boolean;
 	also_known_as: string[];
 	biography: string;
@@ -470,4 +469,14 @@ export interface IPersonDetail {
 	place_of_birth: string;
 	popularity: number;
 	profile_path: string;
+}
+
+export interface IMediaProps {
+	id: string | undefined;
+	type: string;
+	data: IDetailMovie | IDetailTvShow;
+}
+
+export interface IPersonProps {
+	data: IDetailPerson;
 }
