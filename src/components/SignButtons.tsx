@@ -23,6 +23,8 @@ export default function SignButtons({
 
 	const { data, loading, error } = useFetch<IProfileData>(fetchUrl);
 
+	console.log(data);
+
 	return (
 		<>
 			{!sessionId && (

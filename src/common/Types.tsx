@@ -8,6 +8,7 @@ import {
 	IDetailTvShow,
 	IDetailPerson,
 	Season,
+	IProfileData,
 } from './Interfaces';
 
 export type PossibleSectionData = IMoviesData | ITvShowsData;
@@ -19,3 +20,13 @@ export type PossibleSectionPost =
 	| Season;
 
 export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
+
+export type Action =
+	| { type: 'ADD_USER'; payload: IProfileData }
+	| { type: 'REMOVE_USER'; payload: IProfileData };
+
+export type Dispatch = (action: Action) => void;
+
+export type State = { user: IProfileData };
+
+export type Context = { state: State; dispatch: Dispatch };
