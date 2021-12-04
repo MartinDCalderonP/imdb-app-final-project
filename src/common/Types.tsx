@@ -21,10 +21,13 @@ export type PossibleSectionPost =
 
 export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
 
-export type Action = { type: 'SET_PROFILE'; payload: IProfileData };
+export type Action = {
+	type: 'SET_PROFILE';
+	payload: { sessionId: string; profile: IProfileData };
+};
 
 export type Dispatch = (action: Action) => void;
 
-export type State = { profile: IProfileData };
+export type State = { sessionId: string; profile: IProfileData };
 
 export type Context = { state: State; dispatch: Dispatch };
