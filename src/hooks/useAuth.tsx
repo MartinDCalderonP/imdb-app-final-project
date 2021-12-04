@@ -53,7 +53,17 @@ export default function useAuth(type: string, fetchParam?: string) {
 				});
 		};
 
-		fetchData();
+		if (type === 'requestToken' && !fetchParam) {
+			fetchData();
+		}
+
+		if (type === 'getSessionId' && fetchParam) {
+			fetchData();
+		}
+
+		if (type === 'deleteSession' && fetchParam) {
+			fetchData();
+		}
 	}, [type]);
 
 	return { requestToken, sessionId, sessionDeleted, error };
