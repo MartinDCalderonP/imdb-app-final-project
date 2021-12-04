@@ -22,11 +22,11 @@ export type PossibleSectionPost =
 export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
 
 export type Action =
-	| { type: 'ADD_USER'; payload: IProfileData }
-	| { type: 'REMOVE_USER'; payload: IProfileData };
+	| { type: 'ADD_PROFILE'; payload: IProfileData }
+	| { type: 'REMOVE_PROFILE'; payload: IProfileData };
 
 export type Dispatch = (action: Action) => void;
 
-export type State = { user: IProfileData };
+export type State = { profile: IProfileData };
 
 export type Context = { state: State; dispatch: Dispatch };

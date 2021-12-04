@@ -2,7 +2,7 @@ import { IProfileData } from '../common/Interfaces';
 import { Action, State } from '../common/Types';
 
 export const initialState = {
-	user: {
+	profile: {
 		avatar: {
 			gravatar: { hash: '' },
 			tmdb: { avatar_path: '' },
@@ -17,22 +17,22 @@ export const initialState = {
 };
 
 export const actionTypes = {
-	ADD_USER: 'ADD_USER',
-	REMOVE_USER: 'REMOVE_USER',
+	ADD_PROFILE: 'ADD_PROFILE',
+	REMOVE_PROFILE: 'REMOVE_PROFILE',
 };
 
 export default function reducer(state: State, action: Action): State {
 	switch (action.type) {
-		case actionTypes.ADD_USER:
+		case actionTypes.ADD_PROFILE:
 			return {
 				...state,
-				user: action.payload,
+				profile: action.payload,
 			};
 
-		case actionTypes.REMOVE_USER:
+		case actionTypes.REMOVE_PROFILE:
 			return {
 				...state,
-				user: action.payload,
+				profile: action.payload,
 			};
 
 		default:
