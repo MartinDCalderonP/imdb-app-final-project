@@ -14,7 +14,7 @@ export default function Navbar() {
 		location.search && location.search.split('=')[1].split('&')[0];
 
 	const [authType, setAuthType] = useState('requestToken');
-	const [fetchParam, setFetchParam] = useState<string>();
+	const [fetchParam, setFetchParam] = useState<string>('');
 	const { requestToken, sessionId, sessionDeleted, error } = useAuth(
 		authType,
 		fetchParam
@@ -29,7 +29,10 @@ export default function Navbar() {
 
 	const handleSignOut = () => {
 		setAuthType('deleteSession');
-		setFetchParam(sessionId);
+
+		if (sessionId) {
+			setFetchParam(sessionId);
+		}
 	};
 
 	return (
