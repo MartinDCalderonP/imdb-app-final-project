@@ -16,20 +16,9 @@ export const initialState = {
 	},
 };
 
-export const actionTypes = {
-	ADD_PROFILE: 'ADD_PROFILE',
-	REMOVE_PROFILE: 'REMOVE_PROFILE',
-};
-
 export default function reducer(state: State, action: Action): State {
 	switch (action.type) {
-		case actionTypes.ADD_PROFILE:
-			return {
-				...state,
-				profile: action.payload,
-			};
-
-		case actionTypes.REMOVE_PROFILE:
+		case 'SET_PROFILE':
 			return {
 				...state,
 				profile: action.payload,

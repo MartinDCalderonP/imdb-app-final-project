@@ -21,9 +21,7 @@ export type PossibleSectionPost =
 
 export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
 
-export type Action =
-	| { type: 'ADD_PROFILE'; payload: IProfileData }
-	| { type: 'REMOVE_PROFILE'; payload: IProfileData };
+export type Action = { type: 'SET_PROFILE'; payload: IProfileData };
 
 export type Dispatch = (action: Action) => void;
 
