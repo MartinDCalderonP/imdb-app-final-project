@@ -58,8 +58,8 @@ export default function Section({
 			)}
 
 			{!loading && data?.results?.length === 0 && (
-				<div className={styles.noResults}>
-					<h2>No results found</h2>
+				<div>
+					<h2 className={styles.noResults}>No results found</h2>
 				</div>
 			)}
 		</>
