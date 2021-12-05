@@ -2,8 +2,6 @@ import React from 'react';
 import styles from '../styles/Media.module.scss';
 import { currentSeasons, currentTitle, imageW300Url } from '../common/Helpers';
 import { IMediaProps } from '../common/Interfaces';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import RatingStars from '../components/RatingStars';
 import CardsContainer from '../components/CardsContainer';
 import Carousel from '../components/Carousel';

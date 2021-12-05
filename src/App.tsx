@@ -4,6 +4,8 @@ import { Paths } from './common/Enums';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import PrivateRoute from './components/PrivateRoute';
+import Profile from './pages/Profile';
 
 export default function App() {
 	return (
@@ -36,6 +38,15 @@ export default function App() {
 				<Route
 					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
 					element={<Detail type="seasons" />}
+				/>
+
+				<Route
+					path={Paths.profile}
+					element={
+						<PrivateRoute redirectTo={Paths.home}>
+							<Profile />
+						</PrivateRoute>
+					}
 				/>
 
 				<Route path="*" element={<Navigate replace to={Paths.home} />} />

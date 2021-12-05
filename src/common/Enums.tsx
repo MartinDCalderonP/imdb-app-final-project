@@ -7,6 +7,7 @@ export enum Paths {
 	search = '/search=',
 	page = '/page=',
 	season = '/season',
+	profile = '/profile',
 }
 
 export enum API {
@@ -40,4 +41,6 @@ export enum API {
 	reviews = '/reviews',
 	credits = '/credits',
 	season = '/season',
+	account = 'account',
+	favorite = '/favorite',
 }

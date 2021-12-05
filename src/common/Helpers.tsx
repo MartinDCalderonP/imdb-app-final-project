@@ -1,5 +1,6 @@
+import { Location } from 'history';
 import { Paths, API } from './Enums';
-import { Cast, IObjects } from './Interfaces';
+import { IObjects } from './Interfaces';
 import { PossibleDetailPost, PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
@@ -7,12 +8,22 @@ export const capitalizeWord = (word: string) => {
 	return word[0].toUpperCase() + word.substr(1).toLowerCase();
 };
 
+export const createSignInUrl = (requestToken: string | undefined): string => {
+	return `${API.authenticate}${requestToken}${API.redirect}`;
+};
+
+export const profileFetchUrl = (sessionId: string | undefined): string => {
+	return `${API.base}${API.account}?session_id=${sessionId}`;
+};
+
 export const sectionFetchUrl = (
 	currentPage: number,
 	currentFilter: string,
 	filterCategory: string,
 	type: string,
-	id?: string
+	id?: string,
+	sessionId?: string,
+	accountId?: number
 ): string => {
 	const paginationParams = `page=${currentPage}`;
 
@@ -33,6 +44,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
@@ -41,6 +53,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	return type === 'movies'
@@ -48,31 +61,45 @@ export const sectionFetchUrl = (
 			? moviesFetchUrls[filterCategory]
 			: id
 			? moviesFetchUrls.similar
+			: accountId
+			? moviesFetchUrls.favorites
 			: moviesFetchUrls.default
 		: filterCategory
 		? tvShowsFetchUrls[filterCategory]
 		: id
 		? tvShowsFetchUrls.similar
+		: accountId
+		? tvShowsFetchUrls.favorites
 		: tvShowsFetchUrls.default;
 };
 
-export const sectionTitle = (type: string, id?: string): string => {
+export const sectionTitle = (
+	type: string,
+	id?: string,
+	accountId?: number
+): string => {
 	const moviesTitles: IObjects = {
 		default: 'Popular Movies',
 		similar: 'Similar Movies',
+		favorites: 'Favorites Movies',
 	};
 
 	const tvShowsTitles: IObjects = {
 		default: 'Popular TV Shows',
 		similar: 'Similar TV Shows',
+		favorites: 'Favorites TV Shows',
 	};
 
 	return type === 'movies'
 		? id
 			? moviesTitles.similar
+			: accountId
+			? moviesTitles.favorites
 			: moviesTitles.default
 		: id
 		? tvShowsTitles.similar
+		: accountId
+		? tvShowsTitles.favorites
 		: tvShowsTitles.default;
 };
 
@@ -345,4 +372,8 @@ export const formatGender = (gender: number): string => {
 
 export const creditsItemNavigationUrl = (id: number): string => {
 	return `${Paths.person}/${id}`;
+};
+
+export const getRequestToken = (location: Location): string => {
+	return location.search && location.search.split('=')[1].split('&')[0];
 };

@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from 'react';
+import { ReactNode, MouseEventHandler, ReactElement } from 'react';
 
 export interface ILayoutProps {
 	children: ReactNode;
@@ -85,6 +85,8 @@ export interface ICardsContainerProps {
 export interface ISectionProps {
 	type: string;
 	id?: string | undefined;
+	sessionId?: string;
+	accountId?: number;
 }
 
 export interface IFiltersContainerProps {
@@ -487,4 +489,32 @@ export interface IExternalLinkProps {
 
 export interface ICreditsItemProps {
 	cast: Cast;
+}
+
+export interface IProfileData {
+	avatar: Avatar;
+	id: number;
+	iso_639_1: string;
+	iso_3166_1: string;
+	name: string;
+	include_adult: boolean;
+	username: string;
+}
+
+export interface Avatar {
+	gravatar: Gravatar;
+	tmdb: Tmdb;
+}
+
+export interface Gravatar {
+	hash: string;
+}
+
+export interface Tmdb {
+	avatar_path: string | null;
+}
+
+export interface IPrivateRouteProps {
+	children: ReactElement;
+	redirectTo: string;
 }

@@ -6,7 +6,7 @@ import { ICreditsItemProps } from '../common/Interfaces';
 import Avatar from './Avatar';
 
 export default function CreditsItem({ cast }: ICreditsItemProps) {
-	const { id, profile_path, name, character } = cast;
+	const { id, profile_path, name, character, job } = cast;
 
 	const navigationUrl = creditsItemNavigationUrl(id);
 
@@ -26,7 +26,7 @@ export default function CreditsItem({ cast }: ICreditsItemProps) {
 
 			<div className={styles.text}>
 				<p>{name}</p>
-				<p className={styles.secondaryText}>as {character}</p>
+				<p className={styles.secondaryText}>as {character ? character : job}</p>
 			</div>
 		</Link>
 	);
