@@ -1,11 +1,27 @@
 .buttonsContainer {
 	margin-bottom: 20px;
 	display: flex;
+	align-items: center;
 	max-width: 80vw;
-	overflow: hidden;
 
 	&:hover {
 		overflow-x: auto;
+	}
+
+	.chevronButton {
+		position: relative;
+		margin: 0;
+
+		&:hover {
+			background-color: transparent;
+			color: darkred;
+
+			svg {
+				path {
+					fill: var(--detailsColor);
+				}
+			}
+		}
 	}
 
 	.pageButton {
@@ -20,7 +36,6 @@
 
 		&.active,
 		&:hover {
-			background-color: var(--hoverBackgroundColor);
 			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 			border-color: var(--hoverDetailsColor);
 			color: var(--detailsColor);
