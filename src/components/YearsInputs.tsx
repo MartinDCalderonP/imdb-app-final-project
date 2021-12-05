@@ -10,7 +10,7 @@ export default function YearsInputs({ current, type }: IYearsInputsProps) {
 	const years = current?.slice(5).split('&to=');
 	const actualYear = new Date().getFullYear().toString();
 	const [minYear, setMinYear] = useState((years && years[0]) || '1874');
-	const [maxYear, setMaxYear] = useState((years && years[0]) || actualYear);
+	const [maxYear, setMaxYear] = useState((years && years[1]) || actualYear);
 
 	const handleMinYearChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setMinYear(e.target.value);
