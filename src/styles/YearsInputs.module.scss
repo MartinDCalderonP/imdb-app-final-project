@@ -5,15 +5,17 @@
 	font-size: 0.9rem;
 
 	.inputsLabels {
-		margin: 3px 0px;
+		margin: 5px 0px;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 
 		.input {
 			background-color: var(--innerBackgroundColor);
 			margin-left: 10px;
 			border: 1px solid var(--detailsColor);
 			border-radius: 2px;
+			padding: 5px;
 		}
 	}
 
@@ -38,6 +40,7 @@
 		&:hover {
 			box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
 			border-color: var(--hoverDetailsColor);
+			color: var(--detailsColor);
 		}
 	}
 }
