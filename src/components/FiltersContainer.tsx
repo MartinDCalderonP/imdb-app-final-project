@@ -9,14 +9,9 @@ import YearsInputs from './YearsInputs';
 
 export default function FiltersContainer({
 	current,
-	setCurrent,
-	setFilterCategory,
 	type,
 }: IFiltersContainerProps) {
 	const [showFilters, setShowFilters] = useState(false);
-
-	const categories =
-		type === 'movies' ? ['certification', 'genre', 'year'] : ['genre', 'year'];
 
 	const filterButtonStyle =
 		styles.filtersButton + (showFilters ? ` ${styles.activeButton}` : '');
@@ -26,12 +21,16 @@ export default function FiltersContainer({
 		setShowFilters(!showFilters);
 	};
 
+	const categories =
+		type === 'movies' ? ['certification', 'genre', 'year'] : ['genre', 'year'];
+
 	return (
 		<div className={styles.filtersContainer}>
 			<button className={filterButtonStyle} onClick={handleFiltersButtonClick}>
 				<FontAwesomeIcon className={styles.filterIcon} icon={faSlidersH} />
 				FILTERS
 			</button>
+
 			{showFilters && (
 				<div className={styles.categoriesContainer}>
 					<ul className={styles.categories}>
@@ -45,19 +44,13 @@ export default function FiltersContainer({
 									{category !== 'year' && (
 										<Filters
 											current={current}
-											setCurrent={setCurrent}
 											category={category}
-											setFilterCategory={setFilterCategory}
 											type={type}
 										/>
 									)}
 
 									{category === 'year' && (
-										<YearsInputs
-											current={current}
-											setCurrent={setCurrent}
-											setFilterCategory={setFilterCategory}
-										/>
+										<YearsInputs current={current} type={type} />
 									)}
 								</div>
 							</li>

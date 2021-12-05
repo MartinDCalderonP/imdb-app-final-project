@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/Section.module.scss';
+import { useParams } from 'react-router';
 import useFetch from '../hooks/useFetch';
 import { sectionFetchUrl, sectionTitle } from '../common/Helpers';
 import { ISectionProps } from '../common/Interfaces';
@@ -7,6 +8,7 @@ import { PossibleSectionData } from '../common/Types';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
 import FiltersContainer from './FiltersContainer';
+import PaginationButtons from './PaginationButtons';
 
 export default function Section({
 	type,
@@ -14,13 +16,16 @@ export default function Section({
 	sessionId,
 	accountId,
 }: ISectionProps) {
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [currentFilter, setCurrentFilter] = useState<string>('');
-	const [filterCategory, setFilterCategory] = useState<string>('');
+	const { page, typeInParams, filter, category } = useParams();
+	const [currentPage, setCurrentPage] = useState<number>(
+		page ? parseInt(page) : 1
+	);
+	const [currentFilter, setCurrentFilter] = useState<string>();
+	const [currentCategory, setCurrentCategory] = useState<string>();
 	const fetchUrl = sectionFetchUrl(
 		currentPage,
 		currentFilter,
-		filterCategory,
+		currentCategory,
 		type,
 		id,
 		sessionId,
@@ -30,11 +35,27 @@ export default function Section({
 
 	const currentTitle = sectionTitle(type, id);
 
-	const handleFilterChange = (filter: string) => {
-		setCurrentFilter(filter);
+	const handlePaginate = (pageNumber: number) => {
+		setCurrentPage(pageNumber);
+
+		// const newUrl = sectionPaginationUrl(
+		// 	pageNumber,
+		// 	query,
+		// 	comic,
+		// 	story,
+		// 	format,
+		// 	type
+		// );
+
+		// history.push(newUrl);
 	};
 
-	console.log(data);
+	useEffect(() => {
+		if (typeInParams === type) {
+			setCurrentFilter(filter);
+			setCurrentCategory(category);
+		}
+	}, [typeInParams, type, filter]);
 
 	return (
 		<>
@@ -45,15 +66,17 @@ export default function Section({
 					<h1 className={styles.sectionTitle}>{currentTitle}</h1>
 
 					{!id && !accountId && (
-						<FiltersContainer
-							current={currentFilter}
-							setCurrent={handleFilterChange}
-							setFilterCategory={setFilterCategory}
-							type={type}
-						/>
+						<FiltersContainer current={currentFilter} type={type} />
 					)}
 
 					<CardsContainer loading={loading} posts={data?.results} type={type} />
+
+					<PaginationButtons
+						totalPosts={data?.total_results}
+						postsPerPage={20}
+						paginate={handlePaginate}
+						currentPage={currentPage}
+					/>
 				</>
 			)}
 

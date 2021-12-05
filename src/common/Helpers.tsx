@@ -18,8 +18,8 @@ export const profileFetchUrl = (sessionId: string | undefined): string => {
 
 export const sectionFetchUrl = (
 	currentPage: number,
-	currentFilter: string,
-	filterCategory: string,
+	filter: string | undefined,
+	category: string | undefined,
 	type: string,
 	id?: string,
 	sessionId?: string,
@@ -27,7 +27,8 @@ export const sectionFetchUrl = (
 ): string => {
 	const paginationParams = `page=${currentPage}`;
 
-	const years = filterCategory === 'year' && currentFilter.split('-');
+	const years = category === 'years' && filter?.slice(5).split('&to=');
+
 	const moviesYearParams =
 		years && years.length === 2
 			? `${API.moviesMinYear}${years[0]}${API.moviesMaxYear}${years[1]}`
@@ -40,32 +41,32 @@ export const sectionFetchUrl = (
 
 	const moviesFetchUrls: IObjects = {
 		default: `${API.base}${API.movies}${API.popular}?${paginationParams}`,
-		certification: `${API.base}${API.discover}${API.movies}?${API.byCertification}${currentFilter}&${paginationParams}`,
-		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${currentFilter}&${paginationParams}`,
-		year: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
+		certification: `${API.base}${API.discover}${API.movies}?${API.byCertification}${filter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${filter}&${paginationParams}`,
+		years: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
 		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
 		default: `${API.base}${API.tvShows}${API.popular}?${paginationParams}`,
-		certification: `${API.base}${API.discover}${API.tvShows}?${API.byCertification}${currentFilter}&${paginationParams}`,
-		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${currentFilter}&${paginationParams}`,
-		year: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
+		certification: `${API.base}${API.discover}${API.tvShows}?${API.byCertification}${filter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${filter}&${paginationParams}`,
+		years: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
 		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	return type === 'movies'
-		? filterCategory
-			? moviesFetchUrls[filterCategory]
+		? category
+			? moviesFetchUrls[category]
 			: id
 			? moviesFetchUrls.similar
 			: accountId
 			? moviesFetchUrls.favorites
 			: moviesFetchUrls.default
-		: filterCategory
-		? tvShowsFetchUrls[filterCategory]
+		: category
+		? tvShowsFetchUrls[category]
 		: id
 		? tvShowsFetchUrls.similar
 		: accountId
@@ -202,6 +203,39 @@ export const filtersFetchUrl = (category: string, type: string): string => {
 export const validateYearFormat = (date: string) => {
 	const regex = /^\d{4}$/;
 	return date.match(regex) ? true : false;
+};
+
+export const filterNavigationUrl = (
+	filter: string,
+	category: string,
+	type: string
+): string => {
+	const moviesFilterNavigationUrls: IObjects = {
+		certification: `${Paths.movies}${Paths.certification}/${filter}`,
+		genre: `${Paths.movies}${Paths.genre}/${filter}`,
+	};
+
+	const tvShowsFilterNavigationUrls: IObjects = {
+		certification: `${Paths.tvShows}${Paths.certification}/${filter}`,
+		genre: `${Paths.tvShows}${Paths.genre}/${filter}`,
+	};
+
+	return type === 'movies'
+		? moviesFilterNavigationUrls[category]
+		: tvShowsFilterNavigationUrls[category];
+};
+
+export const yearsNavigationUrl = (
+	min: string,
+	max: string,
+	type: string
+): string => {
+	const yearsNavigationUrls: IObjects = {
+		movies: `${Paths.movies}${Paths.years}${Paths.from}${min}${Paths.to}${max}`,
+		tvShows: `${Paths.tvShows}${Paths.years}${Paths.from}${min}${Paths.to}${max}`,
+	};
+
+	return yearsNavigationUrls[type];
 };
 
 export const searchNavigationUrl = (query: string): string => {

@@ -1,18 +1,14 @@
 import React from 'react';
 import styles from '../styles/Filters.module.scss';
-import { filtersFetchUrl } from '../common/Helpers';
-import { Certification, Genre, IFiltersProps } from '../common/Interfaces';
+import { useNavigate } from 'react-router';
 import useFetch from '../hooks/useFetch';
-import Spinner from './Spinner';
+import { filterNavigationUrl, filtersFetchUrl } from '../common/Helpers';
+import { Certification, Genre, IFiltersProps } from '../common/Interfaces';
 import { PossibleFilterData } from '../common/Types';
+import Spinner from './Spinner';
 
-export default function Filters({
-	current,
-	setCurrent,
-	category,
-	setFilterCategory,
-	type,
-}: IFiltersProps) {
+export default function Filters({ current, category, type }: IFiltersProps) {
+	const navigate = useNavigate();
 	const fetchUrl = filtersFetchUrl(category, type);
 	const { data, loading, error } = useFetch<PossibleFilterData>(fetchUrl);
 
@@ -39,9 +35,10 @@ export default function Filters({
 	const lastGenres =
 		category === 'genre' && data && 'genres' in data && data?.genres?.slice(10);
 
-	const handleFilterButtonClick = (filter: string) => {
-		setCurrent(filter);
-		setFilterCategory(category);
+	const handleFilterClick = (filter: string) => {
+		const navigationUrl = filterNavigationUrl(filter, category, type);
+
+		navigate(navigationUrl);
 	};
 
 	return (
@@ -59,9 +56,7 @@ export default function Filters({
 						>
 							<button
 								className={filterStyle(certification.certification)}
-								onClick={() =>
-									handleFilterButtonClick(certification.certification)
-								}
+								onClick={() => handleFilterClick(certification.certification)}
 							>
 								{certification.certification}
 							</button>
@@ -75,7 +70,7 @@ export default function Filters({
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
 								className={filterStyle(genre.id.toString())}
-								onClick={() => handleFilterButtonClick(genre.id.toString())}
+								onClick={() => handleFilterClick(genre.id.toString())}
 							>
 								{genre.name}
 							</button>
@@ -90,7 +85,7 @@ export default function Filters({
 							<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 								<button
 									className={filterStyle(genre.id.toString())}
-									onClick={() => handleFilterButtonClick(genre.id.toString())}
+									onClick={() => handleFilterClick(genre.id.toString())}
 								>
 									{genre.name}
 								</button>

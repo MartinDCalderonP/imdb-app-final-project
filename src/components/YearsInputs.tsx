@@ -1,15 +1,16 @@
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import styles from '../styles/YearsInputs.module.scss';
+import { useNavigate } from 'react-router';
 import { IYearsInputsProps } from '../common/Interfaces';
-import { validateYearFormat } from '../common/Helpers';
+import { validateYearFormat, yearsNavigationUrl } from '../common/Helpers';
 
-export default function YearsInputs({
-	current,
-	setCurrent,
-	setFilterCategory,
-}: IYearsInputsProps) {
-	const [minYear, setMinYear] = useState('');
-	const [maxYear, setMaxYear] = useState('');
+export default function YearsInputs({ current, type }: IYearsInputsProps) {
+	const navigate = useNavigate();
+
+	const years = current?.slice(5).split('&to=');
+	const actualYear = new Date().getFullYear().toString();
+	const [minYear, setMinYear] = useState((years && years[0]) || '1874');
+	const [maxYear, setMaxYear] = useState((years && years[0]) || actualYear);
 
 	const handleMinYearChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setMinYear(e.target.value);
@@ -27,8 +28,9 @@ export default function YearsInputs({
 		}
 
 		if (validateYearFormat(minYear) && validateYearFormat(maxYear)) {
-			setCurrent(minYear + '-' + maxYear);
-			setFilterCategory('year');
+			const navigationUrl = yearsNavigationUrl(minYear, maxYear, type);
+
+			navigate(navigationUrl);
 		}
 	};
 
