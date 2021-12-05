@@ -3,7 +3,7 @@ import styles from '../styles/Carousel.module.scss';
 import _ from 'lodash';
 import useFetch from '../hooks/useFetch';
 import { carouselFetchUrl, imageOriginalUrl } from '../common/Helpers';
-import { ICarouselProps, IDetailImages } from '../common/Interfaces';
+import { Backdrop, ICarouselProps, IDetailImages } from '../common/Interfaces';
 import Spinner from './Spinner';
 import Chevron from './Chevron';
 
@@ -90,7 +90,7 @@ export default function Carousel({ id, type }: ICarouselProps) {
 					/>
 
 					<div className={styles.dotsContainer}>
-						{backdrops?.map((_: any, i: number) => (
+						{backdrops?.map((_: Backdrop, i: number) => (
 							<span
 								className={
 									styles.dot + (currentSlide === i ? ` ${styles.active}` : '')

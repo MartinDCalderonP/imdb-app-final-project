@@ -518,3 +518,22 @@ export interface IPrivateRouteProps {
 	children: ReactElement;
 	redirectTo: string;
 }
+
+export interface ICertificationsData {
+	certifications: { [key: string]: Certification[] };
+}
+
+export interface Certification {
+	certification: string;
+	meaning: string;
+	order: number;
+}
+
+export interface IGenresData {
+	genres: Genre[];
+}
+
+export interface Genre {
+	id: number;
+	name: string;
+}

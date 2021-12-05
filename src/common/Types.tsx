@@ -9,6 +9,8 @@ import {
 	IDetailPerson,
 	Season,
 	IProfileData,
+	ICertificationsData,
+	IGenresData,
 } from './Interfaces';
 
 export type PossibleSectionData = IMoviesData | ITvShowsData;
@@ -20,6 +22,8 @@ export type PossibleSectionPost =
 	| Season;
 
 export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
+
+export type PossibleFilterData = ICertificationsData | IGenresData;
 
 export type Action = {
 	type: 'SET_PROFILE';

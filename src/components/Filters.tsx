@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from '../styles/Filters.module.scss';
 import { filtersFetchUrl } from '../common/Helpers';
-import { IFiltersProps } from '../common/Interfaces';
+import { Certification, Genre, IFiltersProps } from '../common/Interfaces';
 import useFetch from '../hooks/useFetch';
 import Spinner from './Spinner';
+import { PossibleFilterData } from '../common/Types';
 
 export default function Filters({
 	current,
@@ -13,7 +14,7 @@ export default function Filters({
 	type,
 }: IFiltersProps) {
 	const fetchUrl = filtersFetchUrl(category, type);
-	const { data, loading, error } = useFetch<any>(fetchUrl);
+	const { data, loading, error } = useFetch<PossibleFilterData>(fetchUrl);
 
 	const filterStyle = (filter: string): string => {
 		return (
@@ -24,13 +25,19 @@ export default function Filters({
 
 	const sortedCertifications =
 		category === 'certification' &&
-		data?.certifications?.US?.sort((a: any, b: any) => {
+		data &&
+		'certifications' in data &&
+		data?.certifications?.US?.sort((a: Certification, b: Certification) => {
 			return a.order - b.order;
 		});
 
-	const firstGenres = category === 'genre' && data?.genres?.slice(0, 10);
-
-	const lastGenres = category === 'genre' && data?.genres?.slice(10);
+	const firstGenres =
+		category === 'genre' &&
+		data &&
+		'genres' in data &&
+		data?.genres?.slice(0, 10);
+	const lastGenres =
+		category === 'genre' && data && 'genres' in data && data?.genres?.slice(10);
 
 	const handleFilterButtonClick = (filter: string) => {
 		setCurrent(filter);
@@ -44,7 +51,8 @@ export default function Filters({
 
 				{!loading &&
 					category === 'certification' &&
-					sortedCertifications.map((certification: any) => (
+					sortedCertifications &&
+					sortedCertifications.map((certification: Certification) => (
 						<li
 							key={`certification${certification.order}`}
 							className={styles.filtersListItem}
@@ -62,11 +70,12 @@ export default function Filters({
 
 				{!loading &&
 					category === 'genre' &&
-					firstGenres.map((genre: any) => (
+					firstGenres &&
+					firstGenres.map((genre: Genre) => (
 						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
 							<button
-								className={filterStyle(genre.id)}
-								onClick={() => handleFilterButtonClick(genre.id)}
+								className={filterStyle(genre.id.toString())}
+								onClick={() => handleFilterButtonClick(genre.id.toString())}
 							>
 								{genre.name}
 							</button>
@@ -76,16 +85,17 @@ export default function Filters({
 
 			{!loading && category === 'genre' && (
 				<ul className={styles.filtersList}>
-					{lastGenres.map((genre: any) => (
-						<li key={`genre${genre.id}`} className={styles.filtersListItem}>
-							<button
-								className={filterStyle(genre.id)}
-								onClick={() => handleFilterButtonClick(genre.id)}
-							>
-								{genre.name}
-							</button>
-						</li>
-					))}
+					{lastGenres &&
+						lastGenres.map((genre: Genre) => (
+							<li key={`genre${genre.id}`} className={styles.filtersListItem}>
+								<button
+									className={filterStyle(genre.id.toString())}
+									onClick={() => handleFilterButtonClick(genre.id.toString())}
+								>
+									{genre.name}
+								</button>
+							</li>
+						))}
 				</ul>
 			)}
 		</>
