@@ -59,11 +59,13 @@ export default function PaginationButtons({
 
 	return (
 		<div className={styles.buttonsContainer}>
-			<Chevron
-				className={styles.chevronButton}
-				onClick={() => paginate(currentPage - 1)}
-				orientation="left"
-			/>
+			{currentPage !== 1 && (
+				<Chevron
+					className={styles.chevronButton}
+					onClick={() => paginate(currentPage - 1)}
+					orientation="left"
+				/>
+			)}
 
 			{renderPageNumbers?.map((pageNumber: number | string) => {
 				if (typeof pageNumber === 'string') {
@@ -84,11 +86,13 @@ export default function PaginationButtons({
 				}
 			})}
 
-			<Chevron
-				className={styles.chevronButton}
-				onClick={() => paginate(currentPage + 1)}
-				orientation="right"
-			/>
+			{currentPage !== pagesNumbers.length && (
+				<Chevron
+					className={styles.chevronButton}
+					onClick={() => paginate(currentPage + 1)}
+					orientation="right"
+				/>
+			)}
 		</div>
 	);
 }
