@@ -4,6 +4,7 @@ import { Paths } from './common/Enums';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
 import Search from './pages/Search';
+import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 
 export default function App() {
@@ -39,7 +40,14 @@ export default function App() {
 					element={<Detail type="seasons" />}
 				/>
 
-				<Route path={Paths.profile} element={<Profile />} />
+				<Route
+					path={Paths.profile}
+					element={
+						<PrivateRoute redirectTo={Paths.home}>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
 
 				<Route path="*" element={<Navigate replace to={Paths.home} />} />
 			</Routes>

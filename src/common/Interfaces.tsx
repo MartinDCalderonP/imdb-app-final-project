@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from 'react';
+import { ReactNode, MouseEventHandler, ReactElement } from 'react';
 
 export interface ILayoutProps {
 	children: ReactNode;
@@ -512,4 +512,9 @@ export interface Gravatar {
 
 export interface Tmdb {
 	avatar_path: string | null;
+}
+
+export interface IPrivateRouteProps {
+	children: ReactElement;
+	redirectTo: string;
 }
