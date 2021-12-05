@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../styles/Detail.module.scss';
 import { useParams } from 'react-router';
 import useFetch from '../hooks/useFetch';
-import { IDetailProps } from '../common/Interfaces';
-import { detailFetchUrl, imageW300Url } from '../common/Helpers';
+import { detailFetchUrl } from '../common/Helpers';
 import { PossibleDetailPost } from '../common/Types';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
@@ -11,9 +10,9 @@ import Media from '../components/Media';
 import Person from '../components/Person';
 import SeasonsList from '../components/SeasonsList';
 
-export default function Detail({ type }: IDetailProps) {
-	const { id } = useParams();
-	const fetchUrl = detailFetchUrl(id, type);
+export default function Detail() {
+	const { typeInParams, id } = useParams();
+	const fetchUrl = detailFetchUrl(id, typeInParams);
 	const { data, loading, error } = useFetch<PossibleDetailPost>(fetchUrl);
 
 	const isMovieOrTvShowData = data && 'backdrop_path' in data && data;
@@ -29,14 +28,14 @@ export default function Detail({ type }: IDetailProps) {
 
 				{!loading && data && (
 					<>
-						{(type === 'movies' || type === 'tvShows') &&
+						{(typeInParams === 'movies' || typeInParams === 'tvShows') &&
 							isMovieOrTvShowData && (
-								<Media id={id} type={type} data={isMovieOrTvShowData} />
+								<Media id={id} type={typeInParams} data={isMovieOrTvShowData} />
 							)}
 
-						{type === 'person' && isPerson && <Person data={data} />}
+						{typeInParams === 'person' && isPerson && <Person data={data} />}
 
-						{type === 'seasons' && isTVShowData && (
+						{typeInParams === 'seasons' && isTVShowData && (
 							<SeasonsList id={data.id} data={isTVShowData} />
 						)}
 					</>

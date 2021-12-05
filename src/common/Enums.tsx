@@ -13,6 +13,8 @@ export enum Paths {
 	years = '/years',
 	from = '/from=',
 	to = '&to=',
+	similar = '/similar',
+	favorites = '/favorites',
 }
 
 export enum API {

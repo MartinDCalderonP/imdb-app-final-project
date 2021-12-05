@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Section.module.scss';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import useFetch from '../hooks/useFetch';
-import { sectionFetchUrl, sectionTitle } from '../common/Helpers';
+import {
+	sectionFetchUrl,
+	sectionTitle,
+	sectionPaginationUrl,
+} from '../common/Helpers';
 import { ISectionProps } from '../common/Interfaces';
 import { PossibleSectionData } from '../common/Types';
 import Spinner from '../components/Spinner';
@@ -17,6 +21,7 @@ export default function Section({
 	accountId,
 }: ISectionProps) {
 	const { typeInParams, filter, category, page } = useParams();
+
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [currentFilter, setCurrentFilter] = useState<string>();
 	const [currentCategory, setCurrentCategory] = useState<string>();
@@ -33,19 +38,21 @@ export default function Section({
 
 	const currentTitle = sectionTitle(type, id);
 
+	const navigate = useNavigate();
+
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 
-		// const newUrl = sectionPaginationUrl(
-		// 	pageNumber,
-		// 	query,
-		// 	comic,
-		// 	story,
-		// 	format,
-		// 	type
-		// );
+		const newUrl = sectionPaginationUrl(
+			pageNumber,
+			filter,
+			category,
+			type,
+			id,
+			accountId
+		);
 
-		// history.push(newUrl);
+		navigate(newUrl);
 	};
 
 	useEffect(() => {
@@ -56,7 +63,9 @@ export default function Section({
 			setCurrentFilter(filter);
 			setCurrentCategory(category);
 		}
-	}, [typeInParams, type, page, filter, category]);
+	}, [typeInParams, type, page, filter, category, id]);
+
+	console.log(page, currentPage, filter, category, typeInParams, fetchUrl);
 
 	return (
 		<>

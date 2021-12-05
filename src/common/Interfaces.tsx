@@ -144,10 +144,6 @@ export enum MediaType {
 	Tv = 'tv',
 }
 
-export interface IDetailProps {
-	type: string;
-}
-
 export interface IDetailMovie {
 	adult: boolean;
 	backdrop_path: string;

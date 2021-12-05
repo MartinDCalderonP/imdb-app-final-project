@@ -104,6 +104,51 @@ export const sectionTitle = (
 		: tvShowsTitles.default;
 };
 
+export const sectionPaginationUrl = (
+	pageNumber: number,
+	filter: string | undefined,
+	category: string | undefined,
+	type: string,
+	id?: string,
+	accountId?: number
+): string => {
+	const paginationParams = `${Paths.page}${pageNumber}`;
+
+	const moviesPaginationUrls: IObjects = {
+		default: `${Paths.movies}${paginationParams}`,
+		certification: `${Paths.movies}${Paths.certification}/${filter}${paginationParams}`,
+		genre: `${Paths.movies}${Paths.genre}/${filter}${paginationParams}`,
+		years: `${Paths.movies}${Paths.years}/${filter}${paginationParams}`,
+		similar: `${Paths.movies}/${id}${Paths.similar}${paginationParams}`,
+		favorites: `${Paths.profile}${Paths.favorites}${Paths.movies}${paginationParams}`,
+	};
+
+	const tvShowsPaginationUrls: IObjects = {
+		default: `${Paths.tvShows}${paginationParams}`,
+		certification: `${Paths.tvShows}${Paths.certification}/${filter}${paginationParams}`,
+		genre: `${Paths.tvShows}${Paths.genre}/${filter}${paginationParams}`,
+		years: `${Paths.tvShows}${Paths.years}/${filter}${paginationParams}`,
+		similar: `${Paths.tvShows}/${id}${Paths.similar}${paginationParams}`,
+		favorites: `${Paths.profile}${Paths.favorites}${Paths.tvShows}${paginationParams}`,
+	};
+
+	return type === 'movies'
+		? category
+			? moviesPaginationUrls[category]
+			: id
+			? moviesPaginationUrls.similar
+			: accountId
+			? moviesPaginationUrls.favorites
+			: moviesPaginationUrls.default
+		: category
+		? tvShowsPaginationUrls[category]
+		: id
+		? tvShowsPaginationUrls.similar
+		: accountId
+		? tvShowsPaginationUrls.favorites
+		: tvShowsPaginationUrls.default;
+};
+
 export const cardsContainerNames = (post: PossibleSectionPost): string => {
 	return 'title' in post
 		? post.title
@@ -255,7 +300,7 @@ export const searchFetchUrl = (
 
 export const detailFetchUrl = (
 	id: string | undefined,
-	type: string
+	type: string | undefined,
 ): string => {
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,
@@ -264,7 +309,7 @@ export const detailFetchUrl = (
 		person: `${API.base}${API.person}${id}?`,
 	};
 
-	return detailFetchUrls[type];
+	return detailFetchUrls[type!];
 };
 
 export const carouselFetchUrl = (
