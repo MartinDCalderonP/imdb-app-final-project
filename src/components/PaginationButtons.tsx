@@ -1,6 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo, ChangeEvent } from 'react';
 import styles from '../styles/PaginationButtons.module.scss';
 import { IPaginationButtons } from '../common/Interfaces';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Chevron from './Chevron';
 
 export default function PaginationButtons({
@@ -57,42 +59,76 @@ export default function PaginationButtons({
 		return [...firstNumbers, '...', ...middleNumbers, '...', ...lastNumbers];
 	}, [pagesNumbers, currentPage, firstNumbers, lastNumbers, middleNumbers]);
 
+	const [inputValue, setInputValue] = useState(currentPage.toString());
+
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
+	};
+
+	const handleInputButtonClick = () => {
+		if (inputValue === '') {
+			return;
+		}
+		if (inputValue === '0') {
+			return;
+		}
+		if (parseInt(inputValue) > pagesNumbers.length) {
+			return;
+		}
+
+		paginate(parseInt(inputValue));
+	};
+
 	return (
-		<div className={styles.buttonsContainer}>
-			{currentPage !== 1 && (
-				<Chevron
-					className={styles.chevronButton}
-					onClick={() => paginate(currentPage - 1)}
-					orientation="left"
+		<>
+			<div className={styles.input}>
+				Page:
+				<input
+					name={`${type}-page`}
+					value={inputValue}
+					onChange={handleInputChange}
 				/>
-			)}
+				<button className={styles.inputButton} onClick={handleInputButtonClick}>
+					<FontAwesomeIcon icon={faSearch} />
+				</button>
+			</div>
 
-			{renderPageNumbers?.map((pageNumber: number | string) => {
-				if (typeof pageNumber === 'string') {
-					return pageNumber;
-				} else {
-					return (
-						<button
-							key={`${type}paginationButton${pageNumber}`}
-							className={
-								styles.pageButton +
-								(currentPage === pageNumber ? ` ${styles.active}` : '')
-							}
-							onClick={() => paginate(pageNumber)}
-						>
-							{pageNumber}
-						</button>
-					);
-				}
-			})}
+			<div className={styles.buttonsContainer}>
+				{currentPage !== 1 && (
+					<Chevron
+						className={styles.chevronButton}
+						onClick={() => paginate(currentPage - 1)}
+						orientation="left"
+					/>
+				)}
 
-			{currentPage !== pagesNumbers.length && (
-				<Chevron
-					className={styles.chevronButton}
-					onClick={() => paginate(currentPage + 1)}
-					orientation="right"
-				/>
-			)}
-		</div>
+				{renderPageNumbers?.map((pageNumber: number | string) => {
+					if (typeof pageNumber === 'string') {
+						return pageNumber;
+					} else {
+						return (
+							<button
+								key={`${type}paginationButton${pageNumber}`}
+								className={
+									styles.pageButton +
+									(currentPage === pageNumber ? ` ${styles.active}` : '')
+								}
+								onClick={() => paginate(pageNumber)}
+							>
+								{pageNumber}
+							</button>
+						);
+					}
+				})}
+
+				{currentPage !== pagesNumbers.length && (
+					<Chevron
+						className={styles.chevronButton}
+						onClick={() => paginate(currentPage + 1)}
+						orientation="right"
+					/>
+				)}
+			</div>
+		</>
 	);
 }
