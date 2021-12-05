@@ -3,20 +3,24 @@ import { API } from '../common/Enums';
 import { IObjects } from '../common/Interfaces';
 import { API_KEY } from '../Keys';
 
-export default function useAuth(type: string, fetchParam?: string) {
+export default function useAuth(
+	type: string,
+	approvedRequestToken: string,
+	toDeleteSessionId: string
+) {
 	const [requestToken, setRequestToken] = useState<string>();
-	const [sessionId, setSessionId] = useState<string>();
+	const [newSessionId, setNewSessionId] = useState<string>();
 	const [sessionDeleted, setSessionDeleted] = useState<string>();
-	const [error, setError] = useState<string>();
+	const [authError, setAuthError] = useState<string>();
 
 	const APIparams = `?api_key=${API_KEY}`;
 	const signInParams =
-		type === 'getSessionId' && `&request_token=${fetchParam}`;
+		type === 'getSessionId' && `&request_token=${approvedRequestToken}`;
 	const deleteSessionParams =
-		type === 'deleteSession' && `&session_id=${fetchParam}`;
+		type === 'deleteSession' && `&session_id=${toDeleteSessionId}`;
 
 	const fetchUrls: IObjects = {
-		requestToken: `${API.base}${API.requestToken}${APIparams}`,
+		getRequestToken: `${API.base}${API.requestToken}${APIparams}`,
 		getSessionId: `${API.base}${API.authenticateWithToken}${APIparams}${signInParams}`,
 		deleteSession: `${API.base}${API.deleteSession}${APIparams}${deleteSessionParams}`,
 	};
@@ -38,33 +42,33 @@ export default function useAuth(type: string, fetchParam?: string) {
 			fetch(fetchUrls[type], headers)
 				.then((res) => res.json())
 				.then((result) => {
-					if (type === 'requestToken') {
+					if (type === 'getRequestToken') {
 						setRequestToken(result.request_token);
 					} else if (type === 'getSessionId') {
-						setSessionId(result.session_id);
+						setNewSessionId(result.session_id);
 					} else if (type === 'deleteSession') {
 						setSessionDeleted(result.success);
-						setSessionId('');
+						setNewSessionId('');
 					}
 				})
 				.catch((err) => {
 					if (err.name === 'AbortError') return;
-					setError(`${err}. Try again later.`);
+					setAuthError(`${err}. Try again later.`);
 				});
 		};
 
-		if (type === 'requestToken' && !fetchParam) {
+		if (type === 'getRequestToken') {
 			fetchData();
 		}
 
-		if (type === 'getSessionId' && fetchParam) {
+		if (type === 'getSessionId' && approvedRequestToken) {
 			fetchData();
 		}
 
-		if (type === 'deleteSession' && fetchParam) {
+		if (type === 'deleteSession' && toDeleteSessionId) {
 			fetchData();
 		}
 	}, [type]);
 
-	return { requestToken, sessionId, sessionDeleted, error };
+	return { requestToken, newSessionId, sessionDeleted, authError };
 }

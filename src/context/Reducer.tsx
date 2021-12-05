@@ -1,4 +1,3 @@
-import { IProfileData } from '../common/Interfaces';
 import { Action, State } from '../common/Types';
 
 export const initialState = {

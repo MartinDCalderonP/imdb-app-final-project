@@ -1,5 +1,6 @@
+import { Location } from 'history';
 import { Paths, API } from './Enums';
-import { Cast, IObjects } from './Interfaces';
+import { IObjects } from './Interfaces';
 import { PossibleDetailPost, PossibleSectionPost } from './Types';
 
 export const capitalizeWord = (word: string) => {
@@ -353,4 +354,8 @@ export const formatGender = (gender: number): string => {
 
 export const creditsItemNavigationUrl = (id: number): string => {
 	return `${Paths.person}/${id}`;
+};
+
+export const getRequestToken = (location: Location): string => {
+	return location.search && location.search.split('=')[1].split('&')[0];
 };

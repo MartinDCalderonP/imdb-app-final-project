@@ -489,12 +489,6 @@ export interface ICreditsItemProps {
 	cast: Cast;
 }
 
-export interface ISignButtonsProps {
-	requestToken: string | undefined;
-	sessionId: string | undefined;
-	handleSignOut: () => void;
-}
-
 export interface IProfileData {
 	avatar: Avatar;
 	id: number;
