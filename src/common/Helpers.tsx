@@ -21,7 +21,9 @@ export const sectionFetchUrl = (
 	currentFilter: string,
 	filterCategory: string,
 	type: string,
-	id?: string
+	id?: string,
+	sessionId?: string,
+	accountId?: number
 ): string => {
 	const paginationParams = `page=${currentPage}`;
 
@@ -42,6 +44,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
@@ -50,6 +53,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${currentFilter}&${paginationParams}`,
 		year: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
 	};
 
 	return type === 'movies'
@@ -57,31 +61,45 @@ export const sectionFetchUrl = (
 			? moviesFetchUrls[filterCategory]
 			: id
 			? moviesFetchUrls.similar
+			: accountId
+			? moviesFetchUrls.favorites
 			: moviesFetchUrls.default
 		: filterCategory
 		? tvShowsFetchUrls[filterCategory]
 		: id
 		? tvShowsFetchUrls.similar
+		: accountId
+		? tvShowsFetchUrls.favorites
 		: tvShowsFetchUrls.default;
 };
 
-export const sectionTitle = (type: string, id?: string): string => {
+export const sectionTitle = (
+	type: string,
+	id?: string,
+	accountId?: number
+): string => {
 	const moviesTitles: IObjects = {
 		default: 'Popular Movies',
 		similar: 'Similar Movies',
+		favorites: 'Favorites Movies',
 	};
 
 	const tvShowsTitles: IObjects = {
 		default: 'Popular TV Shows',
 		similar: 'Similar TV Shows',
+		favorites: 'Favorites TV Shows',
 	};
 
 	return type === 'movies'
 		? id
 			? moviesTitles.similar
+			: accountId
+			? moviesTitles.favorites
 			: moviesTitles.default
 		: id
 		? tvShowsTitles.similar
+		: accountId
+		? tvShowsTitles.favorites
 		: tvShowsTitles.default;
 };
 

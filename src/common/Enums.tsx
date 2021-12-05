@@ -42,4 +42,5 @@ export enum API {
 	credits = '/credits',
 	season = '/season',
 	account = 'account',
+	favorite = '/favorite',
 }
