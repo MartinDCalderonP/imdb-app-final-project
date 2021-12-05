@@ -21,7 +21,7 @@ export default function RatingStars({ rating }: IRatingStarsProps) {
 	return (
 		<>
 			{roundedRating && (
-				<div className={styles.rating}>
+				<div className={styles.ratingStars}>
 					<h2>{rating}</h2>
 					<div className={styles.stars}>{ratingStars}</div>
 				</div>
