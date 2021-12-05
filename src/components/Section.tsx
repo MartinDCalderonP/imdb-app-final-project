@@ -16,10 +16,8 @@ export default function Section({
 	sessionId,
 	accountId,
 }: ISectionProps) {
-	const { page, typeInParams, filter, category } = useParams();
-	const [currentPage, setCurrentPage] = useState<number>(
-		page ? parseInt(page) : 1
-	);
+	const { typeInParams, filter, category, page } = useParams();
+	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [currentFilter, setCurrentFilter] = useState<string>();
 	const [currentCategory, setCurrentCategory] = useState<string>();
 	const fetchUrl = sectionFetchUrl(
@@ -52,10 +50,13 @@ export default function Section({
 
 	useEffect(() => {
 		if (typeInParams === type) {
+			if (page) {
+				setCurrentPage(parseInt(page));
+			}
 			setCurrentFilter(filter);
 			setCurrentCategory(category);
 		}
-	}, [typeInParams, type, filter]);
+	}, [typeInParams, type, page, filter, category]);
 
 	return (
 		<>

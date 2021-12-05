@@ -211,13 +211,13 @@ export const filterNavigationUrl = (
 	type: string
 ): string => {
 	const moviesFilterNavigationUrls: IObjects = {
-		certification: `${Paths.movies}${Paths.certification}/${filter}`,
-		genre: `${Paths.movies}${Paths.genre}/${filter}`,
+		certification: `${Paths.movies}${Paths.certification}/${filter}${Paths.page}1`,
+		genre: `${Paths.movies}${Paths.genre}/${filter}${Paths.page}1`,
 	};
 
 	const tvShowsFilterNavigationUrls: IObjects = {
-		certification: `${Paths.tvShows}${Paths.certification}/${filter}`,
-		genre: `${Paths.tvShows}${Paths.genre}/${filter}`,
+		certification: `${Paths.tvShows}${Paths.certification}/${filter}${Paths.page}1`,
+		genre: `${Paths.tvShows}${Paths.genre}/${filter}${Paths.page}1`,
 	};
 
 	return type === 'movies'
@@ -231,8 +231,8 @@ export const yearsNavigationUrl = (
 	type: string
 ): string => {
 	const yearsNavigationUrls: IObjects = {
-		movies: `${Paths.movies}${Paths.years}${Paths.from}${min}${Paths.to}${max}`,
-		tvShows: `${Paths.tvShows}${Paths.years}${Paths.from}${min}${Paths.to}${max}`,
+		movies: `${Paths.movies}${Paths.years}${Paths.from}${min}${Paths.to}${max}${Paths.page}1`,
+		tvShows: `${Paths.tvShows}${Paths.years}${Paths.from}${min}${Paths.to}${max}${Paths.page}1`,
 	};
 
 	return yearsNavigationUrls[type];

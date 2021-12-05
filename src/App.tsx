@@ -15,7 +15,10 @@ export default function App() {
 
 				<Route path={Paths.approved} element={<Home />} />
 
-				<Route path={`/:typeInParams/:category/:filter`} element={<Home />} />
+				<Route
+					path={`/:typeInParams/:category/:filter${Paths.page}:page`}
+					element={<Home />}
+				/>
 
 				<Route
 					path={`${Paths.search}:query${Paths.page}:page`}
