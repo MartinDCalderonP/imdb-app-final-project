@@ -65,6 +65,8 @@ export default function Section({
 		}
 	}, [typeInParams, type, page, filter, category, id]);
 
+	console.log(fetchUrl);
+
 	return (
 		<>
 			{loading && <Spinner />}
@@ -84,6 +86,7 @@ export default function Section({
 						postsPerPage={20}
 						paginate={handlePaginate}
 						currentPage={currentPage}
+						type={type}
 					/>
 				</>
 			)}

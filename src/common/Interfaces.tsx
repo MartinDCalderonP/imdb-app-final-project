@@ -534,4 +534,5 @@ export interface IPaginationButtons {
 	postsPerPage: number;
 	paginate: (paginate: number) => void;
 	currentPage: number;
+	type: string;
 }
