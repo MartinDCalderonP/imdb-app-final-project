@@ -65,8 +65,6 @@ export default function Section({
 		}
 	}, [typeInParams, type, page, filter, category, id]);
 
-	console.log(page, currentPage, filter, category, typeInParams, fetchUrl);
-
 	return (
 		<>
 			{loading && <Spinner />}
