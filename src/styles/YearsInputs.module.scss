@@ -2,13 +2,16 @@
 	margin-top: 7.5px;
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 	font-size: 0.9rem;
+	width: 100%;
 
 	.inputsLabels {
 		margin: 5px 0px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		width: 100%;
 
 		.input {
 			background-color: var(--innerBackgroundColor);
@@ -20,15 +23,21 @@
 	}
 
 	.formatText {
-		margin-top: 7.5px;
+		margin-top: 10px;
 		font-size: 0.8rem;
 		color: var(--secondaryTextColor);
+	}
+
+	.errorText {
+		margin-top: 10px;
+		font-size: 0.8rem;
+		color: red;
 	}
 
 	.yearsButton {
 		background-color: var(--backgroundColor);
 		width: 75%;
-		margin-top: 7.5px;
+		margin-top: 10px;
 		border: 1px solid var(--detailsColor);
 		border-radius: 5px;
 		padding: 5px 0;

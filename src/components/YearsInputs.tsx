@@ -8,9 +8,11 @@ export default function YearsInputs({ current, type }: IYearsInputsProps) {
 	const navigate = useNavigate();
 
 	const years = current?.slice(5).split('&to=');
+	const firstYear = '1874';
 	const actualYear = new Date().getFullYear().toString();
-	const [minYear, setMinYear] = useState((years && years[0]) || '1874');
+	const [minYear, setMinYear] = useState((years && years[0]) || firstYear);
 	const [maxYear, setMaxYear] = useState((years && years[1]) || actualYear);
+	const [error, setError] = useState(false);
 
 	const handleMinYearChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setMinYear(e.target.value);
@@ -23,7 +25,18 @@ export default function YearsInputs({ current, type }: IYearsInputsProps) {
 	const handleSubmitYearRange = (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
-		if (minYear === '' || maxYear === '') {
+		if (minYear < firstYear || maxYear < firstYear) {
+			setError(true);
+			return;
+		}
+
+		if (minYear > actualYear || maxYear > actualYear) {
+			setError(true);
+			return;
+		}
+
+		if (minYear > maxYear || maxYear < minYear) {
+			setError(true);
 			return;
 		}
 
@@ -60,6 +73,11 @@ export default function YearsInputs({ current, type }: IYearsInputsProps) {
 				</label>
 
 				<i className={styles.formatText}>Format: YYYY</i>
+				{error && (
+					<i className={styles.errorText}>
+						Year range must be between {firstYear} and {actualYear}.
+					</i>
+				)}
 
 				<button className={styles.yearsButton} onClick={handleSubmitYearRange}>
 					Filter by Year Range
