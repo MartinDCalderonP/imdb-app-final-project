@@ -149,6 +149,14 @@ export const sectionPaginationUrl = (
 		: tvShowsPaginationUrls.default;
 };
 
+export const cardsContainerRanking = (post: PossibleSectionPost): number => {
+	if ('vote_average' in post && post.vote_average) {
+		return post.vote_average;
+	}
+
+	return 0;
+};
+
 export const cardsContainerNames = (post: PossibleSectionPost): string => {
 	return 'title' in post
 		? post.title
@@ -300,7 +308,7 @@ export const searchFetchUrl = (
 
 export const detailFetchUrl = (
 	id: string | undefined,
-	type: string | undefined,
+	type: string | undefined
 ): string => {
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,

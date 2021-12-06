@@ -69,6 +69,7 @@ export interface IObjects {
 
 export interface ICardProps {
 	id: number;
+	ranking: number;
 	name: string;
 	image: null | string;
 	type: string;
