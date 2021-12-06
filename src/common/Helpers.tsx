@@ -521,3 +521,10 @@ export const postFavoriteFunction = (
 
 	return asyncFetch();
 };
+
+export const searchPaginationUrl = (
+	query: string | undefined,
+	pageNumber: number
+): string => {
+	return `${Paths.search}${query}${Paths.page}${pageNumber}`;
+};

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import styles from '../styles/Search.module.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { searchFetchUrl } from '../common/Helpers';
+import { searchFetchUrl, searchPaginationUrl } from '../common/Helpers';
 import { ISearchResults } from '../common/Interfaces';
 import Layout from '../components/Layout';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
+import PaginationButtons from '../components/PaginationButtons';
 
 export default function Search() {
 	const { query } = useParams();
+	const navigate = useNavigate();
 	const [currentPage, setCurrentPage] = useState(1);
 	const fetchUrl = searchFetchUrl(query, currentPage);
 	const { data, loading, error } = useFetch<ISearchResults>(fetchUrl);
@@ -17,6 +19,14 @@ export default function Search() {
 	const queryToText = query?.replaceAll('+', ' ');
 
 	const dataLength = data !== undefined && data?.results?.length;
+
+	const handlePaginate = (pageNumber: number) => {
+		setCurrentPage(pageNumber);
+
+		const newUrl = searchPaginationUrl(query, pageNumber);
+
+		navigate(newUrl);
+	};
 
 	return (
 		<Layout>
@@ -33,6 +43,14 @@ export default function Search() {
 							loading={loading}
 							posts={data?.results}
 							type="search"
+						/>
+
+						<PaginationButtons
+							totalPosts={data?.total_results}
+							postsPerPage={20}
+							paginate={handlePaginate}
+							currentPage={currentPage}
+							type={'search'}
 						/>
 					</>
 				)}
