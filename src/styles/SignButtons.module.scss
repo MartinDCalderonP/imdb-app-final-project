@@ -2,7 +2,7 @@
 	margin: 0 10px;
 }
 
-.signOut {
+.signButton {
 	border: none;
 	cursor: pointer;
 	font-size: 1.25rem;
@@ -11,4 +11,11 @@
 	.anchorIcon {
 		margin: 0 10px;
 	}
+}
+
+.profileButton {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }
