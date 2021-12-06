@@ -11,7 +11,7 @@ import Person from '../components/Person';
 import SeasonsList from '../components/SeasonsList';
 
 export default function Detail() {
-	const { typeInParams, id } = useParams();
+	const { typeInParams, id, seasonNumber } = useParams();
 	const fetchUrl = detailFetchUrl(id, typeInParams);
 	const { data, loading, error } = useFetch<PossibleDetailPost>(fetchUrl);
 
@@ -28,14 +28,15 @@ export default function Detail() {
 
 				{!loading && data && (
 					<>
-						{(typeInParams === 'movies' || typeInParams === 'tvShows') &&
+						{(typeInParams === 'movies' ||
+							(typeInParams === 'tvShows' && !seasonNumber)) &&
 							isMovieOrTvShowData && (
 								<Media id={id} type={typeInParams} data={isMovieOrTvShowData} />
 							)}
 
 						{typeInParams === 'person' && isPerson && <Person data={data} />}
 
-						{typeInParams === 'seasons' && isTVShowData && (
+						{typeInParams === 'tvShows' && seasonNumber && isTVShowData && (
 							<SeasonsList id={data.id} data={isTVShowData} />
 						)}
 					</>
