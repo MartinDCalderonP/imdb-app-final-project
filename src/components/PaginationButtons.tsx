@@ -81,7 +81,7 @@ export default function PaginationButtons({
 
 	return (
 		<>
-			<div className={styles.input}>
+			<form className={styles.input}>
 				Page:
 				<input
 					name={`${type}-page`}
@@ -91,7 +91,7 @@ export default function PaginationButtons({
 				<button className={styles.inputButton} onClick={handleInputButtonClick}>
 					<FontAwesomeIcon icon={faSearch} />
 				</button>
-			</div>
+			</form>
 
 			<div className={styles.buttonsContainer}>
 				{currentPage !== 1 && (
