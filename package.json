@@ -31,8 +31,9 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
 		"eject": "react-scripts eject",
+		"test": "react-scripts test",
+		"coverage": "react-scripts test --watchAll --coverage",
 		"lint": "eslint --ext .tsx src"
 	},
 	"eslintConfig": {
