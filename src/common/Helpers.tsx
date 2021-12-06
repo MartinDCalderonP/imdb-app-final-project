@@ -13,7 +13,7 @@ export const createSignInUrl = (requestToken: string | undefined): string => {
 };
 
 export const profileFetchUrl = (sessionId: string | undefined): string => {
-	return `${API.base}${API.account}?session_id=${sessionId}`;
+	return `${API.base}${API.account}?${API.sessionId}${sessionId}`;
 };
 
 export const sectionFetchUrl = (
@@ -45,7 +45,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${filter}&${paginationParams}`,
 		years: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
-		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
@@ -54,7 +54,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${filter}&${paginationParams}`,
 		years: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
-		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
 
 	return type === 'movies'
@@ -463,4 +463,17 @@ export const creditsItemNavigationUrl = (id: number): string => {
 
 export const getRequestToken = (location: Location): string => {
 	return location.search && location.search.split('=')[1].split('&')[0];
+};
+
+export const accountStateFetchUrl = (
+	mediaId: string,
+	sessionId: string,
+	type: string
+): string => {
+	const favoritesFetchUrls: IObjects = {
+		movies: `${API.base}${API.movies}${mediaId}${API.accountStates}?${API.sessionId}${sessionId}`,
+		tvShows: `${API.base}${API.tvShows}${mediaId}${API.accountStates}?${API.sessionId}${sessionId}`,
+	};
+
+	return favoritesFetchUrls[type];
 };
