@@ -19,4 +19,14 @@
 			}
 		}
 	}
+
+	@media (max-width: 999px) {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0;
+
+		.filtersListItem {
+			margin: 0 5px;
+		}
+	}
 }

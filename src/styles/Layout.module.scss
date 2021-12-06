@@ -1,3 +1,18 @@
+.searchContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	border-bottom: 1px solid var(--detailsColor);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	height: 50px;
+	box-sizing: border-box;
+
+	@media (min-width: 1000px) {
+		display: none;
+	}
+}
+
 .mainContainer {
 	width: 90vw;
 	margin: 20px auto;

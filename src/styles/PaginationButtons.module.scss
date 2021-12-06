@@ -38,7 +38,8 @@
 	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
-	max-width: 80vw;
+	justify-content: center;
+	width: 80%;
 
 	&:hover {
 		overflow-x: auto;
@@ -76,6 +77,36 @@
 			border-color: var(--hoverDetailsColor);
 			color: var(--detailsColor);
 			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 599px) {
+		width: 100%;
+
+		.pageButton {
+			font-size: 0.7rem;
+			margin: 0 4px;
+			padding: 2px 4px;
+
+			&.active,
+			&:hover {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	@media (min-width: 600px) and (max-width: 999px) {
+		width: 90%;
+
+		.pageButton {
+			font-size: 0.9rem;
+			margin: 0 7px;
+			padding: 4px 8px;
+
+			&.active,
+			&:hover {
+				font-size: 1.2rem;
+			}
 		}
 	}
 }

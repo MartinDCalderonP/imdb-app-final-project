@@ -2,7 +2,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: var(--backgroundColor);
 	border-bottom: 1px solid var(--detailsColor);
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 	width: 100%;
@@ -13,6 +12,10 @@
 
 	a {
 		text-decoration: none;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
 
 		.anchorIcon {
 			margin: 0 10px;
@@ -26,6 +29,14 @@
 			path {
 				fill: var(--hoverDetailsColor);
 			}
+		}
+	}
+
+	@media (max-width: 999px) {
+		padding: 0;
+
+		form {
+			display: none;
 		}
 	}
 }

@@ -123,7 +123,7 @@ export default function SignButtons() {
 	return (
 		<>
 			{profile?.id === 0 && (
-				<button className={styles.signOut} onClick={handleSignIn}>
+				<button className={styles.signButton} onClick={handleSignIn}>
 					Sign In
 					<FontAwesomeIcon className={styles.anchorIcon} icon={faSignInAlt} />
 				</button>
@@ -131,7 +131,7 @@ export default function SignButtons() {
 
 			{profile?.id > 0 && (
 				<>
-					<Link to={Paths.profile}>
+					<Link to={Paths.profile} className={styles.profileButton}>
 						{profile?.username}
 
 						<FontAwesomeIcon
@@ -140,7 +140,7 @@ export default function SignButtons() {
 						/>
 					</Link>
 
-					<button className={styles.signOut} onClick={handleSignOut}>
+					<button className={styles.signButton} onClick={handleSignOut}>
 						<FontAwesomeIcon
 							className={styles.anchorIcon}
 							icon={faSignOutAlt}

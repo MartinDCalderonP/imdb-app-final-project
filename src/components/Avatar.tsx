@@ -2,13 +2,7 @@ import React from 'react';
 
 export default function Avatar() {
 	return (
-		<svg
-			width="50"
-			height="50"
-			viewBox="0 0 24 24"
-			version="1.1"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+		<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
 			<g
 				transform="translate(3.000000, 2.000000)"
 				fill="currentColor"
