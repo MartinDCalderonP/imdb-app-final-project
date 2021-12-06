@@ -537,3 +537,15 @@ export interface IPaginationButtons {
 	currentPage: number;
 	type: string;
 }
+
+export interface IFavoriteButtonProps {
+	mediaId: string;
+	type: string;
+}
+
+export interface IAccountState {
+	id: number;
+	favorite: boolean;
+	rated: boolean;
+	watchlist: boolean;
+}

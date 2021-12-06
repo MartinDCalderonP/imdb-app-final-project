@@ -2,6 +2,7 @@ import { Location } from 'history';
 import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
 import { PossibleDetailPost, PossibleSectionPost } from './Types';
+import { API_KEY } from '../Keys';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -476,4 +477,47 @@ export const accountStateFetchUrl = (
 	};
 
 	return favoritesFetchUrls[type];
+};
+
+export const postFavoriteFetchUrl = (
+	accountId: number,
+	sessionId: string
+): string => {
+	return `${API.base}${API.account}/${accountId}${API.favorite}?${API.sessionId}${sessionId}&api_key=${API_KEY}`;
+};
+
+export const postFavoriteFunction = (
+	accountId: number,
+	sessionId: string,
+	mediaId: string,
+	type: string,
+	action: string
+) => {
+	const media = type === 'movies' ? 'movie' : 'tv';
+	const favorite = action === 'add' ? true : false;
+
+	const body = {
+		media_type: media,
+		media_id: parseInt(mediaId),
+		favorite: favorite,
+	};
+
+	const fetchParams = {
+		body: JSON.stringify(body),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+		},
+	};
+
+	const fetchUrl = postFavoriteFetchUrl(accountId, sessionId);
+
+	const asyncFetch = async () => {
+		const response = await fetch(fetchUrl, fetchParams);
+		const data = await response.json();
+
+		return data;
+	};
+
+	return asyncFetch();
 };

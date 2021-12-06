@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../styles/Media.module.scss';
 import { currentSeasons, currentTitle, imageW300Url } from '../common/Helpers';
 import { IMediaProps } from '../common/Interfaces';
+import FavoriteButton from './FavoriteButton';
 import RatingStars from '../components/RatingStars';
 import CardsContainer from '../components/CardsContainer';
 import Carousel from '../components/Carousel';
@@ -18,6 +19,8 @@ export default function Media({ id, type, data }: IMediaProps) {
 	return (
 		<>
 			<h1 className={styles.title}>{title}</h1>
+			{id && <FavoriteButton mediaId={id} type={type} />}
+
 			<div className={styles.row}>
 				<div className={styles.leftColumn}>
 					<div className={styles.image}>
