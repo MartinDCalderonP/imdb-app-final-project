@@ -549,3 +549,13 @@ export interface IAccountState {
 	rated: boolean;
 	watchlist: boolean;
 }
+
+export interface IToastProps {
+	message: string;
+	closeToast: Function;
+}
+
+export interface ICloseIconProps {
+	className: string;
+	onClick: MouseEventHandler;
+}
