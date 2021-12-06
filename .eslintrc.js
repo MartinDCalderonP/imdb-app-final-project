@@ -14,7 +14,7 @@ module.exports = {
 	},
 	plugins: ['react', '@typescript-eslint'],
 	rules: {
-		// 'no-console': ['error', { allow: ['warn', 'error'] }],
+		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'react/prop-types': 'off',
 		quotes: ['error', 'single', { allowTemplateLiterals: true }],
 		semi: ['error', 'always'],
