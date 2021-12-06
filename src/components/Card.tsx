@@ -55,7 +55,7 @@ export default function Card({
 					</div>
 
 					<div className={cardInformationStlye}>
-						{ranking && (
+						{type !== 'seasons' && ranking && (
 							<div className={styles.ranking}>
 								<p>{ranking}</p>
 								<FontAwesomeIcon icon={faStar} />
