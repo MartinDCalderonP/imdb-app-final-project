@@ -17,5 +17,9 @@
 		flex-direction: column;
 		overflow-x: hidden;
 		min-width: 30%;
+
+		@media (max-width: 599px) {
+			align-items: center;
+		}
 	}
 }
