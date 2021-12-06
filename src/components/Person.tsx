@@ -17,7 +17,7 @@ export default function Person({ data }: IPersonProps) {
 		homepage,
 	} = data;
 
-	const formattedBirthday = mmddyyyDate(birthday);
+	const formattedBirthday = birthday && mmddyyyDate(birthday);
 	const formattedDeathday = deathday && mmddyyyDate(deathday);
 	const image = imageW200Url(profile_path);
 	const formattedGender = formatGender(gender);
@@ -32,18 +32,22 @@ export default function Person({ data }: IPersonProps) {
 			<div className={styles.row}>
 				<div className={styles.leftColumn}>
 					<img src={image} alt={name} />
-					<h2 className={styles.subtitle}>Also known as</h2>
-					<ul className={styles.akaList}>
-						{also_known_as?.map((translatedName, index) => (
-							<li key={index}>{translatedName}</li>
-						))}
-					</ul>
+					{also_known_as?.length > 0 && (
+						<>
+							<h2 className={styles.subtitle}>Also known as</h2>
+							<ul className={styles.akaList}>
+								{also_known_as?.map((translatedName, index) => (
+									<li key={index}>{translatedName}</li>
+								))}
+							</ul>
+						</>
+					)}
 				</div>
 
 				<div className={styles.dividerColumn} />
 
 				<div className={styles.rightColumn}>
-					<p className={styles.description}>{biography}</p>
+					{biography && <p className={styles.description}>{biography}</p>}
 
 					<div className={styles.information}>
 						<h3>Information</h3>

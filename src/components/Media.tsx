@@ -31,14 +31,12 @@ export default function Media({ id, type, data }: IMediaProps) {
 				<div className={styles.dividerColumn} />
 
 				<div className={styles.rightColumn}>
-					{data?.vote_average ? (
+					{data?.vote_average > 0 && (
 						<>
 							<RatingStars rating={data?.vote_average} />
 
 							<div className={styles.dividerRow} />
 						</>
-					) : (
-						<></>
 					)}
 
 					{data?.overview && (
@@ -55,10 +53,12 @@ export default function Media({ id, type, data }: IMediaProps) {
 							{title}
 						</p>
 
-						<p>
-							<b>Genres: </b>
-							{data?.genres?.map((genre) => genre.name).join(', ')}
-						</p>
+						{data?.genres.length > 0 && (
+							<p>
+								<b>Genres: </b>
+								{data?.genres?.map((genre) => genre.name).join(', ')}
+							</p>
+						)}
 
 						{data?.homepage && <ExternalLink url={data?.homepage} />}
 					</div>
