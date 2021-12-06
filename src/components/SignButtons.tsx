@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/SignButtons.module.scss';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import useFetch from '../hooks/useFetch';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -91,12 +91,16 @@ export default function SignButtons() {
 		}
 	}, [data]);
 
+	const navigate = useNavigate();
+
 	const handleSignOut = () => {
 		setAuthType('deleteSession');
 
 		if (sessionId) {
 			setToDeleteSessionId(sessionId);
 		}
+
+		navigate(Paths.home);
 	};
 
 	useEffect(() => {

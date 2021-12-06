@@ -1,15 +1,19 @@
 import React from 'react';
 import { Navigate } from 'react-router';
-import { useContextState } from '../context/Context';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { initialState } from '../context/Reducer';
 import { IPrivateRouteProps } from '../common/Interfaces';
 
 export default function PrivateRoute({
 	children,
 	redirectTo,
 }: IPrivateRouteProps) {
-	const { state } = useContextState();
+	const [profile, setProfile] = useLocalStorage(
+		'profile',
+		initialState.profile
+	);
 
-	const isAuthenticated = state.profile.id === 0 ? false : true;
+	const isAuthenticated = profile.id === 0 ? false : true;
 
 	return isAuthenticated ? children : <Navigate to={redirectTo} />;
 }
