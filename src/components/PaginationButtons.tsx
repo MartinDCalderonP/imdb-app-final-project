@@ -121,7 +121,7 @@ export default function PaginationButtons({
 					}
 				})}
 
-				{currentPage !== pagesNumbers.length && (
+				{currentPage !== pagesNumbers?.length && (
 					<Chevron
 						className={styles.chevronButton}
 						onClick={() => paginate(currentPage + 1)}

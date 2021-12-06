@@ -65,8 +65,6 @@ export default function Section({
 		}
 	}, [typeInParams, type, page, filter, category, id]);
 
-	console.log(fetchUrl);
-
 	return (
 		<>
 			{loading && <Spinner />}
@@ -81,13 +79,15 @@ export default function Section({
 
 					<CardsContainer loading={loading} posts={data?.results} type={type} />
 
-					<PaginationButtons
-						totalPosts={data?.total_results}
-						postsPerPage={20}
-						paginate={handlePaginate}
-						currentPage={currentPage}
-						type={type}
-					/>
+					{data?.total_results !== 0 && (
+						<PaginationButtons
+							totalPosts={data?.total_results}
+							postsPerPage={20}
+							paginate={handlePaginate}
+							currentPage={currentPage}
+							type={type}
+						/>
+					)}
 				</>
 			)}
 
