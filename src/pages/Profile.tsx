@@ -1,16 +1,11 @@
 import React from 'react';
 import styles from '../styles/Profile.module.scss';
-import { Navigate } from 'react-router-dom';
 import { useContextState } from '../context/Context';
 import Layout from '../components/Layout';
 import Section from '../components/Section';
 
 export default function Profile() {
 	const { state } = useContextState();
-
-	if (state.profile.id === 0) {
-		<Navigate to={'/'} replace={true} />;
-	}
 
 	return (
 		<Layout>

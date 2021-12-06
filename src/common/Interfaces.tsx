@@ -69,6 +69,7 @@ export interface IObjects {
 
 export interface ICardProps {
 	id: number;
+	ranking: number;
 	name: string;
 	image: null | string;
 	type: string;
@@ -535,4 +536,26 @@ export interface IPaginationButtons {
 	paginate: (paginate: number) => void;
 	currentPage: number;
 	type: string;
+}
+
+export interface IFavoriteButtonProps {
+	mediaId: string;
+	type: string;
+}
+
+export interface IAccountState {
+	id: number;
+	favorite: boolean;
+	rated: boolean;
+	watchlist: boolean;
+}
+
+export interface IToastProps {
+	message: string;
+	closeToast: Function;
+}
+
+export interface ICloseIconProps {
+	className: string;
+	onClick: MouseEventHandler;
 }

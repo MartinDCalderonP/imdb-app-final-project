@@ -1,0 +1,35 @@
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	border: 1px solid var(--detailsColor);
+	padding: 10px;
+	background-color: var(--backgroundColor);
+	cursor: pointer;
+	transition: all 0.3s linear;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+
+	&:hover {
+		border-color: var(--hoverDetailsColor);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+		background-color: var(--hoverBackgroundColor);
+
+		.icon {
+			font-size: 1.2rem;
+
+			path {
+				fill: var(--hoverDetailsColor);
+			}
+		}
+	}
+
+	.icon {
+		transition: all 0.3s linear;
+
+		path {
+			transition: all 0.3s linear;
+			fill: var(--detailsColor);
+		}
+	}
+}

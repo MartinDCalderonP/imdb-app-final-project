@@ -5,7 +5,22 @@ import reducer, { initialState } from './Reducer';
 const StateContext = createContext<Context>({} as Context);
 
 export function StateProvider({ children }: { children: ReactNode }) {
-	const [state, dispatch] = useReducer(reducer, initialState);
+	const storagedSessionId = window.localStorage.getItem('sessionId');
+	const storagedProfile = window.localStorage.getItem('profile');
+
+	const storagedState = {
+		sessionId: storagedSessionId
+			? JSON.parse(storagedSessionId)
+			: initialState.sessionId,
+		profile: storagedProfile
+			? JSON.parse(storagedProfile)
+			: initialState.profile,
+	};
+
+	const [state, dispatch] = useReducer(
+		reducer,
+		storagedState ? storagedState : initialState
+	);
 
 	return (
 		<StateContext.Provider value={{ state, dispatch }}>

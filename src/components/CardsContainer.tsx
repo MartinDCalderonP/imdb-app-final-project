@@ -6,6 +6,7 @@ import {
 	episodesCount,
 	seasonNumber,
 	currentType,
+	cardsContainerRanking,
 } from '../common/Helpers';
 import { ICardsContainerProps } from '../common/Interfaces';
 import { PossibleSectionPost } from '../common/Types';
@@ -28,6 +29,7 @@ export default function CardsContainer({
 						key={`${type}${post.id}`}
 						type={currentType(post, type)}
 						id={post.id}
+						ranking={cardsContainerRanking(post)}
 						name={cardsContainerNames(post)}
 						image={cardsContainerImages(post)}
 						seasonNumber={seasonNumber(post)}

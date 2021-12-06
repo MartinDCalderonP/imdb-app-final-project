@@ -20,6 +20,7 @@ import {
 	faSignOutAlt,
 	faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import Toast from './Toast';
 
 export default function SignButtons() {
 	const { state, dispatch } = useContextState();
@@ -42,6 +43,8 @@ export default function SignButtons() {
 	}, [profile]);
 
 	const location = useLocation();
+	const [showToast, setShowToast] = useState(false);
+	const [toastMessage, setToastMessage] = useState('');
 	const [approvedRequestToken, setApprovedRequestToken] = useState<string>(
 		getRequestToken(location)
 	);
@@ -88,6 +91,8 @@ export default function SignButtons() {
 				type: 'SET_PROFILE',
 				payload: { sessionId: newSessionId, profile: data },
 			});
+			setShowToast(true);
+			setToastMessage('Signed in successfully');
 		}
 	}, [data]);
 
@@ -106,8 +111,14 @@ export default function SignButtons() {
 				type: 'SET_PROFILE',
 				payload: { sessionId: '', profile: initialState.profile },
 			});
+			setShowToast(true);
+			setToastMessage('Signed out successfully');
 		}
 	}, [sessionDeleted]);
+
+	const handleCloseToast = () => {
+		setShowToast(false);
+	};
 
 	return (
 		<>
@@ -136,6 +147,10 @@ export default function SignButtons() {
 						/>
 					</button>
 				</>
+			)}
+
+			{showToast && (
+				<Toast message={toastMessage} closeToast={handleCloseToast} />
 			)}
 		</>
 	);

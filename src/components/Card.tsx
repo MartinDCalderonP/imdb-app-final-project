@@ -5,10 +5,13 @@ import { useLocation } from 'react-router';
 import { imageW200Url, cardNavigationUrl } from '../common/Helpers';
 import { ICardProps } from '../common/Interfaces';
 import imageNotFound from '../images/imageNotFound.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function Card({
 	type,
 	id,
+	ranking,
 	name,
 	image,
 	seasonNumber,
@@ -52,6 +55,12 @@ export default function Card({
 					</div>
 
 					<div className={cardInformationStlye}>
+						{ranking && (
+							<div className={styles.ranking}>
+								<p>{ranking}</p>
+								<FontAwesomeIcon icon={faStar} />
+							</div>
+						)}
 						<p>{name}</p>
 						{type === 'seasons' && <p>Episodes: {episodesCount}</p>}
 					</div>

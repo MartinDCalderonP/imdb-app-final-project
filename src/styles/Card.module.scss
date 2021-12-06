@@ -1,6 +1,6 @@
 .card {
 	width: 20%;
-	height: 450px;
+	height: 400px;
 	background-color: var(--backgroundColor);
 	margin: 10px 5px;
 	border: 1px solid var(--detailsColor);
@@ -33,7 +33,7 @@
 		justify-content: space-between;
 		text-decoration: none;
 		text-align: center;
-		height: 80%;
+		height: 100%;
 
 		&.horizontal {
 			flex-direction: row;
@@ -61,6 +61,21 @@
 
 		.information {
 			text-align: center;
+			margin-bottom: 10px;
+
+			.ranking {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 10px;
+
+				svg {
+					margin-left: 5px;
+
+					path {
+						fill: #ffc107;
+					}
+				}
+			}
 
 			&.horizontal {
 				margin-left: 10px;

@@ -2,6 +2,7 @@ import { Location } from 'history';
 import { Paths, API } from './Enums';
 import { IObjects } from './Interfaces';
 import { PossibleDetailPost, PossibleSectionPost } from './Types';
+import { API_KEY } from '../Keys';
 
 export const capitalizeWord = (word: string) => {
 	if (!word) return word;
@@ -13,7 +14,7 @@ export const createSignInUrl = (requestToken: string | undefined): string => {
 };
 
 export const profileFetchUrl = (sessionId: string | undefined): string => {
-	return `${API.base}${API.account}?session_id=${sessionId}`;
+	return `${API.base}${API.account}?${API.sessionId}${sessionId}`;
 };
 
 export const sectionFetchUrl = (
@@ -45,7 +46,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${filter}&${paginationParams}`,
 		years: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
-		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
@@ -54,7 +55,7 @@ export const sectionFetchUrl = (
 		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${filter}&${paginationParams}`,
 		years: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
-		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&session_id=${sessionId}&${paginationParams}`,
+		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
 
 	return type === 'movies'
@@ -147,6 +148,14 @@ export const sectionPaginationUrl = (
 		: accountId
 		? tvShowsPaginationUrls.favorites
 		: tvShowsPaginationUrls.default;
+};
+
+export const cardsContainerRanking = (post: PossibleSectionPost): number => {
+	if ('vote_average' in post && post.vote_average) {
+		return post.vote_average;
+	}
+
+	return 0;
 };
 
 export const cardsContainerNames = (post: PossibleSectionPost): string => {
@@ -300,7 +309,7 @@ export const searchFetchUrl = (
 
 export const detailFetchUrl = (
 	id: string | undefined,
-	type: string | undefined,
+	type: string | undefined
 ): string => {
 	const detailFetchUrls: IObjects = {
 		movies: `${API.base}${API.movies}${id}?`,
@@ -455,4 +464,60 @@ export const creditsItemNavigationUrl = (id: number): string => {
 
 export const getRequestToken = (location: Location): string => {
 	return location.search && location.search.split('=')[1].split('&')[0];
+};
+
+export const accountStateFetchUrl = (
+	mediaId: string,
+	sessionId: string,
+	type: string
+): string => {
+	const favoritesFetchUrls: IObjects = {
+		movies: `${API.base}${API.movies}${mediaId}${API.accountStates}?${API.sessionId}${sessionId}`,
+		tvShows: `${API.base}${API.tvShows}${mediaId}${API.accountStates}?${API.sessionId}${sessionId}`,
+	};
+
+	return favoritesFetchUrls[type];
+};
+
+export const postFavoriteFetchUrl = (
+	accountId: number,
+	sessionId: string
+): string => {
+	return `${API.base}${API.account}/${accountId}${API.favorite}?${API.sessionId}${sessionId}&api_key=${API_KEY}`;
+};
+
+export const postFavoriteFunction = (
+	accountId: number,
+	sessionId: string,
+	mediaId: string,
+	type: string,
+	action: string
+) => {
+	const media = type === 'movies' ? 'movie' : 'tv';
+	const favorite = action === 'add' ? true : false;
+
+	const body = {
+		media_type: media,
+		media_id: parseInt(mediaId),
+		favorite: favorite,
+	};
+
+	const fetchParams = {
+		body: JSON.stringify(body),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+		},
+	};
+
+	const fetchUrl = postFavoriteFetchUrl(accountId, sessionId);
+
+	const asyncFetch = async () => {
+		const response = await fetch(fetchUrl, fetchParams);
+		const data = await response.json();
+
+		return data;
+	};
+
+	return asyncFetch();
 };

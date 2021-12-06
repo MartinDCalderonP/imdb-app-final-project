@@ -50,4 +50,6 @@ export enum API {
 	season = '/season',
 	account = 'account',
 	favorite = '/favorite',
+	accountStates = '/account_states',
+	sessionId = 'session_id=',
 }
