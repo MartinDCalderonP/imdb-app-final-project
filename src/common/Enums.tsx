@@ -2,12 +2,19 @@ export enum Paths {
 	home = '/',
 	approved = '/approved',
 	movies = '/movies',
-	tvShows = '/tv-shows',
+	tvShows = '/tvShows',
 	person = '/person',
 	search = '/search=',
 	page = '/page=',
 	season = '/season',
 	profile = '/profile',
+	certification = '/certification',
+	genre = '/genre',
+	years = '/years',
+	from = '/from=',
+	to = '&to=',
+	similar = '/similar',
+	favorites = '/favorites',
 }
 
 export enum API {

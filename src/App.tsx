@@ -15,29 +15,28 @@ export default function App() {
 
 				<Route path={Paths.approved} element={<Home />} />
 
+				<Route path={`/:typeInParams${Paths.page}:page`} element={<Home />} />
+
+				<Route
+					path={`/:typeInParams/:category/:filter${Paths.page}:page`}
+					element={<Home />}
+				/>
+
 				<Route
 					path={`${Paths.search}:query${Paths.page}:page`}
 					element={<Search />}
 				/>
 
+				<Route path={`:typeInParams/:id`} element={<Detail />} />
+
 				<Route
-					path={`${Paths.movies}/:id`}
-					element={<Detail type="movies" />}
+					path={`:typeInParams/:id${Paths.season}/:seasonNumber`}
+					element={<Detail />}
 				/>
 
 				<Route
-					path={`${Paths.tvShows}/:id`}
-					element={<Detail type="tvShows" />}
-				/>
-
-				<Route
-					path={`${Paths.person}/:id`}
-					element={<Detail type="person" />}
-				/>
-
-				<Route
-					path={`${Paths.tvShows}/:id${Paths.season}/:seasonNumber`}
-					element={<Detail type="seasons" />}
+					path={`/:typeInParams/:id${Paths.similar}${Paths.page}:page`}
+					element={<Detail />}
 				/>
 
 				<Route

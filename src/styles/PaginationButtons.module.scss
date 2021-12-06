@@ -1,0 +1,81 @@
+.input {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+
+	input {
+		background-color: var(--innerBackgroundColor);
+		margin-left: 10px;
+		border: 1px solid var(--detailsColor);
+		border-radius: 2px;
+		padding: 5px;
+		width: 50px;
+	}
+
+	.inputButton {
+		background-color: var(--innerBackgroundColor);
+		border: 1px solid var(--detailsColor);
+		border-radius: 2px;
+		padding: 5px;
+		width: 50px;
+		margin-left: 10px;
+		transition: all 0.3s linear;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+			border-color: var(--hoverDetailsColor);
+			svg {
+				path {
+					fill: var(--detailsColor);
+				}
+			}
+		}
+	}
+}
+
+.buttonsContainer {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	max-width: 80vw;
+
+	&:hover {
+		overflow-x: auto;
+	}
+
+	.chevronButton {
+		position: relative;
+		margin: 0;
+
+		&:hover {
+			background-color: transparent;
+			color: darkred;
+
+			svg {
+				path {
+					fill: var(--detailsColor);
+				}
+			}
+		}
+	}
+
+	.pageButton {
+		font-size: 1rem;
+		background-color: var(--backgroundColor);
+		margin: 0 10px;
+		border: 1px solid var(--detailsColor);
+		padding: 10px 15px;
+		cursor: pointer;
+		transition: all 0.3s linear;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+
+		&.active,
+		&:hover {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+			border-color: var(--hoverDetailsColor);
+			color: var(--detailsColor);
+			font-size: 1.5rem;
+		}
+	}
+}

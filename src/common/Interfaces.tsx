@@ -90,24 +90,19 @@ export interface ISectionProps {
 }
 
 export interface IFiltersContainerProps {
-	current: string;
-	setCurrent: (current: string) => void;
-	setFilterCategory: (current: string) => void;
+	current: string | undefined;
 	type: string;
 }
 
 export interface IFiltersProps {
-	current: string;
-	setCurrent: (current: string) => void;
+	current: string | undefined;
 	category: string;
-	setFilterCategory: (current: string) => void;
 	type: string;
 }
 
 export interface IYearsInputsProps {
-	current: string;
-	setCurrent: (current: string) => void;
-	setFilterCategory: (current: string) => void;
+	current: string | undefined;
+	type: string;
 }
 
 export interface ISearchResults {
@@ -147,10 +142,6 @@ export enum MediaType {
 	Movie = 'movie',
 	Person = 'person',
 	Tv = 'tv',
-}
-
-export interface IDetailProps {
-	type: string;
 }
 
 export interface IDetailMovie {
@@ -536,4 +527,12 @@ export interface IGenresData {
 export interface Genre {
 	id: number;
 	name: string;
+}
+
+export interface IPaginationButtons {
+	totalPosts: number;
+	postsPerPage: number;
+	paginate: (paginate: number) => void;
+	currentPage: number;
+	type: string;
 }
