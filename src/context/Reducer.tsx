@@ -16,9 +16,13 @@ export const initialState = {
 	},
 };
 
+export const actionTypes = {
+	SET_PROFILE: 'SET_PROFILE',
+};
+
 export default function reducer(state: State, action: Action): State {
 	switch (action.type) {
-		case 'SET_PROFILE':
+		case actionTypes.SET_PROFILE:
 			return {
 				...state,
 				sessionId: action.payload.sessionId,

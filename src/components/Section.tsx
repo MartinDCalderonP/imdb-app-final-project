@@ -56,13 +56,19 @@ export default function Section({
 	};
 
 	useEffect(() => {
-		if (typeInParams === type) {
+		let isMounted = true;
+
+		if (typeInParams === type && isMounted) {
 			if (page) {
 				setCurrentPage(parseInt(page));
 			}
 			setCurrentFilter(filter);
 			setCurrentCategory(category);
 		}
+
+		return () => {
+			isMounted = false;
+		};
 	}, [typeInParams, type, page, filter, category, id]);
 
 	return (

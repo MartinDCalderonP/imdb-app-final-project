@@ -6,7 +6,7 @@ import useAuth from '../hooks/useAuth';
 import useFetch from '../hooks/useFetch';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { useContextState } from '../context/Context';
-import { initialState } from '../context/Reducer';
+import { initialState, actionTypes } from '../context/Reducer';
 import { Paths } from '../common/Enums';
 import {
 	profileFetchUrl,
@@ -36,7 +36,7 @@ export default function SignButtons() {
 	useEffect(() => {
 		if (profile.id) {
 			dispatch({
-				type: 'SET_PROFILE',
+				type: actionTypes.SET_PROFILE,
 				payload: { sessionId: sessionId, profile: profile },
 			});
 		}
@@ -88,7 +88,7 @@ export default function SignButtons() {
 			setProfile(data);
 			setSessionId(newSessionId);
 			dispatch({
-				type: 'SET_PROFILE',
+				type: actionTypes.SET_PROFILE,
 				payload: { sessionId: newSessionId, profile: data },
 			});
 			setShowToast(true);
@@ -108,7 +108,7 @@ export default function SignButtons() {
 		if (sessionDeleted) {
 			setProfile(initialState.profile);
 			dispatch({
-				type: 'SET_PROFILE',
+				type: actionTypes.SET_PROFILE,
 				payload: { sessionId: '', profile: initialState.profile },
 			});
 			setShowToast(true);

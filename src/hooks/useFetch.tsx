@@ -10,13 +10,14 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 	const url = fetchUrl && `${fetchUrl}&api_key=${API_KEY}&language=en-US`;
 
 	useEffect(() => {
+		let isMounted = true;
 		const abortController = new AbortController();
 		const signal = abortController.signal;
 
 		const fetchData = async () => {
 			setLoading(true);
 
-			if (url) {
+			if (url && isMounted) {
 				fetch(url, { signal })
 					.then((res) => res.json())
 					.then((result) => {
@@ -35,7 +36,10 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 
 		fetchData();
 
-		return () => abortController.abort();
+		return () => {
+			abortController.abort();
+			isMounted = false;
+		};
 	}, [url]);
 
 	return { data, loading, error };

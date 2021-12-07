@@ -26,7 +26,7 @@ export type PossibleDetailPost = IDetailMovie | IDetailTvShow | IDetailPerson;
 export type PossibleFilterData = ICertificationsData | IGenresData;
 
 export type Action = {
-	type: 'SET_PROFILE';
+	type: string;
 	payload: { sessionId: string; profile: IProfileData };
 };
 
