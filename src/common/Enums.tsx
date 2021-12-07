@@ -21,7 +21,7 @@ export enum API {
 	base = 'https://api.themoviedb.org/3/',
 	requestToken = 'authentication/token/new',
 	authenticate = `https://www.themoviedb.org/authenticate/`,
-	redirect = '?redirect_to=http://localhost:3000/approved',
+	redirect = '?redirect_to=https://imdb-app-final-project.vercel.app/approved',
 	authenticateWithToken = 'authentication/session/new',
 	deleteSession = 'authentication/session',
 	movies = 'movie/',
