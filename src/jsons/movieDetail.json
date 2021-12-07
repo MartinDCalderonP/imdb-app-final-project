@@ -1,6 +1,6 @@
 {
 	"adult": false,
-	"backdrop_path": "/70nxSw3mFBsGmtkvcs91PbjerwD.jpg",
+	"backdrop_path": "/lNyLSOKMMeUPr1RsL4KcRuIXwHt.jpg",
 	"belongs_to_collection": {
 		"id": 558216,
 		"name": "Venom Collection",
@@ -19,7 +19,7 @@
 	"original_language": "en",
 	"original_title": "Venom: Let There Be Carnage",
 	"overview": "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
-	"popularity": 18405.785,
+	"popularity": 12506.888,
 	"poster_path": "/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
 	"production_companies": [
 		{
@@ -58,16 +58,16 @@
 		{ "iso_3166_1": "US", "name": "United States of America" }
 	],
 	"release_date": "2021-09-30",
-	"revenue": 454000000,
+	"revenue": 482000000,
 	"runtime": 97,
 	"spoken_languages": [
-		{ "english_name": "Spanish", "iso_639_1": "es", "name": "Español" },
-		{ "english_name": "English", "iso_639_1": "en", "name": "English" }
+		{ "english_name": "English", "iso_639_1": "en", "name": "English" },
+		{ "english_name": "Spanish", "iso_639_1": "es", "name": "Español" }
 	],
 	"status": "Released",
 	"tagline": "",
 	"title": "Venom: Let There Be Carnage",
 	"video": false,
 	"vote_average": 7.2,
-	"vote_count": 3637
+	"vote_count": 4067
 }
