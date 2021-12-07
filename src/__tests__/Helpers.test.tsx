@@ -3,7 +3,6 @@ import {
 	capitalizeWord,
 	createSignInUrl,
 	profileFetchUrl,
-	sectionFetchUrl,
 } from '../common/Helpers';
 
 test('should capitalize word', () => {
@@ -21,17 +20,3 @@ test('should return profile fetch url', () => {
 		`${API.base}${API.account}?${API.sessionId}testSI`
 	);
 });
-
-// test('should return section fetch url', () => {
-// 	expect(
-// 		sectionFetchUrl(
-// 			666,
-// 			'testFilter',
-// 			'testCategory',
-// 			'testType',
-// 			'testId',
-// 			'testSessionId',
-// 			999
-// 		)
-// 	).toBe(`${API.base}${API.account}?${API.sessionId}mSI69`);
-// });
