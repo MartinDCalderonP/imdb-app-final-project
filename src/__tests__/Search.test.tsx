@@ -8,9 +8,9 @@ test('should render ', () => {
 });
 
 test('user should navigate to Search page', async () => {
-	const { findAllByText } = render(<App />);
+	const { findByText } = render(<App />);
 	userEvent.type(screen.getAllByPlaceholderText('Search')[0], 'Spider');
 	userEvent.click(screen.getAllByRole('button')[0]);
-	const spider = await findAllByText(/Spider/i);
-	expect(spider[0]).toBeInTheDocument();
+	const homecoming = await findByText(/Homecoming/i);
+	expect(homecoming).toBeInTheDocument();
 });
