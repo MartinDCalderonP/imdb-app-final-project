@@ -18,7 +18,7 @@ export enum Paths {
 }
 
 export enum API {
-	base = 'https://api.themoviedb.org/3/',
+	base = 'http://api.themoviedb.org/3/',
 	requestToken = 'authentication/token/new',
 	authenticate = `https://www.themoviedb.org/authenticate/`,
 	redirect = '?redirect_to=https://imdb-app-final-project.vercel.app/approved',
