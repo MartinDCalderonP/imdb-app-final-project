@@ -42,18 +42,18 @@ export const sectionFetchUrl = (
 
 	const moviesFetchUrls: IObjects = {
 		default: `${API.base}${API.movies}${API.popular}?${paginationParams}`,
-		certification: `${API.base}${API.discover}${API.movies}?${API.byCertification}${filter}&${paginationParams}`,
-		genre: `${API.base}${API.discover}${API.movies}?${API.byGenre}${filter}&${paginationParams}`,
-		years: `${API.base}${API.discover}${API.movies}?${moviesYearParams}&${paginationParams}`,
+		certification: `${API.base}${API.discover}movie?${API.byCertification}${filter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}movie?${API.byGenre}${filter}&${paginationParams}`,
+		years: `${API.base}${API.discover}movie?${moviesYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.movies}${id}${API.similar}?${paginationParams}`,
 		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/movies?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
 
 	const tvShowsFetchUrls: IObjects = {
 		default: `${API.base}${API.tvShows}${API.popular}?${paginationParams}`,
-		certification: `${API.base}${API.discover}${API.tvShows}?${API.byCertification}${filter}&${paginationParams}`,
-		genre: `${API.base}${API.discover}${API.tvShows}?${API.byGenre}${filter}&${paginationParams}`,
-		years: `${API.base}${API.discover}${API.tvShows}?${tvShowsYearParams}&${paginationParams}`,
+		certification: `${API.base}${API.discover}tv?${API.byCertification}${filter}&${paginationParams}`,
+		genre: `${API.base}${API.discover}tv?${API.byGenre}${filter}&${paginationParams}`,
+		years: `${API.base}${API.discover}tv?${tvShowsYearParams}&${paginationParams}`,
 		similar: `${API.base}${API.tvShows}${id}${API.similar}?${paginationParams}`,
 		favorites: `${API.base}${API.account}/${accountId}${API.favorite}/tv?&sort_by=created_at.asc&${API.sessionId}${sessionId}&${paginationParams}`,
 	};
