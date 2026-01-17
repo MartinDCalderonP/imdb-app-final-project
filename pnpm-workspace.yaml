@@ -22,5 +22,6 @@ overrides:
   rollup@<2.79.2: '>=2.79.2'
   semver@>=7.0.0 <7.5.2: '>=7.5.2'
   shell-quote@>=1.6.3 <=1.7.2: '>=1.7.3'
+  tar@<=7.5.2: '>=7.5.3'
   webpack-dev-middleware@<=5.3.3: '>=5.3.4'
   webpack-dev-server@<=5.2.0: '>=5.2.1'
